@@ -2,6 +2,9 @@ package tw.edu.ntut.csie.game.state;
 
 //Created by leon on 2017/3/8.
 
+import android.media.midi.MidiOutputPort;
+
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
 
@@ -10,6 +13,7 @@ import tw.edu.ntut.csie.game.core.MovingBitmap;
 import tw.edu.ntut.csie.game.engine.GameEngine;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
+import java.util.Collections;
 
 public class StateBattle extends GameState
 {
@@ -39,7 +43,12 @@ public class StateBattle extends GameState
     {
         _background.show();
         _button.show();
-        _capoo.show();
+        //_capoo.show();
+        for (MovingBitmap element:_capooes)
+        {
+            element.show();
+        }
+
     }
 
     @Override
@@ -47,12 +56,17 @@ public class StateBattle extends GameState
     {
         _background.release();
         _button.release();
-        _capoo.release();
+        //_capoo.release();
         _music.release();
+        for (MovingBitmap element:_capooes)
+        {
+            element.release();
+        }
         _background = null;
         _button = null;
-        _capoo = null;
+       //_capoo = null;
         _music = null;
+        _capooes = null;
     }
 
     @Override
@@ -84,7 +98,11 @@ public class StateBattle extends GameState
         {
             if (pressedY > _button.getY() && pressedY < _button.getY() + _button.getHeight())
             {
-                _capoo = new MovingBitmap(R.drawable.test_capoo, 300, 150);
+                Collections.reverse(_capooes);
+               // _capoo = new MovingBitmap(R.drawable.test_capoo, i, 150);
+                _capooes.add(new MovingBitmap(R.drawable.test_capoo, i, 150));
+                i = i-30;
+                Collections.reverse(_capooes);
             }
         }
         return true;
@@ -118,4 +136,6 @@ public class StateBattle extends GameState
     private MovingBitmap _button;
     private MovingBitmap _capoo;
     private Audio _music;
+    private int i =300;
+    private List<MovingBitmap> _capooes = new ArrayList<>();
 }
