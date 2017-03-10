@@ -2,11 +2,9 @@ package tw.edu.ntut.csie.game.state;
 
 //Created by leon on 2017/3/8.
 
-import android.media.midi.MidiOutputPort;
-
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
+import java.util.ArrayList;
 
 import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.core.MovingBitmap;
@@ -14,6 +12,8 @@ import tw.edu.ntut.csie.game.engine.GameEngine;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 import java.util.Collections;
+
+import tw.edu.ntut.csie.game.model.BattleModel;
 
 public class StateBattle extends GameState
 {
@@ -28,9 +28,11 @@ public class StateBattle extends GameState
     {
         _background = new MovingBitmap(R.drawable.test_background);
         _button = new MovingBitmap(R.drawable.test_button, 10, 10);
+        _battleModel = new BattleModel();
         _music = new Audio(R.raw.ntut);
         _music.setRepeating(true);
         _music.play();
+
     }
 
     @Override
@@ -44,11 +46,11 @@ public class StateBattle extends GameState
         _background.show();
         _button.show();
         //_capoo.show();
-        for (MovingBitmap element:_capooes)
-        {
-            element.show();
-        }
-
+        //for (MovingBitmap element:_capooes)
+        //{
+        //    element.show();
+        //}
+        _battleModel.ShowAll();
     }
 
     @Override
@@ -58,15 +60,16 @@ public class StateBattle extends GameState
         _button.release();
         //_capoo.release();
         _music.release();
-        for (MovingBitmap element:_capooes)
-        {
-            element.release();
-        }
+        //for (MovingBitmap element:_capooes)
+        //{
+        //    element.release();
+        //}
         _background = null;
         _button = null;
-       //_capoo = null;
+        //_capoo = null;
         _music = null;
-        _capooes = null;
+        //_capooes = null;
+        _battleModel = null;
     }
 
     @Override
@@ -98,11 +101,12 @@ public class StateBattle extends GameState
         {
             if (pressedY > _button.getY() && pressedY < _button.getY() + _button.getHeight())
             {
-                Collections.reverse(_capooes);
-               // _capoo = new MovingBitmap(R.drawable.test_capoo, i, 150);
-                _capooes.add(new MovingBitmap(R.drawable.test_capoo, i, 150));
-                i = i-30;
-                Collections.reverse(_capooes);
+                //Collections.reverse(_capooes);
+                // _capoo = new MovingBitmap(R.drawable.test_capoo, i, 150);
+                _battleModel.GenerateCapoo();
+                //_capooes.add(new MovingBitmap(R.drawable.test_capoo, i, 150));
+                //i = i - 30;
+                //Collections.reverse(_capooes);
             }
         }
         return true;
@@ -134,8 +138,9 @@ public class StateBattle extends GameState
 
     private MovingBitmap _background;
     private MovingBitmap _button;
-    private MovingBitmap _capoo;
+    //private MovingBitmap _capoo;
     private Audio _music;
-    private int i =300;
-    private List<MovingBitmap> _capooes = new ArrayList<>();
+    private int i = 300;
+    //private List<MovingBitmap> _capooes = new ArrayList<>();
+    private BattleModel _battleModel;
 }
