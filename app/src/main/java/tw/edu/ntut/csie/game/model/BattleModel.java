@@ -2,12 +2,13 @@ package tw.edu.ntut.csie.game.model;
 
 import java.util.List;
 import java.util.ArrayList;
+import tw.edu.ntut.csie.game.ReleasableResource;
 
 /**
  * Created by User on 2017/3/10.
  */
 
-public class BattleModel
+public class BattleModel implements ReleasableResource
 {
     private List<Units> _units;
 
@@ -27,5 +28,11 @@ public class BattleModel
         {
             element.Show();
         }
+    }
+
+    public void release()
+    {
+        _units.clear();
+        _units = null;
     }
 }

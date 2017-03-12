@@ -51,6 +51,7 @@ public class StateBattle extends GameState
         _background.release();
         _button.release();
         _music.release();
+        _battleModel.release();
         _background = null;
         _button = null;
         _music = null;
