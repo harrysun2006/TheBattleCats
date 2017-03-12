@@ -24,7 +24,7 @@ public abstract class Units
 
     public abstract void Attack();
 
-    public abstract void Attacked();
+    public abstract void Attacked(int damage);
 
     protected abstract void KnockedBack(); //被擊退，供Attacked呼叫
 
