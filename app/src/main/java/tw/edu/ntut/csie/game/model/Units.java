@@ -26,7 +26,7 @@ public abstract class Units
 
     public abstract void Attacked();
 
-    protected abstract void knockedBack(); //被擊退，供Attacked呼叫
+    protected abstract void KnockedBack(); //被擊退，供Attacked呼叫
 
     protected abstract void Died();
 

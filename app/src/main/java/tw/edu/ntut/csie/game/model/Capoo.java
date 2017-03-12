@@ -34,7 +34,7 @@ public class Capoo extends Units
 
     }
 
-    protected void knockedBack()
+    protected void KnockedBack()
     {
 
     }
