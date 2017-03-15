@@ -11,6 +11,7 @@ import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 
+import tw.edu.ntut.csie.game.extend.BitmapButton;
 import tw.edu.ntut.csie.game.model.BattleModel;
 
 public class StateBattle extends GameState
