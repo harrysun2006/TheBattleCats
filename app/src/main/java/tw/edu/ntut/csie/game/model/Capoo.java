@@ -2,6 +2,7 @@ package tw.edu.ntut.csie.game.model;
 
 import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.core.MovingBitmap;
+import tw.edu.ntut.csie.game.extend.Animation;
 
 /**
  * Created by User on 2017/3/10.
@@ -19,12 +20,21 @@ public class Capoo extends Units
         _x = x;
         _y = y;
         _appearance = new MovingBitmap(R.drawable.test_capoo, _x, _y);
+        //_appearancetwo = new MovingBitmap(R.drawable.capoo_attack,_x,_y);
+        _active = new Animation ();
+        _active.setLocation(560, 310);
+        _active.addFrame(R.drawable.test_capoo);
+        _active.addFrame(R.drawable.capoo_attack);
+        _active.setDelay(4);
     }
 
     public void Moving()
     {
         _x -= _moveSpeed;
-        _appearance.setLocation(_x, _y);
+        //_appearance.setLocation(_x, _y);
+        _active.setLocation(_x,_y);
+        _active.move();
+
     }
 
     public void Attack()
@@ -58,6 +68,6 @@ public class Capoo extends Units
 
     public void Show()
     {
-        _appearance.show();
+        _active.show();
     }
 }

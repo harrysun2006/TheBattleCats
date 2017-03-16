@@ -1,6 +1,7 @@
 package tw.edu.ntut.csie.game.model;
 
 import tw.edu.ntut.csie.game.core.MovingBitmap;
+import tw.edu.ntut.csie.game.extend.Animation;
 
 /**
  * Created by User on 2017/3/10.
@@ -19,6 +20,8 @@ public abstract class Units
     protected int _attackSpeed; //攻擊速度
 
     protected MovingBitmap _appearance; //長相
+
+    protected Animation _active;
 
     public abstract void Moving();
 
