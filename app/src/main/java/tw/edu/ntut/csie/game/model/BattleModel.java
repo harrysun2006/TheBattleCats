@@ -17,9 +17,17 @@ public class BattleModel implements ReleasableResource
         _units = new ArrayList<>();
     }
 
+    public void Run()
+    {
+        for (Units element:_units)
+        {
+            element.Moving();
+        }
+    }
+
     public void GenerateCapoo()
     {
-        _units.add(new Capoo(300, 150));
+        _units.add(new Capoo(400, 200));
     }
 
     public void ShowAll()

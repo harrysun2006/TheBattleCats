@@ -12,16 +12,19 @@ public class Capoo extends Units
     public Capoo(int x, int y)
     {
         _health = 100;
-        _currentHeath = 100;
+        _currentHeath = _health;
         _attackDamage = 10;
         _moveSpeed = 10;
         _attackSpeed = 1;
-        _appearance = new MovingBitmap(R.drawable.test_capoo, x, y);
+        _x = x;
+        _y = y;
+        _appearance = new MovingBitmap(R.drawable.test_capoo, _x, _y);
     }
 
     public void Moving()
     {
-
+        _x -= _moveSpeed;
+        _appearance.setLocation(_x, _y);
     }
 
     public void Attack()

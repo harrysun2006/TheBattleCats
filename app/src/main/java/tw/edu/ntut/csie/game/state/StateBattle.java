@@ -11,7 +11,6 @@ import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 
-import tw.edu.ntut.csie.game.extend.BitmapButton;
 import tw.edu.ntut.csie.game.model.BattleModel;
 
 public class StateBattle extends GameState
@@ -26,7 +25,7 @@ public class StateBattle extends GameState
     public void initialize(Map<String, Object> data)
     {
         _background = new MovingBitmap(R.drawable.test_background);
-        _button = new MovingBitmap(R.drawable.test_button, 10, 10);
+        _capooButton = new MovingBitmap(R.drawable.test_capoo_button, 10, 10);
         _music = new Audio(R.raw.ntut);
         _music.setRepeating(true);
         _music.play();
@@ -36,13 +35,14 @@ public class StateBattle extends GameState
     @Override
     public void move()
     {
+        _battleModel.Run();
     }
 
     @Override
     public void show()
     {
         _background.show();
-        _button.show();
+        _capooButton.show();
         _battleModel.ShowAll();
     }
 
@@ -50,11 +50,11 @@ public class StateBattle extends GameState
     public void release()
     {
         _background.release();
-        _button.release();
+        _capooButton.release();
         _music.release();
         _battleModel.release();
         _background = null;
-        _button = null;
+        _capooButton = null;
         _music = null;
         _battleModel = null;
     }
@@ -84,9 +84,9 @@ public class StateBattle extends GameState
     {
         int pressedX = pointers.get(0).getX();
         int pressedY = pointers.get(0).getY();
-        if (pressedX > _button.getX() && pressedX < _button.getX() + _button.getWidth())
+        if (pressedX > _capooButton.getX() && pressedX < _capooButton.getX() + _capooButton.getWidth())
         {
-            if (pressedY > _button.getY() && pressedY < _button.getY() + _button.getHeight())
+            if (pressedY > _capooButton.getY() && pressedY < _capooButton.getY() + _capooButton.getHeight())
             {
                 _battleModel.GenerateCapoo();
             }
@@ -119,7 +119,7 @@ public class StateBattle extends GameState
     }
 
     private MovingBitmap _background;
-    private MovingBitmap _button;
+    private MovingBitmap _capooButton;
     private Audio _music;
     private BattleModel _battleModel;
 }
