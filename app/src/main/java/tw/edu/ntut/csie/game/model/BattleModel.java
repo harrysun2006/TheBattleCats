@@ -11,6 +11,7 @@ import tw.edu.ntut.csie.game.ReleasableResource;
 public class BattleModel implements ReleasableResource
 {
     private List<Units> _units;
+    private int _countOtterTime = 0;
 
     public BattleModel()
     {
@@ -28,6 +29,20 @@ public class BattleModel implements ReleasableResource
     public void GenerateCapoo()
     {
         _units.add(new Capoo(400, 200));
+    }
+
+    public void GenerateOtter()
+    {
+        Otter test =new Otter(30, 30);
+        if(_countOtterTime == 0)
+        {
+            _countOtterTime = test.GetDelay();
+            _units.add(new Otter(30, 200));
+        }
+        else
+        {
+            _countOtterTime--;
+        }
     }
 
     public void ShowAll()

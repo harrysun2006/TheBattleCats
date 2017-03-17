@@ -36,6 +36,7 @@ public class StateBattle extends GameState
     public void move()
     {
         _battleModel.Run();
+        _battleModel.GenerateOtter();
     }
 
     @Override

@@ -2,6 +2,7 @@ package tw.edu.ntut.csie.game.model;
 
 import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.core.MovingBitmap;
+import tw.edu.ntut.csie.game.extend.Animation;
 
 /**
  * Created by User on 2017/3/15.
@@ -18,13 +19,19 @@ public class Otter extends Units
         _attackSpeed = 1;
         _x = x;
         _y = y;
-        _appearance = new MovingBitmap(R.drawable.sea, _x, _y);
+        _delay = 30;
+        //_appearance = new MovingBitmap(R.drawable.sea, _x, _y);
+        _active = new Animation();
+        _active.setLocation(560, 310);
+        _active.addFrame(R.drawable.sea);
+        _active.addFrame(R.drawable.otter_attack);
+        _active.setDelay(4);
     }
 
     public void Moving()
     {
         _x -= _moveSpeed;
-        _appearance.setLocation(_x, _y);
+        _active.setLocation(_x, _y);
     }
 
     public void Attack()
@@ -58,6 +65,16 @@ public class Otter extends Units
 
     public void Show()
     {
-        _appearance.show();
+        _active.show();
     }
+
+    public void SetDelay(int delay)
+    {
+        _delay = delay;
+    }
+    public  int GetDelay()
+    {
+        return (_delay);
+    }
+
 }

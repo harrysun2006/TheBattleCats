@@ -19,9 +19,10 @@ public class Capoo extends Units
         _attackSpeed = 1;
         _x = x;
         _y = y;
+        _delay = 20;
         _appearance = new MovingBitmap(R.drawable.test_capoo, _x, _y);
         //_appearancetwo = new MovingBitmap(R.drawable.capoo_attack,_x,_y);
-        _active = new Animation ();
+        _active = new Animation();
         _active.setLocation(560, 310);
         _active.addFrame(R.drawable.test_capoo);
         _active.addFrame(R.drawable.capoo_attack);
@@ -69,5 +70,14 @@ public class Capoo extends Units
     public void Show()
     {
         _active.show();
+    }
+    public int GetDelay()
+    {
+        return (_delay);
+    }
+
+    public void SetDelay(int delay)
+    {
+        _delay = delay;
     }
 }
