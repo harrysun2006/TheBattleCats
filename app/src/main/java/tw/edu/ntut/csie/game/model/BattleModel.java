@@ -12,7 +12,7 @@ import tw.edu.ntut.csie.game.Game;
 public class BattleModel implements ReleasableResource
 {
     private List<Units> _units;
-    private int GENERATE_ENEMIES_DELAY_COUNTER = 2 * Game.FRAME_RATE; //讓兵每N秒產生一個，計數器每15可以讓兵延遲1秒產生 (畫面更新頻率 = 15次/1秒)
+    private static final int GENERATE_ENEMIES_DELAY_COUNTER = 2 * Game.FRAME_RATE; //讓兵每N秒產生一個，計數器每15可以讓兵延遲1秒產生 (畫面更新頻率 = 15次/1秒)
     private int _delayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
 
     public BattleModel()
