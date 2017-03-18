@@ -11,7 +11,9 @@ import tw.edu.ntut.csie.game.ReleasableResource;
 public class BattleModel implements ReleasableResource
 {
     private List<Units> _units;
-    private int _countOtterTime = 0;
+    private boolean _isBattling = true;
+    private static final int GENERATE_ENEMIES_DELAY_COUNTER = 30;
+    private int _delayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
 
     public BattleModel()
     {
@@ -24,25 +26,32 @@ public class BattleModel implements ReleasableResource
         {
             element.Moving();
         }
+
+        GenerateEnemies();
+    }
+
+    public void GenerateEnemies()
+    {
+        if (_isBattling)
+        {
+            _delayCounter--;
+
+            if (_delayCounter == 0)
+            {
+                GenerateOtter();
+                _delayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
+            }
+        }
     }
 
     public void GenerateCapoo()
     {
-        _units.add(new Capoo(400, 200));
+        _units.add(new Capoo(500, 200));
     }
 
     public void GenerateOtter()
     {
-        Otter test =new Otter(30, 30);
-        if(_countOtterTime == 0)
-        {
-            _countOtterTime = test.GetDelay();
-            _units.add(new Otter(30, 200));
-        }
-        else
-        {
-            _countOtterTime--;
-        }
+        _units.add(new Otter(30, 200));
     }
 
     public void ShowAll()
@@ -57,5 +66,6 @@ public class BattleModel implements ReleasableResource
     {
         _units.clear();
         _units = null;
+        _isBattling = false;
     }
 }

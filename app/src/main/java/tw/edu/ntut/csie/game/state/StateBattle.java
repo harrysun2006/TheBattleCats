@@ -30,13 +30,13 @@ public class StateBattle extends GameState
         _music.setRepeating(true);
         _music.play();
         _battleModel = new BattleModel();
+
     }
 
     @Override
     public void move()
     {
         _battleModel.Run();
-        _battleModel.GenerateOtter();
     }
 
     @Override

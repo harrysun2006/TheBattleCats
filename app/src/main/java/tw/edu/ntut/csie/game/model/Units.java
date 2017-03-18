@@ -18,9 +18,6 @@ public abstract class Units
     protected int _attackDamage; //攻擊力
     protected int _moveSpeed; //移動速度
     protected int _attackSpeed; //攻擊速度
-    protected int _delay;//產兵的延遲時間
-
-    protected MovingBitmap _appearance; //長相
 
     protected Animation _active;
 
@@ -35,7 +32,4 @@ public abstract class Units
     protected abstract void Died();
 
     public abstract void Show();
-
-    public abstract void SetDelay(int delay);
-    public abstract int GetDelay();
 }
