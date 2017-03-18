@@ -13,24 +13,24 @@ public class Capoo extends Units
     {
         _health = 100;
         _currentHeath = _health;
+        _x = x;
+        _y = y;
         _attackDamage = 10;
         _moveSpeed = 8;
         _attackSpeed = 1;
-        _x = x;
-        _y = y;
 
-        _active = new Animation();
-        _active.setLocation(_x, _y);
-        _active.addFrame(R.drawable.test_capoo);
-        _active.addFrame(R.drawable.capoo_attack);
-        _active.setDelay(4);
+        _movingActive = new Animation();
+        _movingActive.setLocation(_x, _y);
+        _movingActive.addFrame(R.drawable.test_capoo);
+        _movingActive.addFrame(R.drawable.capoo_attack);
+        _movingActive.setDelay(4);
     }
 
     public void Moving()
     {
         _x -= _moveSpeed;
-        _active.setLocation(_x, _y);
-        _active.move();
+        _movingActive.setLocation(_x, _y);
+        _movingActive.move();
     }
 
     public void Attack()
@@ -64,6 +64,6 @@ public class Capoo extends Units
 
     public void Show()
     {
-        _active.show();
+        _movingActive.show();
     }
 }

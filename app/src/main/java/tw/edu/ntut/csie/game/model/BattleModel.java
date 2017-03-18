@@ -3,6 +3,7 @@ package tw.edu.ntut.csie.game.model;
 import java.util.List;
 import java.util.ArrayList;
 import tw.edu.ntut.csie.game.ReleasableResource;
+import tw.edu.ntut.csie.game.Game;
 
 /**
  * Created by User on 2017/3/10.
@@ -11,8 +12,7 @@ import tw.edu.ntut.csie.game.ReleasableResource;
 public class BattleModel implements ReleasableResource
 {
     private List<Units> _units;
-    private boolean _isBattling = true;
-    private static final int GENERATE_ENEMIES_DELAY_COUNTER = 30;
+    private int GENERATE_ENEMIES_DELAY_COUNTER = 2 * Game.FRAME_RATE; //讓兵每N秒產生一個，計數器每15可以讓兵延遲1秒產生 (畫面更新頻率 = 15次/1秒)
     private int _delayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
 
     public BattleModel()
@@ -32,15 +32,12 @@ public class BattleModel implements ReleasableResource
 
     public void GenerateEnemies()
     {
-        if (_isBattling)
-        {
-            _delayCounter--;
+        _delayCounter--;
 
-            if (_delayCounter == 0)
-            {
-                GenerateOtter();
-                _delayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
-            }
+        if (_delayCounter == 0)
+        {
+            GenerateOtter();
+            _delayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
         }
     }
 
@@ -66,6 +63,5 @@ public class BattleModel implements ReleasableResource
     {
         _units.clear();
         _units = null;
-        _isBattling = false;
     }
 }

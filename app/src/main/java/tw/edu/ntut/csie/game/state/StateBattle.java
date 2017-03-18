@@ -30,7 +30,6 @@ public class StateBattle extends GameState
         _music.setRepeating(true);
         _music.play();
         _battleModel = new BattleModel();
-
     }
 
     @Override
