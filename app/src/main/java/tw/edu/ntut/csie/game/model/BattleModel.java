@@ -11,23 +11,41 @@ import tw.edu.ntut.csie.game.Game;
 
 public class BattleModel implements ReleasableResource
 {
-    private List<Units> _units;
+    private List<Units> _allies;
+    private List<Units> _enemies;
+
     private static final int GENERATE_ENEMIES_DELAY_COUNTER = 2 * Game.FRAME_RATE; //讓兵每N秒產生一個，計數器每15可以讓兵延遲1秒產生 (畫面更新頻率 = 15次/1秒)
     private int _delayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
+    private int _attackDelayCounter = 0;
 
     public BattleModel()
     {
-        _units = new ArrayList<>();
+        _allies = new ArrayList<>();
+        _enemies = new ArrayList<>();
+        _enemies.add(new Nexus(20, 200));
     }
 
     public void Run()
     {
-        for (Units element:_units)
+        for (Units element:_allies)
         {
-            element.Moving();
-        }
+            if (element.GetX() == _enemies.get(0).GetX())
+            {
+                _attackDelayCounter++;
 
-        GenerateEnemies();
+                if (_attackDelayCounter == element.GetAttackSpeed() * Game.FRAME_RATE)
+                {
+                    element.Attack();
+                    _enemies.get(0).Attacked(element.GetAttackDamage());
+                    _attackDelayCounter = 0;
+                }
+            }
+            else
+            {
+                element.Moving();
+            }
+        }
+        //GenerateEnemies();
     }
 
     public void GenerateEnemies()
@@ -43,17 +61,21 @@ public class BattleModel implements ReleasableResource
 
     public void GenerateCapoo()
     {
-        _units.add(new Capoo(500, 200));
+        _allies.add(new Capoo(500, 200));
     }
 
     public void GenerateOtter()
     {
-        _units.add(new Otter(30, 200));
+        _enemies.add(new Otter(20, 200));
     }
 
     public void ShowAll()
     {
-        for (Units element:_units)
+        for (Units element:_allies)
+        {
+            element.Show();
+        }
+        for (Units element:_enemies)
         {
             element.Show();
         }
@@ -61,7 +83,9 @@ public class BattleModel implements ReleasableResource
 
     public void release()
     {
-        _units.clear();
-        _units = null;
+        _allies.clear();
+        _enemies.clear();
+        _allies = null;
+        _enemies = null;
     }
 }
