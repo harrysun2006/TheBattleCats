@@ -17,6 +17,7 @@ public class BattleModel implements ReleasableResource
     private static final int GENERATE_ENEMIES_DELAY_COUNTER = 2 * Game.FRAME_RATE; //讓兵每N秒產生一個，計數器每15可以讓兵延遲1秒產生 (畫面更新頻率 = 15次/1秒)
     private int _delayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
     private int _attackDelayCounter = 0;
+    private int _knockedBackDelayCounter = 0;
 
     public BattleModel()
     {
@@ -43,6 +44,27 @@ public class BattleModel implements ReleasableResource
             else
             {
                 element.Moving();
+            }
+        }
+        for (Units element:_enemies)
+        {
+            if (element.GetIsAttacked())
+            {
+                if (_knockedBackDelayCounter == 0)
+                {
+                    element.KnockedBack();
+                }
+                else if (_knockedBackDelayCounter == 2)
+                {
+                    element.KnockedBack();
+                }
+                else if (_knockedBackDelayCounter == 15)
+                {
+                    element.SetIsAttacked(false);
+                    _knockedBackDelayCounter = 0;
+                    return;
+                }
+                _knockedBackDelayCounter++;
             }
         }
         //GenerateEnemies();

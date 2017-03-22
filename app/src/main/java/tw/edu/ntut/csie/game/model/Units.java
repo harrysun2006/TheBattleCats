@@ -21,6 +21,8 @@ public abstract class Units
     protected Animation _movingActive; //移動動畫
     protected Animation _knockedBackActive; //擊退動畫
 
+    protected boolean _isAttacked; //被攻擊的狀態
+
     public int GetX()
     {
         return _x;
@@ -47,9 +49,19 @@ public abstract class Units
 
     public abstract void Attacked(int damage);
 
-    protected abstract void KnockedBack(); //被擊退，供Attacked呼叫
+    protected abstract void KnockedBack(); //被擊退
 
     protected abstract void Died();
 
     public abstract void Show();
+
+    public void SetIsAttacked(boolean isAttacked)
+    {
+        _isAttacked = isAttacked;
+    }
+
+    public boolean GetIsAttacked()
+    {
+        return _isAttacked;
+    }
 }

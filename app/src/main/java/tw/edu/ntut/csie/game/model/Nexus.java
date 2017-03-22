@@ -23,7 +23,7 @@ public class Nexus extends Units
         _knockedBackActive.setLocation(_x, _y);
         _knockedBackActive.addFrame(R.drawable.door);
         _knockedBackActive.addFrame(R.drawable.apple);
-        _knockedBackActive.setDelay(3);
+        _knockedBackActive.setDelay(0);
     }
 
     public void Moving()
@@ -46,11 +46,11 @@ public class Nexus extends Units
         {
             _currentHeath -= damage;
         }
+        _isAttacked = true;
     }
 
     protected void KnockedBack()
     {
-        _knockedBackActive.move();
         _knockedBackActive.move();
     }
 
