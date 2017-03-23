@@ -50,7 +50,9 @@ public class BattleModel implements ReleasableResource
         {
             if (element.GetIsAttacked())
             {
-                if (_knockedBackDelayCounter == 0)
+                _knockedBackDelayCounter++;
+
+                if (_knockedBackDelayCounter == 1)
                 {
                     element.KnockedBack();
                 }
@@ -62,9 +64,7 @@ public class BattleModel implements ReleasableResource
                 {
                     element.SetIsAttacked(false);
                     _knockedBackDelayCounter = 0;
-                    return;
                 }
-                _knockedBackDelayCounter++;
             }
         }
         //GenerateEnemies();

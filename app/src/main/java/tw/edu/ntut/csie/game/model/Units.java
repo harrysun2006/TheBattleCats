@@ -21,7 +21,7 @@ public abstract class Units
     protected Animation _movingActive; //移動動畫
     protected Animation _knockedBackActive; //擊退動畫
 
-    protected boolean _isAttacked; //被攻擊的狀態
+    protected boolean _isAttacked = false; //被攻擊的狀態
 
     public int GetX()
     {
