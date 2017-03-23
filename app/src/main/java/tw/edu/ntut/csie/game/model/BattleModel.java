@@ -23,14 +23,14 @@ public class BattleModel implements ReleasableResource
     {
         _allies = new ArrayList<>();
         _enemies = new ArrayList<>();
-        _enemies.add(new Nexus(20, 200));
+        _enemies.add(new Nexus(18, 200));
     }
 
     public void Run()
     {
         for (Units element:_allies)
         {
-            if (element.GetX() == _enemies.get(0).GetX())
+            if (element.GetX() == _enemies.get(0).GetRightSideX())
             {
                 _attackDelayCounter++;
 
