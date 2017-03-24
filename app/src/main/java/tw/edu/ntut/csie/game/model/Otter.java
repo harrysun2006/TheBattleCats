@@ -15,7 +15,7 @@ public class Otter extends Units
         _currentHeath = _health;
         _x = x;
         _y = y;
-        _attackDamage = 10;
+        _attackDamage = 100;
         _moveSpeed = -8;
         _attackSpeed = 1;
 
@@ -35,6 +35,7 @@ public class Otter extends Units
 
     public void Attack()
     {
+
 
     }
 
@@ -59,7 +60,10 @@ public class Otter extends Units
 
     protected void Died()
     {
-
+        _movingActive = new Animation();
+        _movingActive.addFrame(R.drawable.otterdie);
+        _movingActive.setLocation(_x, _y - 100);
+        _isDied = true;
     }
 
     public void Show()

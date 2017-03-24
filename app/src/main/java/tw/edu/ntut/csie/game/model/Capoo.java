@@ -59,7 +59,9 @@ public class Capoo extends Units
 
     protected void Died()
     {
-
+        _movingActive = new Animation();
+        _movingActive.addFrame(R.drawable.capoodie);
+        _movingActive.setLocation(_x, _y - 100);
     }
 
     public void Show()
