@@ -16,13 +16,13 @@ public class Capoo extends Units
         _x = x;
         _y = y;
         _attackDamage = 10;
-        _moveSpeed = 8;
+        _moveSpeed = 5;
         _attackSpeed = 1;
 
         _movingActive = new Animation();
         _movingActive.setLocation(_x, _y);
-        _movingActive.addFrame(R.drawable.test_capoo);
-        _movingActive.addFrame(R.drawable.capoo_attack);
+        _movingActive.addFrame(R.drawable.capoo_move1);
+        _movingActive.addFrame(R.drawable.capoo_move2);
         _movingActive.setDelay(4);
     }
 

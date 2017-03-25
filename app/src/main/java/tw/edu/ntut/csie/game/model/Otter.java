@@ -16,7 +16,7 @@ public class Otter extends Units
         _x = x;
         _y = y;
         _attackDamage = 100;
-        _moveSpeed = -8;
+        _moveSpeed = -5;
         _attackSpeed = 1;
 
         _movingActive = new Animation();
