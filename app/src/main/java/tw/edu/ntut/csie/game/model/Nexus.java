@@ -9,7 +9,7 @@ public class Nexus extends Units
 {
     public Nexus(int x, int y)
     {
-        _health = 100;
+        _health = 1000;
         _currentHeath = _health;
         _x = x;
         _y = y;
@@ -39,13 +39,11 @@ public class Nexus extends Units
 
     public void Attacked(int damage)
     {
+        _currentHeath -= damage;
+
         if (_currentHeath - damage <= 0)
         {
             Died();
-        }
-        else
-        {
-            _currentHeath -= damage;
         }
         SetIsAttacked(true);
     }
@@ -57,7 +55,8 @@ public class Nexus extends Units
 
     protected void Died()
     {
-        _movingActive.setLocation(_x, _y + 100);
+        _movingActive.setLocation(_x, _y - 100);
+        _isDied = true;
     }
 
     public void Show()

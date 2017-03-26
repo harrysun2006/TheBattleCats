@@ -24,7 +24,7 @@ public abstract class Units
 
     protected boolean _isAttacking = false; //正在攻擊的狀態
     protected boolean _isAttacked = false; //被攻擊的狀態
-    protected boolean _isDied = false;//是否死掉
+    protected boolean _isDied = false; //是否死掉
 
     public int GetX()
     {
@@ -90,5 +90,9 @@ public abstract class Units
     {
         return _isAttacked;
     }
-    public boolean GetIsDied(){return  _isDied;}
+
+    public boolean GetIsDied()
+    {
+        return _isDied;
+    }
 }

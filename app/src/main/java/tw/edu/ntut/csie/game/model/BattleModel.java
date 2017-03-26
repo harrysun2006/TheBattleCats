@@ -15,56 +15,50 @@ public class BattleModel implements ReleasableResource
     private List<Units> _enemies;
 
     private static final int GENERATE_ENEMIES_DELAY_COUNTER = 2 * Game.FRAME_RATE; //讓敵兵每N秒產生一個，計數器每15可以讓兵延遲1秒產生 (畫面更新頻率 = 15次/1秒)
-    private int _delayCounter = GENERATE_ENEMIES_DELAY_COUNTER;//真正用來計算產兵延遲的
-    private int _alliesAttackDelayCounter = 0;//控制兵攻擊頻率(因為畫面更新頻率太快，所以攻擊要DEALY一下，不然會攻擊太快)
+    private int _generateEnemiesDelayCounter = GENERATE_ENEMIES_DELAY_COUNTER; //真正用來計算產兵延遲的
+    private int _alliesAttackDelayCounter = 0; //控制兵攻擊頻率 (因為畫面更新頻率太快，所以攻擊要delay一下，不然會攻擊太快)
     private int _enemiesAttackDelayCounter = 0;
-    private int _knockedBackDelayCounter = 0;//同上理由，這是被擊退的頻率
-    private int _recordAlliesIndex = 0;//走在最前面的友軍的index
-    private int _recordEnemiesIndex = 0;//走在最前面的敵軍index
-    private int _alliesMax =1000;//走在最前面的友軍的X值
-    private int _EnemiesMax = 0;//走在最前面的敵軍的X值
-    private int i = 0;//
+    private int _knockedBackDelayCounter = 0; //同上理由，這是被擊退的頻率
+    private int _recordAlliesIndex = 0; //走在最前面的友軍的index
+    private int _recordEnemiesIndex = 0; //走在最前面的敵軍的index
+    private int _alliesMax = 1000; //走在最前面的友軍的X值
+    private int _enemiesMax = 0; //走在最前面的敵軍的X值
 
     public BattleModel()
     {
         _allies = new ArrayList<>();
         _enemies = new ArrayList<>();
-        _enemies.add(new Nexus(18, 200));
+        _enemies.add(new Nexus(20, 200));
     }
 
     public void Run()
     {
+        AlliesRun();
+        EnemiesRun();
+
+        ProduceEnemiesKnockedBack();
+
+        GenerateEnemies();
+    }
+
+    //讓所有友軍進行攻擊或移動
+    private void AlliesRun()
+    {
+        int index = 0;
         _alliesMax = 1000;
-        /*for (Units element:_allies)
-        {
-            if (element.GetX() == _enemies.get(0).GetRightSideX())
-            {
-                _attackDelayCounter++;
-
-                if (_attackDelayCounter == element.GetAttackSpeed() * Game.FRAME_RATE)
-                {
-                    element.Attack();
-                    _enemies.get(0).Attacked(element.GetAttackDamage());
-                    _attackDelayCounter = 0;
-                }
-            }
-            else
-            {
-                element.Moving();
-            }
-
-        }*/
-        i = 0;
         _recordAlliesIndex = 0;
+
         for (Units element:_allies)
         {
-            if(_alliesMax > element.GetX())
+            if (_alliesMax > element.GetX())
             {
                 _alliesMax = element.GetX();
-                _recordAlliesIndex = i;
+                _recordAlliesIndex = index;
             }
-            i++;
-            if(element.GetX() < _EnemiesMax+20 && element.GetX() > _EnemiesMax)
+
+            index++;
+
+            if (element.GetX() < _enemiesMax + 20 && element.GetX() > _enemiesMax)
             {
                 _alliesAttackDelayCounter++;
 
@@ -73,7 +67,8 @@ public class BattleModel implements ReleasableResource
                     element.Attack();
                     _enemies.get(_recordEnemiesIndex).Attacked(element.GetAttackDamage());
                     _alliesAttackDelayCounter = 0;
-                    if(_enemies.get(_recordEnemiesIndex)._isDied = true)
+
+                    if (_enemies.get(_recordEnemiesIndex).GetIsDied())
                     {
                         _enemies.remove(_recordEnemiesIndex);
                     }
@@ -84,13 +79,58 @@ public class BattleModel implements ReleasableResource
                 element.Moving();
             }
         }
-        for (Units element:_enemies) //擊退用的FOR
+    }
+
+    //讓所有敵軍進行攻擊或移動
+    private void EnemiesRun()
+    {
+        int index = 0;
+        _enemiesMax = 0;
+        _recordEnemiesIndex = 0;
+
+        for (Units element:_enemies)
+        {
+            if (_enemiesMax < element.GetX())
+            {
+                _enemiesMax = element.GetX();
+                _recordEnemiesIndex = index;
+            }
+
+            index++;
+
+            if (element.GetX() > _alliesMax - 20 && element.GetX() < _alliesMax)
+            {
+                _enemiesAttackDelayCounter++;
+
+                if (_enemiesAttackDelayCounter == element.GetAttackSpeed() * Game.FRAME_RATE)
+                {
+                    element.Attack();
+                    _allies.get(_recordAlliesIndex).Attacked(element.GetAttackDamage());
+                    _enemiesAttackDelayCounter = 0;
+
+                    if (_allies.get(_recordAlliesIndex).GetIsDied())
+                    {
+                        _allies.remove(_recordAlliesIndex);
+                    }
+                }
+            }
+            else
+            {
+                element.Moving();
+            }
+        }
+    }
+
+    //讓所有敵軍產生擊退的效果
+    private void ProduceEnemiesKnockedBack()
+    {
+        for (Units element:_enemies)
         {
             if (element.GetIsAttacked())
             {
                 _knockedBackDelayCounter++;
 
-                if (_knockedBackDelayCounter == 1) //迅速搖晃一下
+                if (_knockedBackDelayCounter == 1)
                 {
                     element.KnockedBack();
                 }
@@ -105,49 +145,17 @@ public class BattleModel implements ReleasableResource
                 }
             }
         }
-        i = 0;
-        _EnemiesMax = 0;
-        _recordEnemiesIndex = 0;
-        for(Units element:_enemies)
-        {
-            if (_EnemiesMax < element.GetX())
-            {
-                _EnemiesMax = element.GetX();
-                _recordEnemiesIndex = i;
-            }
-            i++;
-            if(element.GetX() > _alliesMax - 30 && element.GetX() < _alliesMax)
-            {
-                _enemiesAttackDelayCounter++;
-
-                if (_enemiesAttackDelayCounter == element.GetAttackSpeed() * Game.FRAME_RATE)
-                {
-                    element.Attack();
-                    _allies.get(_recordAlliesIndex).Attacked(element.GetAttackDamage());
-                    _enemiesAttackDelayCounter = 0;
-                    if(_allies.get(_recordAlliesIndex)._isDied = true)
-                    {
-                        _allies.remove(_recordAlliesIndex);
-                    }
-                }
-            }
-            else
-            {
-                element.Moving();
-            }
-
-        }
-        GenerateEnemies();
     }
 
-    public void GenerateEnemies()
+    //根據_generateEnemiesDelayCounter產生敵軍
+    private void GenerateEnemies()
     {
-        _delayCounter--;
+        _generateEnemiesDelayCounter--;
 
-        if (_delayCounter == 0)
+        if (_generateEnemiesDelayCounter == 0)
         {
             GenerateOtter();
-            _delayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
+            _generateEnemiesDelayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
         }
     }
 

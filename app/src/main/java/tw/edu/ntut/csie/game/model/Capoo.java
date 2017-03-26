@@ -15,7 +15,7 @@ public class Capoo extends Units
         _currentHeath = _health;
         _x = x;
         _y = y;
-        _attackDamage = 10;
+        _attackDamage = 100;
         _moveSpeed = 5;
         _attackSpeed = 1;
 
@@ -40,6 +40,8 @@ public class Capoo extends Units
 
     public void Attacked(int damage)
     {
+        _currentHeath -= damage;
+
         if (_currentHeath - damage <= 0)
         {
             KnockedBack();
@@ -48,7 +50,6 @@ public class Capoo extends Units
         else if (_currentHeath > _health / 2 && _health / 2 > _currentHeath - damage)
         {
             KnockedBack();
-            _currentHeath -= damage;
         }
     }
 
@@ -62,6 +63,7 @@ public class Capoo extends Units
         _movingActive = new Animation();
         _movingActive.addFrame(R.drawable.capoodie);
         _movingActive.setLocation(_x, _y - 100);
+        _isDied = true;
     }
 
     public void Show()
