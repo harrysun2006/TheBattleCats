@@ -18,6 +18,8 @@ public abstract class Units
     protected int _moveSpeed; //移動速度 (單位: 每1/15秒1像素)
     protected int _attackSpeed; //攻擊速度
 
+    protected int _attackDelayCounter = 0; //控制攻擊頻率 (因為畫面更新頻率太快，所以攻擊要delay一下，不然會攻擊太快)
+
     protected Animation _movingActive; //移動動畫
     protected Animation _attackActive; //攻擊動畫
     protected Animation _knockedBackActive; //擊退動畫
@@ -51,6 +53,16 @@ public abstract class Units
         return _attackSpeed;
     }
 
+    public int GetAttackDelayCounter()
+    {
+        return _attackDelayCounter;
+    }
+
+    public void SetAttackDelayCounter(int attackDelayCounter)
+    {
+        _attackDelayCounter = attackDelayCounter;
+    }
+
     public abstract void Moving();
 
     public abstract void Attack();
@@ -63,16 +75,31 @@ public abstract class Units
 
     public abstract void Show();
 
-    public void SetIsAttacking(boolean isAttacking)
-    {
-        _isAttacking = isAttacking;
-    }
-
     public boolean GetIsAttacking()
     {
         return _isAttacking;
     }
 
+    //如果正在攻擊的狀態，會讓移動的動畫隱藏
+    public void SetIsAttacking(boolean isAttacking)
+    {
+        if (isAttacking)
+        {
+            _movingActive.setVisible(false);
+        }
+        else
+        {
+            _movingActive.setVisible(true);
+        }
+        _isAttacking = isAttacking;
+    }
+
+    public boolean GetIsAttacked()
+    {
+        return _isAttacked;
+    }
+
+    //如果正在被攻擊的狀態，會讓移動的動畫隱藏
     public void SetIsAttacked(boolean isAttacked)
     {
         if (isAttacked)
@@ -84,11 +111,6 @@ public abstract class Units
             _movingActive.setVisible(true);
         }
         _isAttacked = isAttacked;
-    }
-
-    public boolean GetIsAttacked()
-    {
-        return _isAttacked;
     }
 
     public boolean GetIsDied()

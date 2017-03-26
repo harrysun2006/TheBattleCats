@@ -14,10 +14,8 @@ public class BattleModel implements ReleasableResource
     private List<Units> _allies;
     private List<Units> _enemies;
 
-    private static final int GENERATE_ENEMIES_DELAY_COUNTER = 2 * Game.FRAME_RATE; //讓敵兵每N秒產生一個，計數器每15可以讓兵延遲1秒產生 (畫面更新頻率 = 15次/1秒)
+    private static final int GENERATE_ENEMIES_DELAY_COUNTER = 4 * Game.FRAME_RATE; //讓敵兵每N秒產生一個，計數器每15可以讓兵延遲1秒產生 (畫面更新頻率 = 15次/1秒)
     private int _generateEnemiesDelayCounter = GENERATE_ENEMIES_DELAY_COUNTER; //真正用來計算產兵延遲的
-    private int _alliesAttackDelayCounter = 0; //控制兵攻擊頻率 (因為畫面更新頻率太快，所以攻擊要delay一下，不然會攻擊太快)
-    private int _enemiesAttackDelayCounter = 0;
     private int _knockedBackDelayCounter = 0; //同上理由，這是被擊退的頻率
     private int _recordAlliesIndex = 0; //走在最前面的友軍的index
     private int _recordEnemiesIndex = 0; //走在最前面的敵軍的index
@@ -60,13 +58,13 @@ public class BattleModel implements ReleasableResource
 
             if (element.GetX() < _enemiesMax + 20 && element.GetX() > _enemiesMax)
             {
-                _alliesAttackDelayCounter++;
+                element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
 
-                if (_alliesAttackDelayCounter == element.GetAttackSpeed() * Game.FRAME_RATE)
+                if (element.GetAttackDelayCounter() == element.GetAttackSpeed() * Game.FRAME_RATE)
                 {
                     element.Attack();
                     _enemies.get(_recordEnemiesIndex).Attacked(element.GetAttackDamage());
-                    _alliesAttackDelayCounter = 0;
+                    element.SetAttackDelayCounter(0);
 
                     if (_enemies.get(_recordEnemiesIndex).GetIsDied())
                     {
@@ -100,13 +98,13 @@ public class BattleModel implements ReleasableResource
 
             if (element.GetX() > _alliesMax - 20 && element.GetX() < _alliesMax)
             {
-                _enemiesAttackDelayCounter++;
+                element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
 
-                if (_enemiesAttackDelayCounter == element.GetAttackSpeed() * Game.FRAME_RATE)
+                if (element.GetAttackDelayCounter() == element.GetAttackSpeed() * Game.FRAME_RATE)
                 {
                     element.Attack();
                     _allies.get(_recordAlliesIndex).Attacked(element.GetAttackDamage());
-                    _enemiesAttackDelayCounter = 0;
+                    element.SetAttackDelayCounter(0);
 
                     if (_allies.get(_recordAlliesIndex).GetIsDied())
                     {

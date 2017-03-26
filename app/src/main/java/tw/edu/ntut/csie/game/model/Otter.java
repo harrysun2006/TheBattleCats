@@ -15,7 +15,7 @@ public class Otter extends Units
         _currentHeath = _health;
         _x = x;
         _y = y;
-        _attackDamage = 100;
+        _attackDamage = 50;
         _moveSpeed = -5;
         _attackSpeed = 1;
 
@@ -42,7 +42,7 @@ public class Otter extends Units
     {
         _currentHeath -= damage;
 
-        if (_currentHeath - damage <= 0)
+        if (_currentHeath <= 0)
         {
             KnockedBack();
             Died();
