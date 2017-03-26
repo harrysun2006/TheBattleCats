@@ -21,9 +21,15 @@ public class Otter extends Units
 
         _movingActive = new Animation();
         _movingActive.setLocation(_x, _y);
-        _movingActive.addFrame(R.drawable.sea);
-        _movingActive.addFrame(R.drawable.otter_attack);
-        _movingActive.setDelay(4);
+        _movingActive.addFrame(R.drawable.otter_move1);
+        _movingActive.addFrame(R.drawable.otter_move2);
+        _movingActive.addFrame(R.drawable.otter_move3);
+        _movingActive.addFrame(R.drawable.otter_move3);
+        _movingActive.addFrame(R.drawable.otter_move3);
+        _movingActive.addFrame(R.drawable.otter_move2);
+        _movingActive.addFrame(R.drawable.otter_move1);
+        _movingActive.addFrame(R.drawable.otter_move1);
+        _movingActive.setDelay(1);
     }
 
     public void Moving()
