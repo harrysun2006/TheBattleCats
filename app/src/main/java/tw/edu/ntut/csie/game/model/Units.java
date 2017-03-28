@@ -1,5 +1,6 @@
 package tw.edu.ntut.csie.game.model;
 
+import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.extend.Animation;
 
 /**
@@ -23,6 +24,16 @@ public abstract class Units
     protected Animation _movingActive; //移動動畫
     protected Animation _attackActive; //攻擊動畫
     protected Animation _knockedBackActive; //擊退動畫
+    protected Animation _dyingActive;//死亡動畫
+
+    public Units()
+    {
+        _dyingActive = new Animation();
+        _dyingActive.addFrame(R.drawable.dieone);
+        _dyingActive.addFrame(R.drawable.dietwo);
+        _dyingActive.setVisible(false);
+        _dyingActive.setDelay(1);
+    }
 
     protected boolean _isAttacking = false; //正在攻擊的狀態
     protected boolean _isAttacked = false; //被攻擊的狀態
@@ -71,7 +82,14 @@ public abstract class Units
 
     protected abstract void KnockedBack(); //被擊退
 
-    protected abstract void Died();
+    protected void Dying()
+    {
+        _movingActive.setVisible(false);
+        _dyingActive.setVisible(true);
+        _y -= 10;
+        _dyingActive.setLocation(_x, _y);
+        _dyingActive.move();
+    }
 
     public abstract void Show();
 

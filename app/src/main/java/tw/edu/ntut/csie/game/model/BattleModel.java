@@ -33,9 +33,7 @@ public class BattleModel implements ReleasableResource
     {
         AlliesRun();
         EnemiesRun();
-
         ProduceEnemiesKnockedBack();
-
         GenerateEnemies();
     }
 
@@ -48,34 +46,40 @@ public class BattleModel implements ReleasableResource
 
         for (Units element:_allies)
         {
-            if (_alliesMax > element.GetX())
+            if (element.GetIsDied())
             {
-                _alliesMax = element.GetX();
-                _recordAlliesIndex = index;
-            }
-
-            index++;
-
-            if (element.GetX() < _enemiesMax + 20 && element.GetX() > _enemiesMax)
-            {
-                element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
-
-                if (element.GetAttackDelayCounter() == element.GetAttackSpeed() * Game.FRAME_RATE)
+                element.Dying();
+                if (element.GetY() < 0)
                 {
-                    element.Attack();
-                    _enemies.get(_recordEnemiesIndex).Attacked(element.GetAttackDamage());
-                    element.SetAttackDelayCounter(0);
-
-                    if (_enemies.get(_recordEnemiesIndex).GetIsDied())
-                    {
-                        _enemies.remove(_recordEnemiesIndex);
-                    }
+                    _allies.remove(index);
+                    return;
                 }
             }
             else
             {
-                element.Moving();
+
+                if (element.GetX() < _enemiesMax + 20 && element.GetX() > _enemiesMax)
+                {
+                    element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
+
+                    if (element.GetAttackDelayCounter() == element.GetAttackSpeed() * Game.FRAME_RATE)
+                    {
+                        element.Attack();
+                        _enemies.get(_recordEnemiesIndex).Attacked(element.GetAttackDamage());
+                        element.SetAttackDelayCounter(0);
+                    }
+                }
+                else
+                {
+                    element.Moving();
+                }
             }
+            if ((_alliesMax > element.GetX() && !(element.GetIsDied())))
+            {
+                _alliesMax = element.GetX();
+                _recordAlliesIndex = index;
+            }
+            index++;
         }
     }
 
@@ -88,34 +92,39 @@ public class BattleModel implements ReleasableResource
 
         for (Units element:_enemies)
         {
-            if (_enemiesMax < element.GetX())
+            if (element.GetIsDied())
             {
-                _enemiesMax = element.GetX();
-                _recordEnemiesIndex = index;
-            }
-
-            index++;
-
-            if (element.GetX() > _alliesMax - 20 && element.GetX() < _alliesMax)
-            {
-                element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
-
-                if (element.GetAttackDelayCounter() == element.GetAttackSpeed() * Game.FRAME_RATE)
+                element.Dying();
+                if (element.GetY() < 0)
                 {
-                    element.Attack();
-                    _allies.get(_recordAlliesIndex).Attacked(element.GetAttackDamage());
-                    element.SetAttackDelayCounter(0);
-
-                    if (_allies.get(_recordAlliesIndex).GetIsDied())
-                    {
-                        _allies.remove(_recordAlliesIndex);
-                    }
+                    //_enemies.remove(index);
+                   // index--;
                 }
             }
             else
             {
-                element.Moving();
+                if (element.GetX() > _alliesMax - 20 && element.GetX() < _alliesMax)
+                {
+                    element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
+
+                    if (element.GetAttackDelayCounter() == element.GetAttackSpeed() * Game.FRAME_RATE)
+                    {
+                        element.Attack();
+                        _allies.get(_recordAlliesIndex).Attacked(element.GetAttackDamage());
+                        element.SetAttackDelayCounter(0);
+                    }
+                }
+                else
+                {
+                    element.Moving();
+                }
             }
+            if (_enemiesMax < element.GetX() && !(element.GetIsDied()))
+            {
+                _enemiesMax = element.GetX();
+                _recordEnemiesIndex = index;
+            }
+            index++;
         }
     }
 

@@ -11,6 +11,8 @@ public class Otter extends Units
 {
     public Otter(int x, int y)
     {
+        super();
+
         _health = 100;
         _currentHeath = _health;
         _x = x;
@@ -51,7 +53,7 @@ public class Otter extends Units
         if (_currentHeath <= 0)
         {
             KnockedBack();
-            Died();
+            _isDied = true;
         }
         else if (_currentHeath > _health / 2 && _health / 2 > _currentHeath - damage)
         {
@@ -64,16 +66,14 @@ public class Otter extends Units
 
     }
 
-    protected void Died()
-    {
-        _movingActive = new Animation();
-        _movingActive.addFrame(R.drawable.otterdie);
-        _movingActive.setLocation(_x, _y - 100);
-        _isDied = true;
-    }
+//    protected void Dying()
+//    {
+//
+//    }
 
     public void Show()
     {
         _movingActive.show();
+        _dyingActive.show();
     }
 }

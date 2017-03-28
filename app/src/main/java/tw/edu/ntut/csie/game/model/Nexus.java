@@ -43,7 +43,7 @@ public class Nexus extends Units
 
         if (_currentHeath <= 0)
         {
-            Died();
+            Dying();
         }
         SetIsAttacked(true);
     }
@@ -53,7 +53,7 @@ public class Nexus extends Units
         _knockedBackActive.move();
     }
 
-    protected void Died()
+    protected void Dying()
     {
         _movingActive.setLocation(_x, _y - 100);
         _isDied = true;
