@@ -48,15 +48,15 @@ public class Nexus extends Units
         SetIsAttacked(true);
     }
 
-    protected void KnockedBack()
+    public void KnockedBack()
     {
         _knockedBackActive.move();
     }
 
-    protected void Dying()
+    public void Dying()
     {
         _movingActive.setLocation(_x, _y - 100);
-        _isDied = true;
+        _isDying = true;
     }
 
     public void Show()

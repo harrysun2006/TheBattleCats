@@ -21,11 +21,7 @@ public class Capoo extends Units
         _moveSpeed = 5;
         _attackSpeed = 1;
 
-        _movingActive = new Animation();
-        _movingActive.setLocation(_x, _y);
-        _movingActive.addFrame(R.drawable.capoo_move1);
-        _movingActive.addFrame(R.drawable.capoo_move2);
-        _movingActive.setDelay(4);
+        InitializeMovingActive();
     }
 
     public void Moving()
@@ -47,7 +43,7 @@ public class Capoo extends Units
         if (_currentHeath <= 0)
         {
             KnockedBack();
-            _isDied = true;
+            SetIsDying(true);
         }
         else if (_currentHeath > _health / 2 && _health / 2 > _currentHeath - damage)
         {
@@ -55,19 +51,28 @@ public class Capoo extends Units
         }
     }
 
-    protected void KnockedBack()
+    public void KnockedBack()
     {
 
     }
 
-//    protected void Dying()
-//    {
-//
-//    }
+    public void Dying()
+    {
+        super.Dying();
+    }
 
     public void Show()
     {
         _movingActive.show();
         _dyingActive.show();
+    }
+
+    private void InitializeMovingActive()
+    {
+        _movingActive = new Animation();
+        _movingActive.setLocation(_x, _y);
+        _movingActive.addFrame(R.drawable.capoo_move1);
+        _movingActive.addFrame(R.drawable.capoo_move2);
+        _movingActive.setDelay(4);
     }
 }

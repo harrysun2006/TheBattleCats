@@ -46,7 +46,7 @@ public class BattleModel implements ReleasableResource
 
         for (Units element:_allies)
         {
-            if (element.GetIsDied())
+            if (element.GetIsDying())
             {
                 element.Dying();
                 if (element.GetY() < 0)
@@ -57,11 +57,9 @@ public class BattleModel implements ReleasableResource
             }
             else
             {
-
                 if (element.GetX() < _enemiesMax + 20 && element.GetX() > _enemiesMax)
                 {
                     element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
-
                     if (element.GetAttackDelayCounter() == element.GetAttackSpeed() * Game.FRAME_RATE)
                     {
                         element.Attack();
@@ -74,7 +72,7 @@ public class BattleModel implements ReleasableResource
                     element.Moving();
                 }
             }
-            if ((_alliesMax > element.GetX() && !(element.GetIsDied())))
+            if ((_alliesMax > element.GetX() && !(element.GetIsDying())))
             {
                 _alliesMax = element.GetX();
                 _recordAlliesIndex = index;
@@ -92,13 +90,13 @@ public class BattleModel implements ReleasableResource
 
         for (Units element:_enemies)
         {
-            if (element.GetIsDied())
+            if (element.GetIsDying())
             {
                 element.Dying();
                 if (element.GetY() < 0)
                 {
-                    //_enemies.remove(index);
-                   // index--;
+                    _enemies.remove(index);
+                    return;
                 }
             }
             else
@@ -106,7 +104,6 @@ public class BattleModel implements ReleasableResource
                 if (element.GetX() > _alliesMax - 20 && element.GetX() < _alliesMax)
                 {
                     element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
-
                     if (element.GetAttackDelayCounter() == element.GetAttackSpeed() * Game.FRAME_RATE)
                     {
                         element.Attack();
@@ -119,7 +116,7 @@ public class BattleModel implements ReleasableResource
                     element.Moving();
                 }
             }
-            if (_enemiesMax < element.GetX() && !(element.GetIsDied()))
+            if (_enemiesMax < element.GetX() && !(element.GetIsDying()))
             {
                 _enemiesMax = element.GetX();
                 _recordEnemiesIndex = index;

@@ -24,7 +24,11 @@ public abstract class Units
     protected Animation _movingActive; //移動動畫
     protected Animation _attackActive; //攻擊動畫
     protected Animation _knockedBackActive; //擊退動畫
-    protected Animation _dyingActive;//死亡動畫
+    protected Animation _dyingActive; //死亡動畫
+
+    protected boolean _isAttacking = false; //正在攻擊的狀態
+    protected boolean _isAttacked = false; //被攻擊的狀態
+    protected boolean _isDying = false; //是否死掉
 
     public Units()
     {
@@ -34,10 +38,6 @@ public abstract class Units
         _dyingActive.setVisible(false);
         _dyingActive.setDelay(1);
     }
-
-    protected boolean _isAttacking = false; //正在攻擊的狀態
-    protected boolean _isAttacked = false; //被攻擊的狀態
-    protected boolean _isDied = false; //是否死掉
 
     public int GetX()
     {
@@ -80,12 +80,10 @@ public abstract class Units
 
     public abstract void Attacked(int damage);
 
-    protected abstract void KnockedBack(); //被擊退
+    public abstract void KnockedBack(); //被擊退
 
-    protected void Dying()
+    public void Dying()
     {
-        _movingActive.setVisible(false);
-        _dyingActive.setVisible(true);
         _y -= 10;
         _dyingActive.setLocation(_x, _y);
         _dyingActive.move();
@@ -98,17 +96,10 @@ public abstract class Units
         return _isAttacking;
     }
 
-    //如果正在攻擊的狀態，會讓移動的動畫隱藏
+    //進入攻擊的狀態時，會隱藏移動的動畫
     public void SetIsAttacking(boolean isAttacking)
     {
-        if (isAttacking)
-        {
-            _movingActive.setVisible(false);
-        }
-        else
-        {
-            _movingActive.setVisible(true);
-        }
+        _movingActive.setVisible(!isAttacking);
         _isAttacking = isAttacking;
     }
 
@@ -117,22 +108,23 @@ public abstract class Units
         return _isAttacked;
     }
 
-    //如果正在被攻擊的狀態，會讓移動的動畫隱藏
+    //進入被攻擊的狀態時，會隱藏移動的動畫
     public void SetIsAttacked(boolean isAttacked)
     {
-        if (isAttacked)
-        {
-            _movingActive.setVisible(false);
-        }
-        else
-        {
-            _movingActive.setVisible(true);
-        }
+        _movingActive.setVisible(!isAttacked);
         _isAttacked = isAttacked;
     }
 
-    public boolean GetIsDied()
+    public boolean GetIsDying()
     {
-        return _isDied;
+        return _isDying;
+    }
+
+    //進入播放死亡動畫的狀態時，會隱藏移動的動畫，顯示死亡的動畫
+    public void SetIsDying(boolean isDying)
+    {
+        _movingActive.setVisible(!isDying);
+        _dyingActive.setVisible(isDying);
+        _isDying = isDying;
     }
 }
