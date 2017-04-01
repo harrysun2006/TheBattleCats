@@ -1,13 +1,13 @@
 package tw.edu.ntut.csie.game.model;
 
-//Created by leon on 2017/3/20.
+//Created by leon on 2017/4/1.
 
 import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.extend.Animation;
 
-public class Nexus extends Units
+public class AllyNexus extends Units
 {
-    public Nexus(int x, int y)
+    public AllyNexus(int x, int y)
     {
         _health = 500;
         _currentHeath = _health;
@@ -16,14 +16,14 @@ public class Nexus extends Units
 
         _movingActive = new Animation();
         _movingActive.setLocation(_x, _y);
-        _movingActive.addFrame(R.drawable.door);
+        _movingActive.addFrame(R.drawable.ally_nexus);
         _movingActive.setDelay(0);
         _movingActive.setRepeating(false);
 
         _knockedBackActive = new Animation();
         _knockedBackActive.setLocation(_x, _y);
-        _knockedBackActive.addFrame(R.drawable.door);
-        _knockedBackActive.addFrame(R.drawable.door_attacked);
+        _knockedBackActive.addFrame(R.drawable.ally_nexus);
+        _knockedBackActive.addFrame(R.drawable.ally_nexus_attacked);
         _knockedBackActive.setDelay(0);
     }
 

@@ -26,14 +26,15 @@ public class BattleModel implements ReleasableResource
     {
         _allies = new ArrayList<>();
         _enemies = new ArrayList<>();
-        _enemies.add(new Nexus(20, 200));
+        _allies.add(new AllyNexus(500, 150));
+        _enemies.add(new EnemyNexus(20, 200));
     }
 
     public void Run()
     {
         AlliesRun();
         EnemiesRun();
-        ProduceEnemiesKnockedBack();
+        ProduceNexusKnockedBack();
         GenerateEnemies();
     }
 
@@ -125,10 +126,14 @@ public class BattleModel implements ReleasableResource
         }
     }
 
-    //讓所有敵軍產生擊退的效果
-    private void ProduceEnemiesKnockedBack()
+    //讓主堡被攻擊時產生擊退的效果
+    private void ProduceNexusKnockedBack()
     {
-        for (Units element:_enemies)
+        List<Units> nexus = new ArrayList<>();
+        nexus.add(_allies.get(0));
+        nexus.add(_enemies.get(0));
+
+        for (Units element:nexus)
         {
             if (element.GetIsAttacked())
             {
