@@ -27,7 +27,7 @@ public class BattleModel implements ReleasableResource
         _allies = new ArrayList<>();
         _enemies = new ArrayList<>();
         _allies.add(new AllyNexus(500, 150));
-        _enemies.add(new EnemyNexus(122, 200));
+        _enemies.add(new EnemyNexus(120, 200));
     }
 
     public void Run()
@@ -58,7 +58,7 @@ public class BattleModel implements ReleasableResource
             }
             else
             {
-                if (element.GetX() < _enemiesMax + 10 && element.GetX() > _enemiesMax)
+                if (element.GetX() <= _enemiesMax + 5 && element.GetX() >= _enemiesMax)
                 {
                     element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
                     if (element.GetAttackDelayCounter() == 11 * element.GetAttackSpeed())
@@ -111,7 +111,7 @@ public class BattleModel implements ReleasableResource
             }
             else
             {
-                if (element.GetRightSideX() > _alliesMax - 10 && element.GetRightSideX() < _alliesMax)
+                if (element.GetRightSideX() >= _alliesMax - 5 && element.GetRightSideX() <= _alliesMax)
                 {
                     element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
                     if (element.GetAttackDelayCounter() == element.GetAttackSpeed() * Game.FRAME_RATE)
