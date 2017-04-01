@@ -24,7 +24,7 @@ public class AllyNexus extends Units
         _knockedBackActive.setLocation(_x, _y);
         _knockedBackActive.addFrame(R.drawable.ally_nexus);
         _knockedBackActive.addFrame(R.drawable.ally_nexus_attacked);
-        _knockedBackActive.setDelay(0);
+        _knockedBackActive.setDelay(1);
     }
 
     public void Moving()

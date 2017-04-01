@@ -22,6 +22,7 @@ public class Capoo extends Units
         _attackSpeed = 1;
 
         InitializeMovingActive();
+        InitializeAttackActive();
     }
 
     public void Moving()
@@ -33,7 +34,9 @@ public class Capoo extends Units
 
     public void Attack()
     {
-
+        SetIsAttacking(true);
+        _attackActive.setLocation(_x, _y);
+        _attackActive.move();
     }
 
     public void Attacked(int damage)
@@ -64,6 +67,7 @@ public class Capoo extends Units
     public void Show()
     {
         _movingActive.show();
+        _attackActive.show();
         _dyingActive.show();
     }
 
@@ -74,5 +78,16 @@ public class Capoo extends Units
         _movingActive.addFrame(R.drawable.capoo_move1);
         _movingActive.addFrame(R.drawable.capoo_move2);
         _movingActive.setDelay(4);
+    }
+
+    private void InitializeAttackActive()
+    {
+        _attackActive = new Animation();
+        _attackActive.setLocation(_x, _y);
+        _attackActive.addFrame(R.drawable.capoo_attack1);
+        _attackActive.addFrame(R.drawable.capoo_attack2);
+        _attackActive.addFrame(R.drawable.capoo_attack3);
+        _attackActive.setVisible(false);
+        _attackActive.setDelay(1);
     }
 }

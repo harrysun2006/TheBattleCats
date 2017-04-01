@@ -100,6 +100,7 @@ public abstract class Units
     public void SetIsAttacking(boolean isAttacking)
     {
         _movingActive.setVisible(!isAttacking);
+        _attackActive.setVisible(isAttacking);
         _isAttacking = isAttacking;
     }
 
@@ -124,6 +125,7 @@ public abstract class Units
     public void SetIsDying(boolean isDying)
     {
         _movingActive.setVisible(!isDying);
+//        _attackActive.setVisible(!isDying);
         _dyingActive.setVisible(isDying);
         _isDying = isDying;
     }
