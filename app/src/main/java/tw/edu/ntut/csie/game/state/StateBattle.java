@@ -11,6 +11,8 @@ import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 
+import tw.edu.ntut.csie.game.model.Capoo;
+import tw.edu.ntut.csie.game.model.Money;
 import tw.edu.ntut.csie.game.model.BattleModel;
 
 public class StateBattle extends GameState
@@ -30,6 +32,7 @@ public class StateBattle extends GameState
         _music.setRepeating(true);
         _music.play();
         _battleModel = new BattleModel();
+        _money = new Money();
     }
 
     @Override
@@ -89,6 +92,7 @@ public class StateBattle extends GameState
             if (pressedY > _capooButton.getY() && pressedY < _capooButton.getY() + _capooButton.getHeight())
             {
                 _battleModel.GenerateCapoo();
+                _money.SubtractMoney(100);
             }
         }
         return true;
@@ -122,4 +126,5 @@ public class StateBattle extends GameState
     private MovingBitmap _capooButton;
     private Audio _music;
     private BattleModel _battleModel;
+    private Money _money;
 }

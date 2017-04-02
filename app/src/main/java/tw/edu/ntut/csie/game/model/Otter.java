@@ -20,6 +20,7 @@ public class Otter extends Units
         _attackDamage = 50;
         _moveSpeed = -5;
         _attackSpeed = 1;
+        _cost = 100;
 
         InitializeMovingActive();
     }
