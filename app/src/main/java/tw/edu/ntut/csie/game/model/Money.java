@@ -6,8 +6,8 @@ package tw.edu.ntut.csie.game.model;
 
 public class Money
 {
-    public  int _maxMoney;
-    public  int _currentMoney;
+    public int _maxMoney;
+    public int _currentMoney;
 
     public Money()
     {
@@ -22,9 +22,8 @@ public class Money
     }
 
     //增加錢的最大值
-    public  void AddMoneyMax()
+    public void AddMoneyMax()
     {
         _maxMoney += 100;
     }
-
 }

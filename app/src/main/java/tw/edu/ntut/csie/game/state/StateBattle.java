@@ -11,9 +11,8 @@ import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 
-import tw.edu.ntut.csie.game.model.Capoo;
-import tw.edu.ntut.csie.game.model.Money;
 import tw.edu.ntut.csie.game.model.BattleModel;
+import tw.edu.ntut.csie.game.model.Money;
 
 public class StateBattle extends GameState
 {
