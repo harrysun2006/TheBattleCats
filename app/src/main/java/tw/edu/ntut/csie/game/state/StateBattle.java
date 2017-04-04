@@ -20,6 +20,7 @@ public class StateBattle extends GameState
     {
         //To invoke constructor in tw.edu.ntut.csie.game.state.GameState (super class).
         super(engine);
+        _engine = engine;
     }
 
     @Override
@@ -94,18 +95,32 @@ public class StateBattle extends GameState
                 _money.SubtractMoney(100);
             }
         }
+        else
+        {
+            _isPressed = true;
+            _previousPressedX = pointers.get(0).getX();
+        }
         return true;
     }
 
     @Override
     public boolean pointerMoved(List<Pointer> pointers)
     {
+        if (_isPressed)
+        {
+            _shifting += pointers.get(0).getX() - _previousPressedX;
+            _engine.SetGameFrameShifting(_shifting);
+        }
         return false;
     }
 
     @Override
     public boolean pointerReleased(List<Pointer> pointers)
     {
+        if (_isPressed)
+        {
+            _isPressed = false;
+        }
         return false;
     }
 
@@ -121,9 +136,14 @@ public class StateBattle extends GameState
         _music.play();
     }
 
+    private GameEngine _engine;
     private MovingBitmap _background;
     private MovingBitmap _capooButton;
     private Audio _music;
     private BattleModel _battleModel;
     private Money _money;
+
+    private boolean _isPressed;
+    private int _previousPressedX;
+    private int _shifting;
 }

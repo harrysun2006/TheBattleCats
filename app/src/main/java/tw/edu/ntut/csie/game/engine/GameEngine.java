@@ -186,6 +186,18 @@ public class GameEngine implements Runnable {
     }
 
     /**
+     * 設定螢幕中遊戲畫面在整個遊戲畫面中的位置
+     */
+    public void SetGameFrameShifting(int shifting)
+    {
+        synchronized (this)
+        {
+            _gameFrame.SetShiftedX(shifting);
+            _gameFrame.setSize(GAME_FRAME_WIDTH, GAME_FRAME_HEIGHT);
+        }
+    }
+
+    /**
      * 處理按鍵被按下的事件(轉交目前的遊戲狀態)。
      *
      * @param keyCode 被按下的鍵
