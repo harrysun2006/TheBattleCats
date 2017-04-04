@@ -33,6 +33,9 @@ public class StateBattle extends GameState
         _music.play();
         _battleModel = new BattleModel();
         _money = new Money();
+
+        _shifting = 360;
+        _engine.SetGameFrameShifting(_shifting);
     }
 
     @Override
@@ -145,5 +148,5 @@ public class StateBattle extends GameState
 
     private boolean _isPressed;
     private int _previousPressedX;
-    private int _shifting;
+    private int _shifting; //被顯示出來的遊戲畫面的原點在整個遊戲畫面中的X座標
 }

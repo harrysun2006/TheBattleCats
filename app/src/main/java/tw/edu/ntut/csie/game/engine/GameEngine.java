@@ -186,7 +186,7 @@ public class GameEngine implements Runnable {
     }
 
     /**
-     * 設定螢幕中遊戲畫面在整個遊戲畫面中的位置
+     * 設定被顯示出來的遊戲畫面的原點在整個遊戲畫面中的X座標
      */
     public void SetGameFrameShifting(int shifting)
     {
