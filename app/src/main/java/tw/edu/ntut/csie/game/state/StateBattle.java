@@ -111,7 +111,15 @@ public class StateBattle extends GameState
     {
         if (_isPressed)
         {
-            _shifting += pointers.get(0).getX() - _previousPressedX;
+            _shifting -= pointers.get(0).getX() - _previousPressedX;
+            if (_shifting > 360)
+            {
+                _shifting = 360;
+            }
+            if (_shifting < 0)
+            {
+                _shifting = 0;
+            }
             _engine.SetGameFrameShifting(_shifting);
         }
         return false;
