@@ -16,6 +16,9 @@ public abstract class Units
     protected int _x; //X座標
     protected int _y; //Y座標
 
+    protected int _displayX; //實際顯示的X座標
+    protected int _displayY; //實際顯示的Y座標
+
     protected int _attackDamage; //攻擊力
     protected int _moveSpeed; //移動速度 (單位: 每1/15秒1像素)
     protected int _attackSpeed; //攻擊速度
@@ -86,8 +89,15 @@ public abstract class Units
     public void Dying()
     {
         _y -= 10;
-        _dyingActive.setLocation(_x, _y);
+        _displayY -= 10;
+        _dyingActive.setLocation(_displayX, _displayY);
         _dyingActive.move();
+    }
+
+    public void Transition(int shiftedX, int shiftedY)
+    {
+        _displayX = _x - shiftedX;
+        _displayY = _y - shiftedY;
     }
 
     public abstract void Show();

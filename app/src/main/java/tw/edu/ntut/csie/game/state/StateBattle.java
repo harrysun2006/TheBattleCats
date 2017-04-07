@@ -20,7 +20,6 @@ public class StateBattle extends GameState
     {
         //To invoke constructor in tw.edu.ntut.csie.game.state.GameState (super class).
         super(engine);
-        _engine = engine;
     }
 
     @Override
@@ -35,13 +34,20 @@ public class StateBattle extends GameState
         _money = new Money();
 
         _shifting = 360;
-        _engine.SetGameFrameShifting(_shifting);
+        _background.SaveRealPosition();
+        Transition(_shifting, 0);
     }
 
     @Override
     public void move()
     {
         _battleModel.Run();
+    }
+
+    public void Transition(int shiftedX, int shiftedY)
+    {
+        _background.setLocation(_background.GetRealX() - shiftedX, _background.GetRealY() - shiftedY);
+        _battleModel.Transition(shiftedX, shiftedY);
     }
 
     @Override
@@ -111,16 +117,16 @@ public class StateBattle extends GameState
     {
         if (_isPressed)
         {
-            _shifting -= pointers.get(0).getX() - _previousPressedX;
-            if (_shifting > 360)
+            _tempShifting = -1 * (pointers.get(0).getX() - _previousPressedX) + _shifting;
+            if (_tempShifting > 360)
             {
-                _shifting = 360;
+                _tempShifting = 360;
             }
-            if (_shifting < 0)
+            if (_tempShifting < 0)
             {
-                _shifting = 0;
+                _tempShifting = 0;
             }
-            _engine.SetGameFrameShifting(_shifting);
+            Transition(_tempShifting, 0);
         }
         return false;
     }
@@ -131,6 +137,7 @@ public class StateBattle extends GameState
         if (_isPressed)
         {
             _isPressed = false;
+            _shifting = _tempShifting;
         }
         return false;
     }
@@ -147,7 +154,6 @@ public class StateBattle extends GameState
         _music.play();
     }
 
-    private GameEngine _engine;
     private MovingBitmap _background;
     private MovingBitmap _capooButton;
     private Audio _music;
@@ -157,4 +163,5 @@ public class StateBattle extends GameState
     private boolean _isPressed;
     private int _previousPressedX;
     private int _shifting; //被顯示出來的遊戲畫面的原點在整個遊戲畫面中的X座標
+    private int _tempShifting;
 }

@@ -38,11 +38,6 @@ class GameFrame {
     private float _originY;
 
     /**
-     * 被顯示出來的遊戲畫面的原點在整個遊戲畫面中的X座標 (尚未經過投射比例轉換)
-     */
-    private float _shiftedX;
-
-    /**
      * 遊戲畫面經縮小/放大後的尺寸。
      */
     private float _scaledWidth;
@@ -172,7 +167,7 @@ class GameFrame {
         _displayRatio = ratio;
         _scaledWidth = _width * _displayRatio;
         _scaledHeight = _height * _displayRatio;
-        _originX = (screenWidth - _scaledWidth) / 2.0f - _shiftedX * _displayRatio;
+        _originX = (screenWidth - _scaledWidth) / 2.0f;
         _originY = (screenHeight - _scaledHeight) / 2.0f;
         _info = String.format(RATIO_INFO_FORMAT, _displayRatio, _width, _height, (int) _scaledWidth, (int) _scaledHeight);
     }
@@ -189,13 +184,5 @@ class GameFrame {
         float widthRatio = (float) screenWidth / (float) _width;
         float heightRatio = (float) screenHeight / (float) _height;
         setDisplayRatio(Math.min(widthRatio, heightRatio));
-    }
-
-    /**
-     * 設定被顯示出來的遊戲畫面的原點在整個遊戲畫面中的X座標
-     */
-    void SetShiftedX(int shiftedX)
-    {
-        _shiftedX = (float)shiftedX;
     }
 }

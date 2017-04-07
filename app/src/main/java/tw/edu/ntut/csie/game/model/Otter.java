@@ -9,7 +9,7 @@ import tw.edu.ntut.csie.game.extend.Animation;
 
 public class Otter extends Units
 {
-    public Otter(int x, int y)
+    public Otter(int x, int y, int shiftedX)
     {
         super();
 
@@ -17,6 +17,9 @@ public class Otter extends Units
         _currentHeath = _health;
         _x = x;
         _y = y;
+        _displayX = _x - shiftedX;
+        _displayY = _y;
+
         _attackDamage = 50;
         _moveSpeed = -5;
         _attackSpeed = 1;
@@ -28,7 +31,8 @@ public class Otter extends Units
     public void Moving()
     {
         _x -= _moveSpeed;
-        _movingActive.setLocation(_x, _y);
+        _displayX -= _moveSpeed;
+//        _movingActive.setLocation(_displayX, _displayY);
         _movingActive.move();
     }
 
@@ -64,6 +68,7 @@ public class Otter extends Units
 
     public void Show()
     {
+        _movingActive.setLocation(_displayX, _displayY);
         _movingActive.show();
         _dyingActive.show();
     }
@@ -71,7 +76,7 @@ public class Otter extends Units
     private void InitializeMovingActive()
     {
         _movingActive = new Animation();
-        _movingActive.setLocation(_x, _y);
+        _movingActive.setLocation(_displayX, _displayY);
         _movingActive.addFrame(R.drawable.otter_move1);
         _movingActive.addFrame(R.drawable.otter_move2);
         _movingActive.addFrame(R.drawable.otter_move3);

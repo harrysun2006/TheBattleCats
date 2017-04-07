@@ -27,6 +27,12 @@ public class MovingBitmap implements GameObject {
     private int _y;
 
     /**
+     * 為了實現圖形移動而存在的座標
+     */
+    private int _realX;
+    private int _realY;
+
+    /**
      * 設定圖片顯示與否。
      */
     private boolean _visible;
@@ -200,5 +206,21 @@ public class MovingBitmap implements GameObject {
      */
     public void setVisible(boolean visible) {
         _visible = visible;
+    }
+
+    public void SaveRealPosition()
+    {
+        _realX = _x;
+        _realY = _y;
+    }
+
+    public int GetRealX()
+    {
+        return _realX;
+    }
+
+    public int GetRealY()
+    {
+        return _realY;
     }
 }

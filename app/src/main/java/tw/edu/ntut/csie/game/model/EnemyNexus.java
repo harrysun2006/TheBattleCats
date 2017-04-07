@@ -7,21 +7,23 @@ import tw.edu.ntut.csie.game.extend.Animation;
 
 public class EnemyNexus extends Units
 {
-    public EnemyNexus(int x, int y)
+    public EnemyNexus(int x, int y, int shiftedX)
     {
         _health = 500;
         _currentHeath = _health;
         _x = x;
         _y = y;
+        _displayX = _x - shiftedX;
+        _displayY = _y;
 
         _movingActive = new Animation();
-        _movingActive.setLocation(_x, _y);
+        _movingActive.setLocation(_displayX, _displayY);
         _movingActive.addFrame(R.drawable.door);
         _movingActive.setDelay(0);
         _movingActive.setRepeating(false);
 
         _knockedBackActive = new Animation();
-        _knockedBackActive.setLocation(_x, _y);
+        _knockedBackActive.setLocation(_displayX, _displayY);
         _knockedBackActive.addFrame(R.drawable.door);
         _knockedBackActive.addFrame(R.drawable.door_attacked);
         _knockedBackActive.setDelay(1);
@@ -55,13 +57,15 @@ public class EnemyNexus extends Units
 
     public void Dying()
     {
-        _movingActive.setLocation(_x, _y - 100);
+        _movingActive.setLocation(_displayX, _displayY - 100);
         _isDying = true;
     }
 
     public void Show()
     {
+        _movingActive.setLocation(_displayX, _displayY);
         _movingActive.show();
+        _knockedBackActive.setLocation(_displayX, _displayY);
         _knockedBackActive.show();
     }
 }

@@ -21,13 +21,14 @@ public class BattleModel implements ReleasableResource
     private int _recordEnemiesIndex = 0; //走在最前面的敵軍的index
     private int _alliesMax = 1000; //走在最前面的友軍的X值
     private int _enemiesMax = 0; //走在最前面的敵軍的X值
+    private int _shifting = 0;
 
     public BattleModel()
     {
         _allies = new ArrayList<>();
         _enemies = new ArrayList<>();
-        _allies.add(new AllyNexus(500, 150));
-        _enemies.add(new EnemyNexus(120, 200));
+        _allies.add(new AllyNexus(500, 150, _shifting));
+        _enemies.add(new EnemyNexus(120, 200, _shifting));
     }
 
     public void Run()
@@ -179,12 +180,30 @@ public class BattleModel implements ReleasableResource
 
     public void GenerateCapoo()
     {
-        _allies.add(new Capoo(500, 200));
+        _allies.add(new Capoo(500, 200, _shifting));
     }
 
     public void GenerateOtter()
     {
-        _enemies.add(new Otter(20, 200));
+        _enemies.add(new Otter(20, 200, _shifting));
+    }
+
+    public void UpdateShifting(int shifting)
+    {
+        _shifting = shifting;
+    }
+
+    public void Transition(int shiftedX, int shiftedY)
+    {
+        UpdateShifting(shiftedX);
+        for (Units element:_allies)
+        {
+            element.Transition(_shifting, 0);
+        }
+        for (Units element:_enemies)
+        {
+            element.Transition(_shifting, 0);
+        }
     }
 
     public void ShowAll()

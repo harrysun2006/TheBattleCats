@@ -9,7 +9,7 @@ import tw.edu.ntut.csie.game.extend.Animation;
 
 public class Capoo extends Units
 {
-    public Capoo(int x, int y)
+    public Capoo(int x, int y, int shiftedX)
     {
         super();
 
@@ -17,6 +17,9 @@ public class Capoo extends Units
         _currentHeath = _health;
         _x = x;
         _y = y;
+        _displayX = _x - shiftedX;
+        _displayY = _y;
+
         _attackDamage = 50;
         _moveSpeed = 5;
         _attackSpeed = 1;
@@ -29,14 +32,15 @@ public class Capoo extends Units
     public void Moving()
     {
         _x -= _moveSpeed;
-        _movingActive.setLocation(_x, _y);
+        _displayX -= _moveSpeed;
+//        _movingActive.setLocation(_displayX, _displayY);
         _movingActive.move();
     }
 
     public void Attack()
     {
         SetIsAttacking(true);
-        _attackActive.setLocation(_x, _y);
+        _attackActive.setLocation(_displayX, _displayY);
         _attackActive.move();
     }
 
@@ -67,6 +71,7 @@ public class Capoo extends Units
 
     public void Show()
     {
+        _movingActive.setLocation(_displayX, _displayY);
         _movingActive.show();
         _attackActive.show();
         _dyingActive.show();
@@ -75,7 +80,7 @@ public class Capoo extends Units
     private void InitializeMovingActive()
     {
         _movingActive = new Animation();
-        _movingActive.setLocation(_x, _y);
+        _movingActive.setLocation(_displayX, _displayY);
         _movingActive.addFrame(R.drawable.capoo_move1);
         _movingActive.addFrame(R.drawable.capoo_move2);
         _movingActive.setDelay(4);
@@ -84,7 +89,7 @@ public class Capoo extends Units
     private void InitializeAttackActive()
     {
         _attackActive = new Animation();
-        _attackActive.setLocation(_x, _y);
+        _attackActive.setLocation(_displayX, _displayY);
         _attackActive.addFrame(R.drawable.capoo_attack1);
         _attackActive.addFrame(R.drawable.capoo_attack2);
         _attackActive.addFrame(R.drawable.capoo_attack3);
