@@ -39,6 +39,7 @@ public class BattleModel implements ReleasableResource
         EnemiesRun();
         ProduceNexusKnockedBack();
         GenerateEnemies();
+        money.AddMoney();
     }
 
     //讓所有友軍進行攻擊或移動
@@ -183,6 +184,7 @@ public class BattleModel implements ReleasableResource
     public void GenerateCapoo()
     {
         _allies.add(new Capoo(800, 200, _shifting));
+        money.SubtractMoney(200);
     }
 
     public void GenerateOtter()

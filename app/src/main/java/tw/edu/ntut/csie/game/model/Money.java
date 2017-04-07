@@ -10,12 +10,14 @@ public class Money
 {
     public int _maxMoney;
     public int _currentMoney;
-    public Integer integer = new Integer(4,_currentMoney,700,300);
+    public Integer integer = new Integer(4,_currentMoney,100,100);
+    public int _speed;
 
     public Money()
     {
         _maxMoney =1000;
-        _currentMoney = 10;
+        _currentMoney = 0;
+        _speed = 10;
     }
 
     //產兵扣錢
@@ -29,6 +31,11 @@ public class Money
     public void AddMoneyMax()
     {
         _maxMoney += 100;
+    }
+
+    public void AddMoney()
+    {
+        _currentMoney += _speed;
     }
 
     public void show()
