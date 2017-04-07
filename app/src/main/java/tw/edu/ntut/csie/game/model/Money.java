@@ -8,14 +8,15 @@ import tw.edu.ntut.csie.game.extend.Integer;
 
 public class Money
 {
+    public Integer _integer;
     public int _maxMoney;
     public int _currentMoney;
-    public Integer integer = new Integer(4,_currentMoney,100,100);
     public int _speed;
 
     public Money()
     {
-        _maxMoney =1000;
+        _integer = new Integer(4, _currentMoney, 550, 10);
+        _maxMoney = 1000;
         _currentMoney = 0;
         _speed = 10;
     }
@@ -24,7 +25,6 @@ public class Money
     public void SubtractMoney(int cost)
     {
         _currentMoney -= cost;
-        integer.setValue(_currentMoney);
     }
 
     //增加錢的最大值
@@ -40,7 +40,7 @@ public class Money
 
     public void show()
     {
-        integer.setValue(_currentMoney);
-        integer.show();
+        _integer.setValue(_currentMoney);
+        _integer.show();
     }
 }

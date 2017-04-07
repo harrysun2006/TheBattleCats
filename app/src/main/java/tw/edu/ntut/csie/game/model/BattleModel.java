@@ -13,6 +13,7 @@ public class BattleModel implements ReleasableResource
 {
     private List<Units> _allies;
     private List<Units> _enemies;
+    private Money _money;
 
     private static final int GENERATE_ENEMIES_DELAY_COUNTER = 4 * Game.FRAME_RATE; //讓敵兵每N秒產生一個，計數器每15可以讓兵延遲1秒產生 (畫面更新頻率 = 15次/1秒)
     private int _generateEnemiesDelayCounter = GENERATE_ENEMIES_DELAY_COUNTER; //真正用來計算產兵延遲的
@@ -22,7 +23,6 @@ public class BattleModel implements ReleasableResource
     private int _alliesMax = 1000; //走在最前面的友軍的X值
     private int _enemiesMax = 0; //走在最前面的敵軍的X值
     private int _shifting = 0;
-    private Money money;
 
     public BattleModel()
     {
@@ -30,7 +30,7 @@ public class BattleModel implements ReleasableResource
         _enemies = new ArrayList<>();
         _allies.add(new AllyNexus(800, 150, _shifting));
         _enemies.add(new EnemyNexus(120, 200, _shifting));
-        money = new Money();
+        _money = new Money();
     }
 
     public void Run()
@@ -39,7 +39,7 @@ public class BattleModel implements ReleasableResource
         EnemiesRun();
         ProduceNexusKnockedBack();
         GenerateEnemies();
-        money.AddMoney();
+        _money.AddMoney();
     }
 
     //讓所有友軍進行攻擊或移動
@@ -184,7 +184,7 @@ public class BattleModel implements ReleasableResource
     public void GenerateCapoo()
     {
         _allies.add(new Capoo(800, 200, _shifting));
-        money.SubtractMoney(200);
+        _money.SubtractMoney(200);
     }
 
     public void GenerateOtter()
@@ -220,7 +220,7 @@ public class BattleModel implements ReleasableResource
         {
             element.Show();
         }
-        money.show();
+        _money.show();
     }
 
     public void release()

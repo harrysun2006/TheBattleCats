@@ -31,7 +31,6 @@ public class StateBattle extends GameState
         _music.setRepeating(true);
         _music.play();
         _battleModel = new BattleModel();
-        _money = new Money();
 
         _shifting = 360;
         _background.SaveRealPosition();
@@ -101,7 +100,6 @@ public class StateBattle extends GameState
             if (pressedY > _capooButton.getY() && pressedY < _capooButton.getY() + _capooButton.getHeight())
             {
                 _battleModel.GenerateCapoo();
-                _money.SubtractMoney(100);
             }
         }
         else
@@ -158,7 +156,6 @@ public class StateBattle extends GameState
     private MovingBitmap _capooButton;
     private Audio _music;
     private BattleModel _battleModel;
-    private Money _money;
 
     private boolean _isPressed;
     private int _previousPressedX;
