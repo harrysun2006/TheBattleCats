@@ -43,6 +43,11 @@ public abstract class Units
         _dyingActive.setDelay(1);
     }
 
+    public int GetCurrentHealthPercentage()
+    {
+        return 100 * _currentHeath / _health;
+    }
+
     public int GetX()
     {
         return _x;

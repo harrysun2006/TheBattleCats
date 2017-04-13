@@ -230,4 +230,14 @@ public class BattleModel implements ReleasableResource
         _allies = null;
         _enemies = null;
     }
+
+    public int GetAllyNexusHealthPercentage()
+    {
+        return _allies.get(0).GetCurrentHealthPercentage();
+    }
+
+    public int GetEnemyNexusHealthPercentage()
+    {
+        return _enemies.get(0).GetCurrentHealthPercentage();
+    }
 }

@@ -48,6 +48,8 @@ public class StateBattle extends GameState
         _battleModel.Run();
         _capooButton.Run();
         _capooCooldown.SetCurrentPercentage(_capooButton.GetPercent());
+        _allyNexusHealth.SetCurrentPercentage(_battleModel.GetAllyNexusHealthPercentage());
+        _enemyNexusHealth.SetCurrentPercentage(_battleModel.GetEnemyNexusHealthPercentage());
     }
 
     public void Transition(int shiftedX, int shiftedY)
