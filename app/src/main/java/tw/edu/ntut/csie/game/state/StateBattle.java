@@ -44,6 +44,7 @@ public class StateBattle extends GameState
     {
         _battleModel.Run();
         _capooButton.Run();
+        _capooCooldown.SetCurrentPercentage(_capooButton.GetPercent());
     }
 
     public void Transition(int shiftedX, int shiftedY)
