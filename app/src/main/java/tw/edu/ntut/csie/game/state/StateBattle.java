@@ -13,6 +13,7 @@ import tw.edu.ntut.csie.game.R;
 
 import tw.edu.ntut.csie.game.model.BattleModel;
 import tw.edu.ntut.csie.game.model.GameButton;
+import tw.edu.ntut.csie.game.model.CooldownBar;
 
 public class StateBattle extends GameState
 {
@@ -31,6 +32,7 @@ public class StateBattle extends GameState
         _music.play();
         _battleModel = new BattleModel();
         _capooButton = new GameButton(R.drawable.test_capoo_button, 10, 10, 2);
+        _capooCooldown = new CooldownBar(14, 62, 70);
 
         _shifting = 360;
         _background.SaveRealPosition();
@@ -56,6 +58,7 @@ public class StateBattle extends GameState
         _background.show();
         _battleModel.Show();
         _capooButton.Show();
+        _capooCooldown.Show();
     }
 
     @Override
@@ -65,10 +68,12 @@ public class StateBattle extends GameState
         _music.release();
         _battleModel.release();
         _capooButton.release();
+        _capooCooldown.release();
         _background = null;
         _music = null;
         _battleModel = null;
         _capooButton = null;
+        _capooCooldown = null;
     }
 
     @Override
@@ -160,6 +165,7 @@ public class StateBattle extends GameState
     private Audio _music;
     private BattleModel _battleModel;
     private GameButton _capooButton;
+    private CooldownBar _capooCooldown;
 
     private boolean _isPressed;
     private int _previousPressedX;
