@@ -210,7 +210,7 @@ public class BattleModel implements ReleasableResource
         }
     }
 
-    public void ShowAll()
+    public void Show()
     {
         for (Units element:_allies)
         {

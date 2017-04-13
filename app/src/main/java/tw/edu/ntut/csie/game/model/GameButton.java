@@ -1,23 +1,22 @@
 package tw.edu.ntut.csie.game.model;
-import tw.edu.ntut.csie.game.R;
 
+import tw.edu.ntut.csie.game.ReleasableResource;
 import tw.edu.ntut.csie.game.core.MovingBitmap;
-import tw.edu.ntut.csie.game.extend.BitmapButton;
 import tw.edu.ntut.csie.game.Game;
 
 /**
  * Created by User on 2017/4/10.
  */
 
-public class GameButton
+public class GameButton implements ReleasableResource
 {
-    public MovingBitmap _button;//按鈕圖案
-    private static int  _cd;//CD時間
-    public int _currentCd;
+    private MovingBitmap _button; //按鈕圖案
+    private int _cd; //CD時間
+    private int _currentCd;
     private boolean _isCd;
     private int _percent;
-    public int _x;
-    public int _y;
+    private int _x;
+    private int _y;
 
     public GameButton(int filename, int x, int y, int cd)
     {
@@ -46,7 +45,7 @@ public class GameButton
 
     public boolean Push()
     {
-        if(_isCd == false)
+        if (_isCd == false)
         {
             _currentCd = _cd;
             _isCd = true;
@@ -83,7 +82,7 @@ public class GameButton
         return _button.getHeight();
     }
 
-    public double GetPerctnt()
+    public int GetPercent()
     {
         return _percent;
     }
@@ -92,5 +91,4 @@ public class GameButton
     {
         _button.release();
     }
-
 }

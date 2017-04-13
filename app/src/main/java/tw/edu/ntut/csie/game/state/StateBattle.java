@@ -13,7 +13,6 @@ import tw.edu.ntut.csie.game.R;
 
 import tw.edu.ntut.csie.game.model.BattleModel;
 import tw.edu.ntut.csie.game.model.GameButton;
-import tw.edu.ntut.csie.game.model.Money;
 
 public class StateBattle extends GameState
 {
@@ -27,11 +26,11 @@ public class StateBattle extends GameState
     public void initialize(Map<String, Object> data)
     {
         _background = new MovingBitmap(R.drawable.test_background);
-        _capooButton = new GameButton(R.drawable.test_capoo_button, 10, 10, 2);
         _music = new Audio(R.raw.ntut);
         _music.setRepeating(true);
         _music.play();
         _battleModel = new BattleModel();
+        _capooButton = new GameButton(R.drawable.test_capoo_button, 10, 10, 2);
 
         _shifting = 360;
         _background.SaveRealPosition();
@@ -55,8 +54,7 @@ public class StateBattle extends GameState
     public void show()
     {
         _background.show();
-        _capooButton.Show();
-        _battleModel.ShowAll();
+        _battleModel.Show();
         _capooButton.Show();
     }
 
@@ -64,13 +62,13 @@ public class StateBattle extends GameState
     public void release()
     {
         _background.release();
-        _capooButton.release();
         _music.release();
         _battleModel.release();
+        _capooButton.release();
         _background = null;
-        _capooButton = null;
         _music = null;
         _battleModel = null;
+        _capooButton = null;
     }
 
     @Override
@@ -159,9 +157,9 @@ public class StateBattle extends GameState
     }
 
     private MovingBitmap _background;
-    private GameButton _capooButton;
     private Audio _music;
     private BattleModel _battleModel;
+    private GameButton _capooButton;
 
     private boolean _isPressed;
     private int _previousPressedX;
