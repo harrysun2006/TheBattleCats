@@ -288,7 +288,8 @@ public class BitmapButton implements GameObject, PointerEventHandler {
      * @param x 按鈕的X座標
      * @param y 按鈕的Y座標
      */
-    public void setLocation(int x, int y) {
+    public void setLocation(int x, int y)
+    {
         _x = x;
         _y = y;
         setImageLocation(_normalImage, x, y);
