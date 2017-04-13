@@ -14,6 +14,7 @@ import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.model.BattleModel;
 import tw.edu.ntut.csie.game.model.GameButton;
 import tw.edu.ntut.csie.game.model.CooldownBar;
+import tw.edu.ntut.csie.game.model.HealthBar;
 
 public class StateBattle extends GameState
 {
@@ -33,6 +34,8 @@ public class StateBattle extends GameState
         _battleModel = new BattleModel();
         _capooButton = new GameButton(R.drawable.test_capoo_button, 10, 10, 2);
         _capooCooldown = new CooldownBar(14, 62, 70);
+        _allyNexusHealth = new HealthBar(300, 20, 60);
+        _enemyNexusHealth = new HealthBar(200, 20, 60);
 
         _shifting = 360;
         _background.SaveRealPosition();
@@ -60,6 +63,8 @@ public class StateBattle extends GameState
         _battleModel.Show();
         _capooButton.Show();
         _capooCooldown.Show();
+        _allyNexusHealth.Show();
+        _enemyNexusHealth.Show();
     }
 
     @Override
@@ -167,6 +172,8 @@ public class StateBattle extends GameState
     private BattleModel _battleModel;
     private GameButton _capooButton;
     private CooldownBar _capooCooldown;
+    private HealthBar _allyNexusHealth;
+    private HealthBar _enemyNexusHealth;
 
     private boolean _isPressed;
     private int _previousPressedX;
