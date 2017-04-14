@@ -12,6 +12,7 @@ import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 
 import tw.edu.ntut.csie.game.model.BattleModel;
+import tw.edu.ntut.csie.game.model.Capoo;
 import tw.edu.ntut.csie.game.model.GameButton;
 import tw.edu.ntut.csie.game.model.CooldownBar;
 import tw.edu.ntut.csie.game.model.HealthBar;
@@ -32,7 +33,7 @@ public class StateBattle extends GameState
         _music.setRepeating(true);
         _music.play();
         _battleModel = new BattleModel();
-        _capooButton = new GameButton(R.drawable.capoo_button, 10, 10, 2); //x from 10 ~ 10 + 78 = 10 ~ 88
+        _capooButton = new GameButton(R.drawable.capoo_button, 10, 10, Capoo.COOLDOWN); //x from 10 ~ 10 + 78 = 10 ~ 88
         _capooCooldown = new CooldownBar(14, 60, 70); //x from 14 ~ 14 + 70 = 14 ~ 84, so that 14 - 10 = 88 - 84 = 4
         _allyNexusHealth = new HealthBar(300, 20, 60);
         _enemyNexusHealth = new HealthBar(200, 20, 60);

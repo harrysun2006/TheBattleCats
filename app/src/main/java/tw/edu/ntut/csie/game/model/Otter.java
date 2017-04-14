@@ -9,6 +9,8 @@ import tw.edu.ntut.csie.game.extend.Animation;
 
 public class Otter extends Units
 {
+    public static int COOLDOWN = 4; //cooldown time
+
     public Otter(int x, int y, int shiftedX)
     {
         super();

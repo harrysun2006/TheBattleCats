@@ -12,11 +12,11 @@ public class GameButton implements ReleasableResource
 {
     private MovingBitmap _button; //按鈕圖案
     private int _cd; //CD時間
-    private int _currentCd;
-    private boolean _isCd;
-    private int _percent;
-    private int _x;
-    private int _y;
+    private int _currentCd; //目前剩餘CD時間
+    private boolean _isCd; //是否正在CD
+    private int _percent; //currentcd/cd
+    private int _x; //按鈕X座標
+    private int _y; //按鈕Y座標
 
     public GameButton(int filename, int x, int y, int cd)
     {
@@ -43,13 +43,14 @@ public class GameButton implements ReleasableResource
         }
     }
 
+    //按下按鈕
     public boolean Push()
     {
         if (_isCd == false)
         {
             _currentCd = _cd;
             _isCd = true;
-            return (true);
+            return true;
         }
         else
         {

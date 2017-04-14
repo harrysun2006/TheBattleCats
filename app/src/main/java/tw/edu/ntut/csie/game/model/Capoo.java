@@ -9,6 +9,8 @@ import tw.edu.ntut.csie.game.extend.Animation;
 
 public class Capoo extends Units
 {
+    public static int COOLDOWN = 2; //cooldown time
+
     public Capoo(int x, int y, int shiftedX)
     {
         super();
