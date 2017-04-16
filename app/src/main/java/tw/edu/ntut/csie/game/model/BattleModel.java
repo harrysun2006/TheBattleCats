@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.ArrayList;
 import tw.edu.ntut.csie.game.ReleasableResource;
 import tw.edu.ntut.csie.game.Game;
-import tw.edu.ntut.csie.game.model.Otter;
 
 /**
  * Created by User on 2017/3/10.

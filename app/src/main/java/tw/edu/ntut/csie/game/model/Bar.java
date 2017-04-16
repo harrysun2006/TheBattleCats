@@ -11,9 +11,9 @@ public class Bar implements ReleasableResource
 {
     protected int _x;
     protected int _y;
-    private int _totalLength;
+    protected int _totalLength;
     private int _currentLength;
-    private int _currentPercentage;
+    protected int _currentPercentage;
     protected List<MovingBitmap> _bar;
 
     public Bar(int x, int y, int totalLength)

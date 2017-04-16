@@ -13,12 +13,31 @@ public class HealthBar extends Bar
 
         for (int i = 0; i < totalLength; i++)
         {
-            _bar.add(new MovingBitmap(R.drawable.bar_unit, _x + i, _y));
+            _bar.add(new MovingBitmap(R.drawable.bar_unit_green, _x + i, _y));
         }
     }
 
     public void Show()
     {
+        ChangeColor();
         super.Show();
+    }
+
+    private void ChangeColor()
+    {
+        if (_currentPercentage < 70)
+        {
+            for (int i = 0; i < _totalLength; i++)
+            {
+                _bar.get(i).loadBitmap(R.drawable.bar_unit_orange);
+            }
+        }
+        if (_currentPercentage < 40)
+        {
+            for (int i = 0; i < _totalLength; i++)
+            {
+                _bar.get(i).loadBitmap(R.drawable.bar_unit_red);
+            }
+        }
     }
 }

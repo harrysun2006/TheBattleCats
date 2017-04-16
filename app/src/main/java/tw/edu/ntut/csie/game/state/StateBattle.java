@@ -35,8 +35,8 @@ public class StateBattle extends GameState
         _battleModel = new BattleModel();
         _capooButton = new GameButton(R.drawable.capoo_button, 10, 10, Capoo.COOLDOWN); //x from 10 ~ 10 + 78 = 10 ~ 88
         _capooCooldown = new CooldownBar(14, 60, 70); //x from 14 ~ 14 + 70 = 14 ~ 84, so that 14 - 10 = 88 - 84 = 4
-        _allyNexusHealth = new HealthBar(300, 20, 60);
-        _enemyNexusHealth = new HealthBar(200, 20, 60);
+        _allyNexusHealth = new HealthBar(320, 20, 100);
+        _enemyNexusHealth = new HealthBar(200, 20, 100);
 
         _shifting = 360;
         _background.SaveRealPosition();
