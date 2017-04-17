@@ -187,6 +187,12 @@ public class BattleModel implements ReleasableResource
         _money.SubtractMoney(200);
     }
 
+    public void GeneratePusheen()
+    {
+        _allies.add(new Pusheen(800, 200, _shifting));
+        _money.SubtractMoney(200);
+    }
+
     public void GenerateOtter()
     {
         _enemies.add(new Otter(20, 200, _shifting));
