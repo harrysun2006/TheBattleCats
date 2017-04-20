@@ -8,7 +8,7 @@ import tw.edu.ntut.csie.game.extend.Integer;
 
 public class Money
 {
-    private Integer _curentInteger;
+    private Integer _currentInteger;
     private Integer _maxInteger;
     private int _maxMoney;
     private int _currentMoney;
@@ -16,7 +16,7 @@ public class Money
 
     public Money()
     {
-        _curentInteger = new Integer(4, _currentMoney, 450, 10);
+        _currentInteger = new Integer(4, _currentMoney, 450, 10);
         _maxInteger = new Integer(4, _maxMoney, 550, 10);
         _maxMoney = 1000;
         _currentMoney = 0;
@@ -51,10 +51,9 @@ public class Money
 
     public void show()
     {
-        _curentInteger.setValue(_currentMoney);
+        _currentInteger.setValue(_currentMoney);
         _maxInteger.setValue(_maxMoney);
-
-        _curentInteger.show();
+        _currentInteger.show();
         _maxInteger.show();
     }
 }

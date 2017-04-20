@@ -147,7 +147,7 @@ public class StateBattle extends GameState
         }
         if (pressedX > _moneyAddButton.getX() && pressedX < _moneyAddButton.getX() + _moneyAddButton.getWidth())
         {
-            if(pressedY > _moneyAddButton.getY() && pressedY < _moneyAddButton.getY() + _moneyAddButton.getHeight())
+            if (pressedY > _moneyAddButton.getY() && pressedY < _moneyAddButton.getY() + _moneyAddButton.getHeight())
             {
                 _battleModel.AddMoneyMax();
             }

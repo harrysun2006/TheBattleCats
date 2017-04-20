@@ -206,6 +206,7 @@ public class BattleModel implements ReleasableResource
     {
         _money.AddMoneyMax();
     }
+
     public void UpdateShifting(int shifting)
     {
         _shifting = shifting;
