@@ -37,8 +37,8 @@ public abstract class Units
     public Units()
     {
         _dyingActive = new Animation();
-        _dyingActive.addFrame(R.drawable.dieone);
-        _dyingActive.addFrame(R.drawable.dietwo);
+        _dyingActive.addFrame(R.drawable.die1);
+        _dyingActive.addFrame(R.drawable.die2);
         _dyingActive.setVisible(false);
         _dyingActive.setDelay(1);
     }
