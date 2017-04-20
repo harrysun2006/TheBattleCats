@@ -183,14 +183,18 @@ public class BattleModel implements ReleasableResource
 
     public void GenerateCapoo()
     {
-        _allies.add(new Capoo(800, 200, _shifting));
-        _money.SubtractMoney(200);
+        if (_money.SubtractMoney(200))
+        {
+            _allies.add(new Capoo(800, 200, _shifting));
+        }
     }
 
     public void GeneratePusheen()
     {
-        _allies.add(new Pusheen(800, 200, _shifting));
-        _money.SubtractMoney(200);
+        if (_money.SubtractMoney(200))
+        {
+            _allies.add(new Pusheen(800, 200, _shifting));
+        }
     }
 
     public void GenerateOtter()
@@ -198,6 +202,10 @@ public class BattleModel implements ReleasableResource
         _enemies.add(new Otter(20, 200, _shifting));
     }
 
+    public void AddMoneyMax()
+    {
+        _money.AddMoneyMax();
+    }
     public void UpdateShifting(int shifting)
     {
         _shifting = shifting;

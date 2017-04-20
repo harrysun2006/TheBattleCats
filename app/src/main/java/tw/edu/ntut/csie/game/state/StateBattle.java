@@ -40,6 +40,7 @@ public class StateBattle extends GameState
         _pusheenCooldown = new CooldownBar(104, 60, 70);
         _allyNexusHealth = new HealthBar(320, 20, 100);
         _enemyNexusHealth = new HealthBar(200, 20, 100);
+        _moneyAddButton = new MovingBitmap(R.drawable.mita, 10, 270);
 
         _shifting = 360;
         _background.SaveRealPosition();
@@ -75,6 +76,7 @@ public class StateBattle extends GameState
         _pusheenCooldown.Show();
         _allyNexusHealth.Show();
         _enemyNexusHealth.Show();
+        _moneyAddButton.show();
     }
 
     @Override
@@ -87,6 +89,7 @@ public class StateBattle extends GameState
         _pusheenButton.release();
         _capooCooldown.release();
         _pusheenCooldown.release();
+        _moneyAddButton.release();
         _background = null;
         _music = null;
         _battleModel = null;
@@ -94,6 +97,7 @@ public class StateBattle extends GameState
         _pusheenButton = null;
         _capooCooldown = null;
         _pusheenCooldown = null;
+        _moneyAddButton = null;
     }
 
     @Override
@@ -139,6 +143,13 @@ public class StateBattle extends GameState
                 {
                     _battleModel.GeneratePusheen();
                 }
+            }
+        }
+        if (pressedX > _moneyAddButton.getX() && pressedX < _moneyAddButton.getX() + _moneyAddButton.getWidth())
+        {
+            if(pressedY > _moneyAddButton.getY() && pressedY < _moneyAddButton.getY() + _moneyAddButton.getHeight())
+            {
+                _battleModel.AddMoneyMax();
             }
         }
         else
@@ -200,6 +211,7 @@ public class StateBattle extends GameState
     private CooldownBar _pusheenCooldown;
     private HealthBar _allyNexusHealth;
     private HealthBar _enemyNexusHealth;
+    private MovingBitmap _moneyAddButton;
 
     private boolean _isPressed;
     private int _previousPressedX;
