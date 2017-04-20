@@ -40,7 +40,7 @@ public class StateBattle extends GameState
         _pusheenCooldown = new CooldownBar(104, 60, 70);
         _allyNexusHealth = new HealthBar(320, 20, 100);
         _enemyNexusHealth = new HealthBar(200, 20, 100);
-        _moneyAddButton = new MovingBitmap(R.drawable.mita, 10, 270);
+        _moneyAddButton = new MovingBitmap(R.drawable.money_button_80, 10, 286);
 
         _shifting = 360;
         _background.SaveRealPosition();
