@@ -10,7 +10,7 @@ import tw.edu.ntut.csie.game.extend.Animation;
 public class Capoo extends Units
 {
     public static int COOLDOWN = 2; //cooldown time
-    public static int COST = 1000;
+    public static int COST = 1000; //產兵花費
 
     public Capoo(int x, int y, int shiftedX)
     {

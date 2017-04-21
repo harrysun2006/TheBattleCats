@@ -14,7 +14,7 @@ public class GameButton implements ReleasableResource
     private int _cd; //CD時間
     private int _currentCd; //目前剩餘CD時間
     private boolean _isCd; //是否正在CD
-    private int _percent; //currentcd/cd
+    private int _percent; //currentCd/cd
     private int _x; //按鈕X座標
     private int _y; //按鈕Y座標
     private boolean _isEnabled; //按鈕是否可按

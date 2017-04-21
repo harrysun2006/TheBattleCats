@@ -53,12 +53,12 @@ public class StateBattle extends GameState
         _battleModel.Run();
         _capooButton.Run();
         _pusheenButton.Run();
+        _capooButton.SetEnable(_battleModel.GetCurrentMoney(), Capoo.COST);
+        _pusheenButton.SetEnable(_battleModel.GetCurrentMoney(), Pusheen.COST);
         _capooCooldown.SetCurrentPercentage(_capooButton.GetPercent());
         _pusheenCooldown.SetCurrentPercentage(_pusheenButton.GetPercent());
         _allyNexusHealth.SetCurrentPercentage(_battleModel.GetAllyNexusHealthPercentage());
         _enemyNexusHealth.SetCurrentPercentage(_battleModel.GetEnemyNexusHealthPercentage());
-        _capooButton.SetEnable(_battleModel.GetCurrentMoney(), Capoo.COST);
-        _pusheenButton.SetEnable(_battleModel.GetCurrentMoney(), Pusheen.COST);
     }
 
     public void Transition(int shiftedX, int shiftedY)
