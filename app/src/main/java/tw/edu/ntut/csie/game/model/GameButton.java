@@ -17,6 +17,7 @@ public class GameButton implements ReleasableResource
     private int _percent; //currentcd/cd
     private int _x; //按鈕X座標
     private int _y; //按鈕Y座標
+    private boolean _isEnabled; //按鈕是否可按
 
     public GameButton(int filename, int x, int y, int cd)
     {
@@ -27,6 +28,7 @@ public class GameButton implements ReleasableResource
         _currentCd = 0;
         _isCd = false;
         _percent = 0;
+        _isEnabled = false;
     }
 
     public void Run()
@@ -44,18 +46,20 @@ public class GameButton implements ReleasableResource
     }
 
     //按下按鈕
-    public boolean Push()
+    public void Push()
     {
-        if (_isCd == false)
+        _currentCd = _cd;
+        _isCd = true;
+    }
+
+    public void SetEnable(int currentMoney, int costMoney)
+    {
+        if (_isCd == true || currentMoney < costMoney)
         {
-            _currentCd = _cd;
-            _isCd = true;
-            return true;
+            _isEnabled = false;
+            return;
         }
-        else
-        {
-            return false;
-        }
+        _isEnabled = true;
     }
 
     public void Show()
@@ -86,6 +90,11 @@ public class GameButton implements ReleasableResource
     public int GetPercent()
     {
         return _percent;
+    }
+
+    public boolean GetIsEnabled()
+    {
+        return _isEnabled;
     }
 
     public void release()

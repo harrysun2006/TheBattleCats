@@ -57,6 +57,8 @@ public class StateBattle extends GameState
         _pusheenCooldown.SetCurrentPercentage(_pusheenButton.GetPercent());
         _allyNexusHealth.SetCurrentPercentage(_battleModel.GetAllyNexusHealthPercentage());
         _enemyNexusHealth.SetCurrentPercentage(_battleModel.GetEnemyNexusHealthPercentage());
+        _capooButton.SetEnable(_battleModel.GetCurrentMoney(), Capoo.COST);
+        _pusheenButton.SetEnable(_battleModel.GetCurrentMoney(), Pusheen.COST);
     }
 
     public void Transition(int shiftedX, int shiftedY)
@@ -129,8 +131,9 @@ public class StateBattle extends GameState
         {
             if (pressedY > _capooButton.GetY() && pressedY < _capooButton.GetY() + _capooButton.GetHeight())
             {
-                if (_capooButton.Push() == true)
+                if (_capooButton.GetIsEnabled() == true)
                 {
+                    _capooButton.Push();
                     _battleModel.GenerateCapoo();
                 }
             }
@@ -139,8 +142,9 @@ public class StateBattle extends GameState
         {
             if (pressedY > _pusheenButton.GetY() && pressedY < _pusheenButton.GetY() + _pusheenButton.GetHeight())
             {
-                if (_pusheenButton.Push() == true)
+                if (_pusheenButton.GetIsEnabled() == true)
                 {
+                    _pusheenButton.Push();
                     _battleModel.GeneratePusheen();
                 }
             }

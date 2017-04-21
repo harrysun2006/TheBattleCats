@@ -183,18 +183,14 @@ public class BattleModel implements ReleasableResource
 
     public void GenerateCapoo()
     {
-        if (_money.SubtractMoney(200))
-        {
-            _allies.add(new Capoo(800, 200, _shifting));
-        }
+        _money.SubtractMoney(Capoo.COST);
+        _allies.add(new Capoo(800, 200, _shifting));
     }
 
     public void GeneratePusheen()
     {
-        if (_money.SubtractMoney(200))
-        {
-            _allies.add(new Pusheen(800, 200, _shifting));
-        }
+        _money.SubtractMoney(Pusheen.COST);
+        _allies.add(new Pusheen(800, 200, _shifting));
     }
 
     public void GenerateOtter()
@@ -254,5 +250,10 @@ public class BattleModel implements ReleasableResource
     public int GetEnemyNexusHealthPercentage()
     {
         return _enemies.get(0).GetCurrentHealthPercentage();
+    }
+
+    public int GetCurrentMoney()
+    {
+        return _money.GetCurrentMoney();
     }
 }

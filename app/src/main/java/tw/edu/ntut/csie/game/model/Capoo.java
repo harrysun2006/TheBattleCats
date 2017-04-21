@@ -10,6 +10,7 @@ import tw.edu.ntut.csie.game.extend.Animation;
 public class Capoo extends Units
 {
     public static int COOLDOWN = 2; //cooldown time
+    public static int COST = 1000;
 
     public Capoo(int x, int y, int shiftedX)
     {
@@ -25,7 +26,6 @@ public class Capoo extends Units
         _attackDamage = 50;
         _moveSpeed = 5;
         _attackSpeed = 1;
-        _cost = 100;
 
         InitializeMovingActive();
         InitializeAttackActive();

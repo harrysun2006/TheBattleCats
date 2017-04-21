@@ -24,29 +24,33 @@ public class Money
     }
 
     //產兵扣錢
-    public boolean SubtractMoney(int cost)
+    public void SubtractMoney(int cost)
     {
-        if (_currentMoney >= cost)
-        {
-            _currentMoney -= cost;
-            return true;
-        }
-        return false;
+        _currentMoney -= cost;
     }
 
     //增加錢的最大值
     public void AddMoneyMax()
     {
-        _maxMoney += 100;
-        _currentMoney -= 50;
+        if (_currentMoney > 100)
+        {
+            _maxMoney += 100;
+            _currentMoney -= 100;
+        }
     }
 
+    //產錢
     public void AddMoney()
     {
         if (_currentMoney < _maxMoney)
         {
             _currentMoney += _speed;
         }
+    }
+
+    public int GetCurrentMoney()
+    {
+        return _currentMoney;
     }
 
     public void show()
