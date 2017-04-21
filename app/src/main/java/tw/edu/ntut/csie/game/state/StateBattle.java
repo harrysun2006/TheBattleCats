@@ -38,8 +38,8 @@ public class StateBattle extends GameState
         _capooCooldown = new CooldownBar(14, 60, 70); //x from 14 ~ 14 + 70 = 14 ~ 84, so that 14 - 10 = 88 - 84 = 4
         _pusheenButton = new GameButton(R.drawable.pusheen_button, 100, 10, Pusheen.COOLDOWN);
         _pusheenCooldown = new CooldownBar(104, 60, 70);
-        _allyNexusHealth = new HealthBar(320, 20, 100);
-        _enemyNexusHealth = new HealthBar(200, 20, 100);
+        _allyNexusHealth = new HealthBar(820, 120, 100);
+        _enemyNexusHealth = new HealthBar(95, 150, 100);
         _moneyAddButton = new MovingBitmap(R.drawable.money_button_80, 10, 286);
 
         _shifting = 360;
@@ -65,6 +65,8 @@ public class StateBattle extends GameState
     {
         _background.setLocation(_background.GetRealX() - shiftedX, _background.GetRealY() - shiftedY);
         _battleModel.Transition(shiftedX, shiftedY);
+        _allyNexusHealth.Transition(shiftedX, shiftedY);
+        _enemyNexusHealth.Transition(shiftedX, shiftedY);
     }
 
     @Override

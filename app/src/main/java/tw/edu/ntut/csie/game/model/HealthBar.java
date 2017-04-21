@@ -7,13 +7,30 @@ import tw.edu.ntut.csie.game.core.MovingBitmap;
 
 public class HealthBar extends Bar
 {
+    private int _displayX;
+    private int _displayY;
+
     public HealthBar(int x, int y, int totalLength)
     {
         super(x, y, totalLength);
 
+        _displayX = _x;
+        _displayY = _y;
+
         for (int i = 0; i < totalLength; i++)
         {
-            _bar.add(new MovingBitmap(R.drawable.bar_unit_green, _x + i, _y));
+            _bar.add(new MovingBitmap(R.drawable.bar_unit_green, _displayX + i, _displayY));
+        }
+    }
+
+    public void Transition(int shiftedX, int shiftedY)
+    {
+        _displayX = _x - shiftedX;
+        _displayY = _y - shiftedY;
+
+        for (int i = 0; i < _totalLength; i++)
+        {
+            _bar.get(i).setLocation(_displayX + i, _displayY);
         }
     }
 
