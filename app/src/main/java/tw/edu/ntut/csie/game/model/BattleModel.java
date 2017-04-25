@@ -65,17 +65,9 @@ public class BattleModel implements ReleasableResource
                 if (element.GetX() <= _enemiesMax + 5 && element.GetX() >= _enemiesMax)
                 {
                     element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
-                    if (element.GetAttackDelayCounter() == 11 * element.GetAttackSpeed())
-                    {
-                        element.Attack();
-                    }
-                    else if (element.GetAttackDelayCounter() == 13 * element.GetAttackSpeed())
-                    {
-                        element.Attack();
-                    }
+                    element.Attack();
                     if (element.GetAttackDelayCounter() == element.GetAttackSpeed() * Game.FRAME_RATE)
                     {
-                        element.Attack();
                         _enemies.get(_recordEnemiesIndex).Attacked(element.GetAttackDamage());
                         element.SetAttackDelayCounter(0);
                         element.SetIsAttacking(false);
