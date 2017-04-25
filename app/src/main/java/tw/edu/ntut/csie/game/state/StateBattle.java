@@ -17,6 +17,7 @@ import tw.edu.ntut.csie.game.model.Pusheen;
 import tw.edu.ntut.csie.game.model.GameButton;
 import tw.edu.ntut.csie.game.model.CooldownBar;
 import tw.edu.ntut.csie.game.model.HealthBar;
+import tw.edu.ntut.csie.game.model.ShiftingModule;
 
 public class StateBattle extends GameState
 {
@@ -42,9 +43,10 @@ public class StateBattle extends GameState
         _enemyNexusHealth = new HealthBar(95, 150, 100);
         _moneyAddButton = new MovingBitmap(R.drawable.money_button_80, 10, 286);
 
-        _shifting = 360;
+        _shiftingModule = new ShiftingModule();
+        _shiftingModule.SetShifting(360);
         _background.SaveRealPosition();
-        Transition(_shifting, 0);
+        Transition(_shiftingModule.GetShifting(), 0);
     }
 
     @Override
@@ -59,6 +61,7 @@ public class StateBattle extends GameState
         _pusheenCooldown.SetCurrentPercentage(_pusheenButton.GetPercent());
         _allyNexusHealth.SetCurrentPercentage(_battleModel.GetAllyNexusHealthPercentage());
         _enemyNexusHealth.SetCurrentPercentage(_battleModel.GetEnemyNexusHealthPercentage());
+        RunShiftingModule();
     }
 
     public void Transition(int shiftedX, int shiftedY)
@@ -161,7 +164,8 @@ public class StateBattle extends GameState
         else
         {
             _isPressed = true;
-            _previousPressedX = pointers.get(0).getX();
+            _currentPressedX = pointers.get(0).getX();
+            _shiftingModule.HandlePointerPressed(_currentPressedX);
         }
         return true;
     }
@@ -171,16 +175,9 @@ public class StateBattle extends GameState
     {
         if (_isPressed)
         {
-            _tempShifting = -1 * (pointers.get(0).getX() - _previousPressedX) + _shifting;
-            if (_tempShifting > 360)
-            {
-                _tempShifting = 360;
-            }
-            if (_tempShifting < 0)
-            {
-                _tempShifting = 0;
-            }
-            Transition(_tempShifting, 0);
+            _currentPressedX = pointers.get(0).getX();
+            _shiftingModule.HandlePointerMoved(_currentPressedX);
+            Transition(_shiftingModule.GetTempShifting(), 0);
         }
         return false;
     }
@@ -191,7 +188,7 @@ public class StateBattle extends GameState
         if (_isPressed)
         {
             _isPressed = false;
-            _shifting = _tempShifting;
+            _shiftingModule.HandlePointerReleased();
         }
         return false;
     }
@@ -208,6 +205,16 @@ public class StateBattle extends GameState
         _music.play();
     }
 
+    private void RunShiftingModule()
+    {
+        _shiftingModule.Run(_currentPressedX);
+
+        if (_shiftingModule.GetIsAutoSlidingEnabled())
+        {
+            Transition(_shiftingModule.GetShifting(), 0);
+        }
+    }
+
     private MovingBitmap _background;
     private Audio _music;
     private BattleModel _battleModel;
@@ -219,8 +226,7 @@ public class StateBattle extends GameState
     private HealthBar _enemyNexusHealth;
     private MovingBitmap _moneyAddButton;
 
+    private ShiftingModule _shiftingModule;
+    private int _currentPressedX;
     private boolean _isPressed;
-    private int _previousPressedX;
-    private int _shifting; //被顯示出來的遊戲畫面的原點在整個遊戲畫面中的X座標
-    private int _tempShifting;
 }
