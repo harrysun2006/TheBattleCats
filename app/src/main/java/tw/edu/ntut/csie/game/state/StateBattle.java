@@ -35,9 +35,9 @@ public class StateBattle extends GameState
         _music.setRepeating(true);
         _music.play();
         _battleModel = new BattleModel();
-        _capooButton = new GameButton(R.drawable.capoo_button, 10, 10, Capoo.COOLDOWN); //x from 10 ~ 10 + 78 = 10 ~ 88
+        _capooButton = new GameButton(R.drawable.capoo_button, R.drawable.capoo_button_disabled, 10, 10, Capoo.COOLDOWN); //x from 10 ~ 10 + 78 = 10 ~ 88
         _capooCooldown = new CooldownBar(14, 60, 70); //x from 14 ~ 14 + 70 = 14 ~ 84, so that 14 - 10 = 88 - 84 = 4
-        _pusheenButton = new GameButton(R.drawable.pusheen_button, 100, 10, Pusheen.COOLDOWN);
+        _pusheenButton = new GameButton(R.drawable.pusheen_button, R.drawable.pusheen_button_disabled, 100, 10, Pusheen.COOLDOWN);
         _pusheenCooldown = new CooldownBar(104, 60, 70);
         _allyNexusHealth = new HealthBar(820, 120, 100);
         _enemyNexusHealth = new HealthBar(95, 150, 100);

@@ -10,7 +10,8 @@ import tw.edu.ntut.csie.game.Game;
 
 public class GameButton implements ReleasableResource
 {
-    private MovingBitmap _button; //按鈕圖案
+    private MovingBitmap _enableButton; //按鈕圖案
+    private MovingBitmap _disableButton; //不可按時的按鈕圖案
     private int _cd; //CD時間
     private int _currentCd; //目前剩餘CD時間
     private boolean _isCd; //是否正在CD
@@ -19,11 +20,12 @@ public class GameButton implements ReleasableResource
     private int _y; //按鈕Y座標
     private boolean _isEnabled; //按鈕是否可按
 
-    public GameButton(int filename, int x, int y, int cd)
+    public GameButton(int enableFilename, int disableFilename, int x, int y, int cd)
     {
         _x = x;
         _y = y;
-        _button = new MovingBitmap(filename, _x, _y);
+        _enableButton = new MovingBitmap(enableFilename, _x, _y);
+        _disableButton = new MovingBitmap(disableFilename, _x, _y);
         _cd = cd * Game.FRAME_RATE;
         _currentCd = 0;
         _isCd = false;
@@ -57,14 +59,19 @@ public class GameButton implements ReleasableResource
         if (_isCd == true || currentMoney < costMoney)
         {
             _isEnabled = false;
+            _enableButton.setVisible(false);
+            _disableButton.setVisible(true);
             return;
         }
         _isEnabled = true;
+        _enableButton.setVisible(true);
+        _disableButton.setVisible(false);
     }
 
     public void Show()
     {
-        _button.show();
+        _enableButton.show();
+        _disableButton.show();
     }
 
     public int GetX()
@@ -79,12 +86,12 @@ public class GameButton implements ReleasableResource
 
     public int GetWidth()
     {
-        return _button.getWidth();
+        return _enableButton.getWidth();
     }
 
     public int GetHeight()
     {
-        return _button.getHeight();
+        return _enableButton.getHeight();
     }
 
     public int GetPercent()
@@ -99,6 +106,7 @@ public class GameButton implements ReleasableResource
 
     public void release()
     {
-        _button.release();
+        _enableButton.release();
+        _disableButton.release();
     }
 }
