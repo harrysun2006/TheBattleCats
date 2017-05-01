@@ -10,17 +10,16 @@ public class Money
 {
     private Integer _currentInteger;
     private Integer _maxInteger;
-    private int _maxMoney;
+    public static int _maxMoney = 1000;
     private int _currentMoney;
-    private int _speed;
+    public static int SPEED = 10;
+    public static int MONEYMAXADDSCALE = 100;
 
     public Money()
     {
         _currentInteger = new Integer(4, _currentMoney, 450, 10);
         _maxInteger = new Integer(4, _maxMoney, 550, 10);
-        _maxMoney = 1000;
         _currentMoney = 0;
-        _speed = 10;
     }
 
     //產兵扣錢
@@ -34,8 +33,8 @@ public class Money
     {
         if (_currentMoney > 100)
         {
-            _maxMoney += 100;
-            _currentMoney -= 100;
+            _maxMoney += MONEYMAXADDSCALE;
+            _currentMoney -= MONEYMAXADDSCALE;
         }
     }
 
@@ -44,7 +43,7 @@ public class Money
     {
         if (_currentMoney < _maxMoney)
         {
-            _currentMoney += _speed;
+            _currentMoney += SPEED;
         }
     }
 

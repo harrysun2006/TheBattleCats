@@ -93,7 +93,8 @@ public class StateReady extends AbstractGameState {
         _exitButton.addButtonEventHandler(new ButtonEventHandler() {
             @Override
             public void perform(BitmapButton button) {
-                _engine.exit();
+                changeState(Game.SHOP_STATE);
+                //_engine.exit();
             }
         });
         addPointerEventHandler(_exitButton);
