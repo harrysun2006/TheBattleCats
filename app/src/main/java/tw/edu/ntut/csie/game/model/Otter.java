@@ -27,6 +27,7 @@ public class Otter extends Units
         _attackSpeed = 1;
 
         InitializeMovingActive();
+        InitializeAttackActive();
     }
 
     public void Moving()
@@ -39,7 +40,9 @@ public class Otter extends Units
 
     public void Attack()
     {
-
+        SetIsAttacking(true);
+        _attackActive.setLocation(_displayX, _displayY);
+        _attackActive.move();
     }
 
     public void Attacked(int damage)
@@ -71,6 +74,7 @@ public class Otter extends Units
     {
         _movingActive.setLocation(_displayX, _displayY);
         _movingActive.show();
+        _attackActive.show();
         _dyingActive.show();
     }
 
@@ -87,5 +91,20 @@ public class Otter extends Units
         _movingActive.addFrame(R.drawable.otter_move1);
         _movingActive.addFrame(R.drawable.otter_move1);
         _movingActive.setDelay(1);
+    }
+
+    private void InitializeAttackActive()
+    {
+        _attackActive = new Animation();
+        _attackActive.setLocation(_displayX, _displayY);
+        _attackActive.addFrame(R.drawable.otter_attack1);
+        _attackActive.addFrame(R.drawable.otter_attack2);
+        _attackActive.addFrame(R.drawable.otter_attack3);
+        _attackActive.addFrame(R.drawable.otter_attack4);
+        _attackActive.addFrame(R.drawable.otter_attack5);
+        _attackActive.addFrame(R.drawable.otter_attack6);
+        _attackActive.addFrame(R.drawable.otter_attack7);
+        _attackActive.setVisible(false);
+        _attackActive.setDelay(1);
     }
 }

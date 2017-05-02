@@ -110,11 +110,12 @@ public class BattleModel implements ReleasableResource
                 if (element.GetRightSideX() >= _alliesMax - 5 && element.GetRightSideX() <= _alliesMax)
                 {
                     element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
+                    element.Attack();
                     if (element.GetAttackDelayCounter() == element.GetAttackSpeed() * Game.FRAME_RATE)
                     {
-                        element.Attack();
                         _allies.get(_recordAlliesIndex).Attacked(element.GetAttackDamage());
                         element.SetAttackDelayCounter(0);
+                        element.SetIsAttacking(false);
                     }
                 }
                 else
