@@ -140,7 +140,7 @@ public abstract class Units
     public void SetIsDying(boolean isDying)
     {
         _movingActive.setVisible(!isDying);
-//        _attackActive.setVisible(!isDying);
+        _attackActive.setVisible(!isDying);
         _dyingActive.setVisible(isDying);
         _isDying = isDying;
     }
