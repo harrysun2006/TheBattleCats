@@ -87,7 +87,7 @@ public class Rabbit extends Units
         _movingActive.addFrame(R.drawable.rabbit_move4);
         _movingActive.addFrame(R.drawable.rabbit_move5);
         _movingActive.addFrame(R.drawable.rabbit_move6);
-        _movingActive.setDelay(1);
+        _movingActive.setDelay(2);
     }
 
     private void InitializeAttackActive()
