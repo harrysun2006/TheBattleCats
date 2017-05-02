@@ -176,7 +176,7 @@ public class BattleModel implements ReleasableResource
     public void GenerateCapoo()
     {
         _money.SubtractMoney(Capoo.COST);
-        _allies.add(new Capoo(800, 200, _shifting));
+        _allies.add(new Capoo(800, 210, _shifting));
     }
 
     public void GeneratePusheen()
