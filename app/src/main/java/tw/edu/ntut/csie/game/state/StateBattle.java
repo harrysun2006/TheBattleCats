@@ -14,6 +14,7 @@ import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.model.BattleModel;
 import tw.edu.ntut.csie.game.model.Capoo;
 import tw.edu.ntut.csie.game.model.Pusheen;
+import tw.edu.ntut.csie.game.model.Rabbit;
 import tw.edu.ntut.csie.game.model.GameButton;
 import tw.edu.ntut.csie.game.model.CooldownBar;
 import tw.edu.ntut.csie.game.model.HealthBar;
@@ -39,6 +40,8 @@ public class StateBattle extends GameState
         _capooCooldown = new CooldownBar(14, 60, 70); //x from 14 ~ 14 + 70 = 14 ~ 84, so that 14 - 10 = 88 - 84 = 4
         _pusheenButton = new GameButton(R.drawable.pusheen_button, R.drawable.pusheen_button_disabled, 100, 10, Pusheen.COOLDOWN);
         _pusheenCooldown = new CooldownBar(104, 60, 70);
+        _rabbitButton = new GameButton(R.drawable.rabbit_button, R.drawable.rabbit_button_disabled, 190, 10, Rabbit.COOLDOWN);
+        _rabbitCooldown = new CooldownBar(194, 60, 70);
         _allyNexusHealth = new HealthBar(820, 120, 100);
         _enemyNexusHealth = new HealthBar(95, 150, 100);
         _moneyAddButton = new MovingBitmap(R.drawable.money_button_80, 10, 286);
@@ -55,10 +58,13 @@ public class StateBattle extends GameState
         _battleModel.Run();
         _capooButton.Run();
         _pusheenButton.Run();
+        _rabbitButton.Run();
         _capooButton.SetEnable(_battleModel.GetCurrentMoney(), Capoo.COST);
         _pusheenButton.SetEnable(_battleModel.GetCurrentMoney(), Pusheen.COST);
+        _rabbitButton.SetEnable(_battleModel.GetCurrentMoney(), Rabbit.COST);
         _capooCooldown.SetCurrentPercentage(_capooButton.GetPercent());
         _pusheenCooldown.SetCurrentPercentage(_pusheenButton.GetPercent());
+        _rabbitCooldown.SetCurrentPercentage(_rabbitButton.GetPercent());
         _allyNexusHealth.SetCurrentPercentage(_battleModel.GetAllyNexusHealthPercentage());
         _enemyNexusHealth.SetCurrentPercentage(_battleModel.GetEnemyNexusHealthPercentage());
         RunShiftingModule();
@@ -79,8 +85,10 @@ public class StateBattle extends GameState
         _battleModel.Show();
         _capooButton.Show();
         _pusheenButton.Show();
+        _rabbitButton.Show();
         _capooCooldown.Show();
         _pusheenCooldown.Show();
+        _rabbitCooldown.Show();
         _allyNexusHealth.Show();
         _enemyNexusHealth.Show();
         _moneyAddButton.show();
@@ -94,16 +102,20 @@ public class StateBattle extends GameState
         _battleModel.release();
         _capooButton.release();
         _pusheenButton.release();
+        _rabbitButton.release();
         _capooCooldown.release();
         _pusheenCooldown.release();
+        _rabbitCooldown.release();
         _moneyAddButton.release();
         _background = null;
         _music = null;
         _battleModel = null;
         _capooButton = null;
         _pusheenButton = null;
+        _rabbitButton = null;
         _capooCooldown = null;
         _pusheenCooldown = null;
+        _rabbitCooldown = null;
         _moneyAddButton = null;
     }
 
@@ -151,6 +163,17 @@ public class StateBattle extends GameState
                 {
                     _pusheenButton.Push();
                     _battleModel.GeneratePusheen();
+                }
+            }
+        }
+        if (pressedX > _rabbitButton.GetX() && pressedX < _rabbitButton.GetX() + _rabbitButton.GetWidth())
+        {
+            if (pressedY > _rabbitButton.GetY() && pressedY < _rabbitButton.GetY() + _rabbitButton.GetHeight())
+            {
+                if (_rabbitButton.GetIsEnabled() == true)
+                {
+                    _rabbitButton.Push();
+                    _battleModel.GenerateRabbit();
                 }
             }
         }
@@ -220,8 +243,10 @@ public class StateBattle extends GameState
     private BattleModel _battleModel;
     private GameButton _capooButton;
     private GameButton _pusheenButton;
+    private GameButton _rabbitButton;
     private CooldownBar _capooCooldown;
     private CooldownBar _pusheenCooldown;
+    private CooldownBar _rabbitCooldown;
     private HealthBar _allyNexusHealth;
     private HealthBar _enemyNexusHealth;
     private MovingBitmap _moneyAddButton;
