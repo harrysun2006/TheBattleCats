@@ -11,14 +11,16 @@ public class Money
     private Integer _currentInteger;
     private Integer _maxInteger;
     private int _currentMoney;
-    public static int MAX_MONEY = 1000;
+    private int _maxMoney;
+    public static int INITIAL_MAX_MONEY = 1000;
     public static int SPEED = 10;
     public static int MONEY_MAX_ADD_SCALE = 100;
 
     public Money()
     {
+        _maxMoney = INITIAL_MAX_MONEY;
         _currentInteger = new Integer(4, _currentMoney, 450, 10);
-        _maxInteger = new Integer(4, MAX_MONEY, 550, 10);
+        _maxInteger = new Integer(4, _maxMoney, 550, 10);
         _currentMoney = 0;
     }
 
@@ -31,9 +33,9 @@ public class Money
     //增加錢的最大值
     public void AddMoneyMax()
     {
-        if (_currentMoney > MONEY_MAX_ADD_SCALE)
+        if (_currentMoney > 200)
         {
-            MAX_MONEY += MONEY_MAX_ADD_SCALE;
+            _maxMoney += MONEY_MAX_ADD_SCALE;
             _currentMoney -= MONEY_MAX_ADD_SCALE;
         }
     }
@@ -41,7 +43,7 @@ public class Money
     //產錢
     public void AddMoney()
     {
-        if (_currentMoney < MAX_MONEY)
+        if (_currentMoney < _maxMoney)
         {
             _currentMoney += SPEED;
         }
@@ -55,7 +57,7 @@ public class Money
     public void show()
     {
         _currentInteger.setValue(_currentMoney);
-        _maxInteger.setValue(MAX_MONEY);
+        _maxInteger.setValue(_maxMoney);
         _currentInteger.show();
         _maxInteger.show();
     }
