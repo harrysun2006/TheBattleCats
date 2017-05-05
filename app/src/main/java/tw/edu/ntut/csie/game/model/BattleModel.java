@@ -62,7 +62,7 @@ public class BattleModel implements ReleasableResource
             }
             else
             {
-                if (element.GetX() <= _enemiesMax + 5 && element.GetX() >= _enemiesMax)
+                if (element.GetX() <= _enemiesMax + 10 && element.GetX() >= _enemiesMax)
                 {
                     element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
                     element.Attack();
@@ -70,11 +70,12 @@ public class BattleModel implements ReleasableResource
                     {
                         _enemies.get(_recordEnemiesIndex).Attacked(element.GetAttackDamage());
                         element.SetAttackDelayCounter(0);
-                        element.SetIsAttacking(false);
+                        //element.SetIsAttacking(false);
                     }
                 }
                 else
                 {
+                    element.SetIsAttacking(false);
                     element.Moving();
                 }
             }
@@ -107,7 +108,7 @@ public class BattleModel implements ReleasableResource
             }
             else
             {
-                if (element.GetRightSideX() >= _alliesMax - 5 && element.GetRightSideX() <= _alliesMax)
+                if (element.GetRightSideX() >= _alliesMax - 10 && element.GetRightSideX() <= _alliesMax)
                 {
                     element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
                     element.Attack();
@@ -115,11 +116,12 @@ public class BattleModel implements ReleasableResource
                     {
                         _allies.get(_recordAlliesIndex).Attacked(element.GetAttackDamage());
                         element.SetAttackDelayCounter(0);
-                        element.SetIsAttacking(false);
+                        //element.SetIsAttacking(false);
                     }
                 }
                 else
                 {
+                    element.SetIsAttacking(false);
                     element.Moving();
                 }
             }

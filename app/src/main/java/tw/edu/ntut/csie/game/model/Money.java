@@ -36,7 +36,7 @@ public class Money
         if (_currentMoney > 200)
         {
             _maxMoney += MONEY_MAX_ADD_SCALE;
-            _currentMoney -= MONEY_MAX_ADD_SCALE;
+            _currentMoney -= 200;
         }
     }
 

@@ -50,6 +50,11 @@ public class EnemyNexus extends Units
         SetIsAttacked(true);
     }
 
+    public void SetIsAttacking(boolean isAttacking)
+    {
+
+    }
+
     public void KnockedBack()
     {
         _knockedBackActive.move();

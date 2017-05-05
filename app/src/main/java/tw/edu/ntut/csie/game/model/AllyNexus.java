@@ -39,6 +39,11 @@ public class AllyNexus extends Units
 
     }
 
+    public void SetIsAttacking(boolean isAttacking)
+    {
+
+    }
+
     public void Attacked(int damage)
     {
         _currentHeath -= damage;
