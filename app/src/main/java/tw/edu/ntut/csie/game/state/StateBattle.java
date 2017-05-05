@@ -35,6 +35,8 @@ public class StateBattle extends GameState
         _music = new Audio(R.raw.ntut);
         _music.setRepeating(true);
         _music.play();
+        _buyingSound = new Audio(R.raw.buy_item);
+        _buyingSound.setRepeating(false);
         _battleModel = new BattleModel();
         _capooButton = new GameButton(R.drawable.capoo_button, R.drawable.capoo_button_disabled, 10, 10, Capoo.COOLDOWN); //x from 10 ~ 10 + 78 = 10 ~ 88
         _capooCooldown = new CooldownBar(14, 60, 70); //x from 14 ~ 14 + 70 = 14 ~ 84, so that 14 - 10 = 88 - 84 = 4
@@ -150,6 +152,7 @@ public class StateBattle extends GameState
             {
                 if (_capooButton.GetIsEnabled() == true)
                 {
+                    _buyingSound.play();
                     _capooButton.Push();
                     _battleModel.GenerateCapoo();
                 }
@@ -161,6 +164,7 @@ public class StateBattle extends GameState
             {
                 if (_pusheenButton.GetIsEnabled() == true)
                 {
+                    _buyingSound.play();
                     _pusheenButton.Push();
                     _battleModel.GeneratePusheen();
                 }
@@ -172,6 +176,7 @@ public class StateBattle extends GameState
             {
                 if (_rabbitButton.GetIsEnabled() == true)
                 {
+                    _buyingSound.play();
                     _rabbitButton.Push();
                     _battleModel.GenerateRabbit();
                 }
@@ -240,6 +245,7 @@ public class StateBattle extends GameState
 
     private MovingBitmap _background;
     private Audio _music;
+    private Audio _buyingSound;
     private BattleModel _battleModel;
     private GameButton _capooButton;
     private GameButton _pusheenButton;

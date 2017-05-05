@@ -182,7 +182,7 @@ public class Game extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent msg) {
-        if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_MENU) {
+        if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_MENU || keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
             return super.onKeyDown(keyCode, msg);
         } else {
             _engine.keyPressed(keyCode);
