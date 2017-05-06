@@ -192,19 +192,9 @@ public class BattleModel implements ReleasableResource
         _allies.add(new Rabbit(800, 170, _shifting));
     }
 
-    public void GenerateOtter()
+    private void GenerateOtter()
     {
         _enemies.add(new Otter(20, 200, _shifting));
-    }
-
-    public void AddMoneyMax()
-    {
-        _money.AddMoneyMax();
-    }
-
-    public void UpdateShifting(int shifting)
-    {
-        _shifting = shifting;
     }
 
     public void Transition(int shiftedX, int shiftedY)
@@ -218,6 +208,11 @@ public class BattleModel implements ReleasableResource
         {
             element.Transition(_shifting, 0);
         }
+    }
+
+    private void UpdateShifting(int shifting)
+    {
+        _shifting = shifting;
     }
 
     public void Show()
@@ -249,6 +244,11 @@ public class BattleModel implements ReleasableResource
     public int GetEnemyNexusHealthPercentage()
     {
         return _enemies.get(0).GetCurrentHealthPercentage();
+    }
+
+    public void AddMoneyMax()
+    {
+        _money.AddMoneyMax();
     }
 
     public int GetCurrentMoney()
