@@ -170,6 +170,7 @@ public class BattleModel implements ReleasableResource
         if (_generateEnemiesDelayCounter == 0)
         {
             GenerateOtter();
+            GenerateDeer();
             _generateEnemiesDelayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
         }
     }
@@ -195,6 +196,11 @@ public class BattleModel implements ReleasableResource
     private void GenerateOtter()
     {
         _enemies.add(new Otter(20, 200, _shifting));
+    }
+
+    private void GenerateDeer()
+    {
+        _enemies.add(new Deer(20, 195, _shifting));
     }
 
     public void Transition(int shiftedX, int shiftedY)
