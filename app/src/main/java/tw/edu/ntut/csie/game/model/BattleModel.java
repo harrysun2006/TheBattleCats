@@ -2,6 +2,7 @@ package tw.edu.ntut.csie.game.model;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Random;
 import tw.edu.ntut.csie.game.ReleasableResource;
 import tw.edu.ntut.csie.game.Game;
 
@@ -169,8 +170,17 @@ public class BattleModel implements ReleasableResource
 
         if (_generateEnemiesDelayCounter == 0)
         {
-            GenerateOtter();
-            GenerateDeer();
+            Random random = new Random();
+            int result = random.nextInt(2);
+            switch (result)
+            {
+                case 0:
+                    GenerateOtter();
+                    break;
+                case 1:
+                    GenerateDeer();
+                    break;
+            }
             _generateEnemiesDelayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
         }
     }
