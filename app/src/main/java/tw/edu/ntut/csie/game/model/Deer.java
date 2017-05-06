@@ -91,7 +91,15 @@ public class Deer extends Units
     {
         _attackActive = new Animation();
         _attackActive.setLocation(_displayX, _displayY);
-        _attackActive.addFrame(R.drawable.deer_move1);
+        _attackActive.addFrame(R.drawable.deer_attack1);
+        _attackActive.addFrame(R.drawable.deer_attack2);
+        _attackActive.addFrame(R.drawable.deer_attack3);
+        _attackActive.addFrame(R.drawable.deer_attack4);
+        _attackActive.addFrame(R.drawable.deer_attack5);
+        _attackActive.addFrame(R.drawable.deer_attack6);
+        _attackActive.addFrame(R.drawable.deer_attack7);
+        _attackActive.addFrame(R.drawable.deer_attack8);
+        _attackActive.addFrame(R.drawable.deer_attack9);
         _attackActive.setVisible(false);
         _attackActive.setDelay(1);
     }
