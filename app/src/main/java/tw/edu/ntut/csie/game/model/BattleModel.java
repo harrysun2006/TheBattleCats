@@ -16,7 +16,7 @@ public class BattleModel implements ReleasableResource
     private List<Units> _enemies;
     private Money _money;
 
-    private static final int GENERATE_ENEMIES_DELAY_COUNTER = Otter.COOLDOWN * Game.FRAME_RATE; //讓敵兵每N秒產生一個，計數器每15可以讓兵延遲1秒產生 (畫面更新頻率 = 15次/1秒)
+    private static final int GENERATE_ENEMIES_DELAY_COUNTER = 3 * Game.FRAME_RATE; //讓敵兵每N秒產生一個，計數器每15可以讓兵延遲1秒產生 (畫面更新頻率 = 15次/1秒)
     private int _generateEnemiesDelayCounter = GENERATE_ENEMIES_DELAY_COUNTER; //真正用來計算產兵延遲的
     private int _knockedBackDelayCounter = 0; //同上理由，這是被擊退的頻率
     private int _recordAlliesIndex = 0; //走在最前面的友軍的index
