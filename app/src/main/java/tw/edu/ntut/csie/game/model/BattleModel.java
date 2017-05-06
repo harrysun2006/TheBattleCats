@@ -70,7 +70,6 @@ public class BattleModel implements ReleasableResource
                     {
                         _enemies.get(_recordEnemiesIndex).Attacked(element.GetAttackDamage());
                         element.SetAttackDelayCounter(0);
-                        //element.SetIsAttacking(false);
                     }
                 }
                 else
@@ -116,7 +115,6 @@ public class BattleModel implements ReleasableResource
                     {
                         _allies.get(_recordAlliesIndex).Attacked(element.GetAttackDamage());
                         element.SetAttackDelayCounter(0);
-                        //element.SetIsAttacking(false);
                     }
                 }
                 else
