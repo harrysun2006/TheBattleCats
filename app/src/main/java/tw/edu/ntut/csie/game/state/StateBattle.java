@@ -11,6 +11,7 @@ import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 
+import tw.edu.ntut.csie.game.model.TransitionalBitmap;
 import tw.edu.ntut.csie.game.model.BattleModel;
 import tw.edu.ntut.csie.game.model.Capoo;
 import tw.edu.ntut.csie.game.model.Pusheen;
@@ -31,7 +32,7 @@ public class StateBattle extends GameState
     @Override
     public void initialize(Map<String, Object> data)
     {
-        _background = new MovingBitmap(R.drawable.test_background);
+        _background = new TransitionalBitmap(R.drawable.test_background);
         _music = new Audio(R.raw.ntut);
         _music.setRepeating(true);
         _music.play();
@@ -50,7 +51,6 @@ public class StateBattle extends GameState
 
         _shiftingModule = new ShiftingModule();
         _shiftingModule.SetShifting(360);
-        _background.SaveRealPosition();
         Transition(_shiftingModule.GetShifting(), 0);
     }
 
@@ -74,7 +74,7 @@ public class StateBattle extends GameState
 
     public void Transition(int shiftedX, int shiftedY)
     {
-        _background.setLocation(_background.GetRealX() - shiftedX, _background.GetRealY() - shiftedY);
+        _background.Transition(shiftedX, shiftedY);
         _battleModel.Transition(shiftedX, shiftedY);
         _allyNexusHealth.Transition(shiftedX, shiftedY);
         _enemyNexusHealth.Transition(shiftedX, shiftedY);
@@ -83,7 +83,7 @@ public class StateBattle extends GameState
     @Override
     public void show()
     {
-        _background.show();
+        _background.Show();
         _battleModel.Show();
         _capooButton.Show();
         _pusheenButton.Show();
@@ -99,7 +99,7 @@ public class StateBattle extends GameState
     @Override
     public void release()
     {
-        _background.release();
+        _background.Release();
         _music.release();
         _battleModel.release();
         _capooButton.release();
@@ -243,7 +243,7 @@ public class StateBattle extends GameState
         }
     }
 
-    private MovingBitmap _background;
+    private TransitionalBitmap _background;
     private Audio _music;
     private Audio _buyingSound;
     private BattleModel _battleModel;
