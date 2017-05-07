@@ -271,4 +271,21 @@ public class BattleModel implements ReleasableResource
     {
         return _money.GetCurrentMoney();
     }
+
+    //取得戰鬥模式狀態，0 = 戰鬥中，1 = 遊戲勝利，2 = 遊戲失敗
+    public int GetBattleStatus()
+    {
+        if (_allies.get(0).GetCurrentHealthPercentage() == 0)
+        {
+            return 2;
+        }
+        else if (_enemies.get(0).GetCurrentHealthPercentage() == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }

@@ -77,6 +77,18 @@ public class StateBattle extends GameState
         _allyNexusHealth.SetCurrentPercentage(_battleModel.GetAllyNexusHealthPercentage());
         _enemyNexusHealth.SetCurrentPercentage(_battleModel.GetEnemyNexusHealthPercentage());
         RunShiftingModule();
+
+        if (_battleModel.GetBattleStatus() == 1)
+        {
+            if (!_isGameOver)
+            {
+                _shiftingModule.SetShifting(0);
+                Transition(_shiftingModule.GetShifting(), 0);
+                _backgroundMusic.stop();
+                _winningMusic.play();
+                _isGameOver = true;
+            }
+        }
     }
 
     public void Transition(int shiftedX, int shiftedY)
@@ -276,4 +288,5 @@ public class StateBattle extends GameState
     private ShiftingModule _shiftingModule;
     private int _currentPressedX;
     private boolean _isPressed;
+    private boolean _isGameOver = false;
 }
