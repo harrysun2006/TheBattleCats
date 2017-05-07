@@ -45,6 +45,7 @@ public class StateBattle extends GameState
         _enemyNexusHealth = new HealthBar(95, 150, 100);
         _moneyAddButton = new MovingBitmap(R.drawable.money_button_80, 10, 286);
 
+        _isGameOver = false;
         _shiftingModule = new ShiftingModule();
         _shiftingModule.SetShifting(360);
         Transition(_shiftingModule.GetShifting(), 0);
@@ -287,5 +288,5 @@ public class StateBattle extends GameState
     private ShiftingModule _shiftingModule;
     private int _currentPressedX;
     private boolean _isPressed;
-    private boolean _isGameOver = false;
+    private boolean _isGameOver;
 }
