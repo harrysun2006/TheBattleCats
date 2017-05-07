@@ -7,6 +7,8 @@ import tw.edu.ntut.csie.game.extend.Animation;
 
 public class AllyNexus extends Units
 {
+    private boolean _invincible;
+
     public AllyNexus(int x, int y, int shiftedX)
     {
         _health = 500;
@@ -15,6 +17,8 @@ public class AllyNexus extends Units
         _y = y;
         _displayX = _x - shiftedX;
         _displayY = _y;
+
+        _invincible = false;
 
         _movingActive = new Animation();
         _movingActive.setLocation(_displayX, _displayY);
@@ -39,18 +43,15 @@ public class AllyNexus extends Units
 
     }
 
-    public void SetIsAttacking(boolean isAttacking)
-    {
-
-    }
-
     public void Attacked(int damage)
     {
-        _currentHealth -= damage;
-
+        if (!_invincible)
+        {
+            _currentHealth -= damage;
+        }
         if (_currentHealth <= 0)
         {
-            Dying();
+            _invincible = true;
         }
         SetIsAttacked(true);
     }
@@ -72,5 +73,9 @@ public class AllyNexus extends Units
         _movingActive.show();
         _knockedBackActive.setLocation(_displayX, _displayY);
         _knockedBackActive.show();
+    }
+
+    public void SetIsAttacking(boolean isAttacking)
+    {
     }
 }

@@ -7,6 +7,8 @@ import tw.edu.ntut.csie.game.extend.Animation;
 
 public class EnemyNexus extends Units
 {
+    private boolean _invincible;
+
     public EnemyNexus(int x, int y, int shiftedX)
     {
         _health = 500;
@@ -15,6 +17,8 @@ public class EnemyNexus extends Units
         _y = y;
         _displayX = _x - shiftedX;
         _displayY = _y;
+
+        _invincible = false;
 
         _movingActive = new Animation();
         _movingActive.setLocation(_displayX, _displayY);
@@ -41,18 +45,15 @@ public class EnemyNexus extends Units
 
     public void Attacked(int damage)
     {
-        _currentHealth -= damage;
-
+        if (!_invincible)
+        {
+            _currentHealth -= damage;
+        }
         if (_currentHealth <= 0)
         {
-            Dying();
+            _invincible = true;
         }
         SetIsAttacked(true);
-    }
-
-    public void SetIsAttacking(boolean isAttacking)
-    {
-
     }
 
     public void KnockedBack()
@@ -72,5 +73,9 @@ public class EnemyNexus extends Units
         _movingActive.show();
         _knockedBackActive.setLocation(_displayX, _displayY);
         _knockedBackActive.show();
+    }
+
+    public void SetIsAttacking(boolean isAttacking)
+    {
     }
 }
