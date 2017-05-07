@@ -10,7 +10,7 @@ public class AllyNexus extends Units
     public AllyNexus(int x, int y, int shiftedX)
     {
         _health = 500;
-        _currentHeath = _health;
+        _currentHealth = _health;
         _x = x;
         _y = y;
         _displayX = _x - shiftedX;
@@ -46,9 +46,9 @@ public class AllyNexus extends Units
 
     public void Attacked(int damage)
     {
-        _currentHeath -= damage;
+        _currentHealth -= damage;
 
-        if (_currentHeath <= 0)
+        if (_currentHealth <= 0)
         {
             Dying();
         }

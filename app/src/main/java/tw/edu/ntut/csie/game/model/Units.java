@@ -10,7 +10,7 @@ import tw.edu.ntut.csie.game.extend.Animation;
 public abstract class Units
 {
     protected int _health; //血量
-    protected int _currentHeath; //當前血量
+    protected int _currentHealth; //當前血量
 
     protected int _x; //X座標
     protected int _y; //Y座標
@@ -44,7 +44,7 @@ public abstract class Units
 
     public int GetCurrentHealthPercentage()
     {
-        return 100 * _currentHeath / _health;
+        return 100 * _currentHealth / _health;
     }
 
     public int GetX()

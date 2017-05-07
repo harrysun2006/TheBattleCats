@@ -25,7 +25,6 @@ public class ShiftingModule
 
     public ShiftingModule()
     {
-
     }
 
     public void Run(int nextTimingX)
@@ -167,7 +166,7 @@ public class ShiftingModule
         _currentPressedX = currentPressedX;
     }
 
-    public boolean GetIsAutoSlidingEnabled()
+    public boolean IsAutoSlidingEnabled()
     {
         return _isAutoSlidingEnabled;
     }

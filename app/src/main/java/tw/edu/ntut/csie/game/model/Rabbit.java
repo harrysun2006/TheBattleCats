@@ -15,7 +15,7 @@ public class Rabbit extends Units
         super();
 
         _health = 100;
-        _currentHeath = _health;
+        _currentHealth = _health;
         _x = x;
         _y = y;
         _displayX = _x - shiftedX;
@@ -46,14 +46,14 @@ public class Rabbit extends Units
 
     public void Attacked(int damage)
     {
-        _currentHeath -= damage;
+        _currentHealth -= damage;
 
-        if (_currentHeath <= 0)
+        if (_currentHealth <= 0)
         {
             KnockedBack();
             SetIsDying(true);
         }
-        else if (_currentHeath > _health / 2 && _health / 2 > _currentHeath - damage)
+        else if (_currentHealth > _health / 2 && _health / 2 > _currentHealth - damage)
         {
             KnockedBack();
         }

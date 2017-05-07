@@ -263,7 +263,7 @@ public class StateBattle extends GameState
     {
         _shiftingModule.Run(_currentPressedX);
 
-        if (_shiftingModule.GetIsAutoSlidingEnabled() || _shiftingModule.IsSpecifiedSlidingEnabled())
+        if (_shiftingModule.IsAutoSlidingEnabled() || _shiftingModule.IsSpecifiedSlidingEnabled())
         {
             Transition(_shiftingModule.GetShifting(), 0);
         }
