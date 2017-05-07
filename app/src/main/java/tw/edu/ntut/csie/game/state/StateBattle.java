@@ -32,12 +32,8 @@ public class StateBattle extends GameState
     @Override
     public void initialize(Map<String, Object> data)
     {
+        InitializeMusic();
         _background = new TransitionalBitmap(R.drawable.test_background);
-        _music = new Audio(R.raw.ntut);
-        _music.setRepeating(true);
-        _music.play();
-        _buyingSound = new Audio(R.raw.buy_item);
-        _buyingSound.setRepeating(false);
         _battleModel = new BattleModel();
         _capooButton = new GameButton(R.drawable.capoo_button, R.drawable.capoo_button_disabled, 10, 10, Capoo.COOLDOWN); //x from 10 ~ 10 + 78 = 10 ~ 88
         _capooCooldown = new CooldownBar(14, 60, 70); //x from 14 ~ 14 + 70 = 14 ~ 84, so that 14 - 10 = 88 - 84 = 4
@@ -52,6 +48,17 @@ public class StateBattle extends GameState
         _shiftingModule = new ShiftingModule();
         _shiftingModule.SetShifting(360);
         Transition(_shiftingModule.GetShifting(), 0);
+    }
+
+    private void InitializeMusic()
+    {
+        _backgroundMusic = new Audio(R.raw.ntut);
+        _backgroundMusic.setRepeating(true);
+        _winningMusic = new Audio(R.raw.winning);
+        _winningMusic.setRepeating(false);
+        _buyingSound = new Audio(R.raw.buy_item);
+        _buyingSound.setRepeating(false);
+        _backgroundMusic.play();
     }
 
     @Override
@@ -99,8 +106,10 @@ public class StateBattle extends GameState
     @Override
     public void release()
     {
+        _backgroundMusic.release();
+        _winningMusic.release();
+        _buyingSound.release();
         _background.Release();
-        _music.release();
         _battleModel.release();
         _capooButton.release();
         _pusheenButton.release();
@@ -108,9 +117,13 @@ public class StateBattle extends GameState
         _capooCooldown.release();
         _pusheenCooldown.release();
         _rabbitCooldown.release();
+        _allyNexusHealth.release();
+        _enemyNexusHealth.release();
         _moneyAddButton.release();
+        _backgroundMusic = null;
+        _winningMusic = null;
+        _buyingSound = null;
         _background = null;
-        _music = null;
         _battleModel = null;
         _capooButton = null;
         _pusheenButton = null;
@@ -118,6 +131,8 @@ public class StateBattle extends GameState
         _capooCooldown = null;
         _pusheenCooldown = null;
         _rabbitCooldown = null;
+        _allyNexusHealth = null;
+        _enemyNexusHealth = null;
         _moneyAddButton = null;
     }
 
@@ -224,13 +239,13 @@ public class StateBattle extends GameState
     @Override
     public void pause()
     {
-        _music.pause();
+        _backgroundMusic.pause();
     }
 
     @Override
     public void resume()
     {
-        _music.play();
+        _backgroundMusic.play();
     }
 
     private void RunShiftingModule()
@@ -243,9 +258,10 @@ public class StateBattle extends GameState
         }
     }
 
-    private TransitionalBitmap _background;
-    private Audio _music;
+    private Audio _backgroundMusic;
+    private Audio _winningMusic;
     private Audio _buyingSound;
+    private TransitionalBitmap _background;
     private BattleModel _battleModel;
     private GameButton _capooButton;
     private GameButton _pusheenButton;
