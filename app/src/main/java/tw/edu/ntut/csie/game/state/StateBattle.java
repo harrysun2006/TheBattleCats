@@ -57,6 +57,8 @@ public class StateBattle extends GameState
         _backgroundMusic.setRepeating(true);
         _winningMusic = new Audio(R.raw.winning);
         _winningMusic.setRepeating(false);
+        _losingMusic = new Audio(R.raw.losing);
+        _losingMusic.setRepeating(false);
         _buyingSound = new Audio(R.raw.buy_item);
         _buyingSound.setRepeating(false);
         _backgroundMusic.play();
@@ -86,6 +88,16 @@ public class StateBattle extends GameState
                 _shiftingModule.AssignSpecifiedSliding(0, 30);
                 _backgroundMusic.stop();
                 _winningMusic.play();
+                _isGameOver = true;
+            }
+        }
+        if (_battleModel.GetBattleStatus() == 2)
+        {
+            if (!_isGameOver)
+            {
+                _shiftingModule.AssignSpecifiedSliding(360, -30);
+                _backgroundMusic.stop();
+                _losingMusic.play();
                 _isGameOver = true;
             }
         }
@@ -272,6 +284,7 @@ public class StateBattle extends GameState
 
     private Audio _backgroundMusic;
     private Audio _winningMusic;
+    private Audio _losingMusic;
     private Audio _buyingSound;
     private TransitionalBitmap _background;
     private BattleModel _battleModel;
