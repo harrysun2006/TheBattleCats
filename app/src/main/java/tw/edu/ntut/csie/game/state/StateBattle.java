@@ -82,8 +82,7 @@ public class StateBattle extends GameState
         {
             if (!_isGameOver)
             {
-                _shiftingModule.SetShifting(0);
-                Transition(_shiftingModule.GetShifting(), 0);
+                _shiftingModule.AssignSpecifiedSliding(0, 30);
                 _backgroundMusic.stop();
                 _winningMusic.play();
                 _isGameOver = true;
@@ -264,7 +263,7 @@ public class StateBattle extends GameState
     {
         _shiftingModule.Run(_currentPressedX);
 
-        if (_shiftingModule.GetIsAutoSlidingEnabled())
+        if (_shiftingModule.GetIsAutoSlidingEnabled() || _shiftingModule.IsSpecifiedSlidingEnabled())
         {
             Transition(_shiftingModule.GetShifting(), 0);
         }

@@ -16,8 +16,12 @@ public class ShiftingModule
     private int _acceleration;
     private int _timingScale;
 
+    private int _specifiedX;
+    private int _specifiedSpeed;
+
     private boolean _isPressed;
-    private boolean _isAutoSlidingEnabled;
+    private boolean _isAutoSlidingEnabled; //處理手指離開螢幕時如果有速度則畫面依據速度自動滑動到底
+    private boolean _isSpecifiedSlidingEnabled; //處理畫面依據指定的速度滑動到指定的位置
 
     public ShiftingModule()
     {
@@ -33,6 +37,10 @@ public class ShiftingModule
         if (_isAutoSlidingEnabled)
         {
             AutoSliding();
+        }
+        if (_isSpecifiedSlidingEnabled)
+        {
+            SpecifiedSliding();
         }
     }
 
@@ -102,6 +110,38 @@ public class ShiftingModule
         }
     }
 
+    //指派速度和位置讓畫面滑動
+    public void AssignSpecifiedSliding(int x, int speed)
+    {
+        _specifiedX = x;
+        _specifiedSpeed = speed;
+        _isAutoSlidingEnabled = false;
+        _isSpecifiedSlidingEnabled = true;
+    }
+
+    //讓畫面依據指定的速度滑動到指定的位置
+    private void SpecifiedSliding()
+    {
+        _shifting -= _specifiedSpeed;
+
+        if (_specifiedSpeed > 0)
+        {
+            if (_shifting <= _specifiedX)
+            {
+                _shifting = _specifiedX;
+                _isSpecifiedSlidingEnabled = false;
+            }
+        }
+        else
+        {
+            if (_shifting >= _specifiedX)
+            {
+                _shifting = _specifiedX;
+                _isSpecifiedSlidingEnabled = false;
+            }
+        }
+    }
+
     public int GetShifting()
     {
         return _shifting;
@@ -130,6 +170,11 @@ public class ShiftingModule
     public boolean GetIsAutoSlidingEnabled()
     {
         return _isAutoSlidingEnabled;
+    }
+
+    public boolean IsSpecifiedSlidingEnabled()
+    {
+        return _isSpecifiedSlidingEnabled;
     }
 
     //同步_tempShifting以供下一次手動滑動使用
