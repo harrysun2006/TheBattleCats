@@ -7,7 +7,7 @@ import tw.edu.ntut.csie.game.extend.Animation;
 
 public class Pusheen extends Units
 {
-    public static int COOLDOWN = 6; //cooldown time
+    public static int COOLDOWN = 2; //cooldown time
     public static int COST = 200; //產兵花費
 
     public Pusheen(int x, int y, int shiftedX)

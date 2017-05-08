@@ -41,8 +41,8 @@ public class StateBattle extends GameState
         _pusheenCooldown = new CooldownBar(104, 60, 70);
         _rabbitButton = new GameButton(R.drawable.rabbit_button, R.drawable.rabbit_button_disabled, 190, 10, Rabbit.COOLDOWN);
         _rabbitCooldown = new CooldownBar(194, 60, 70);
-        _allyNexusHealth = new HealthBar(820, 120, 100);
-        _enemyNexusHealth = new HealthBar(95, 150, 100);
+        _allyNexusHealth = new HealthBar(810, 120, 120);
+        _enemyNexusHealth = new HealthBar(85, 150, 120);
         _moneyAddButton = new MovingBitmap(R.drawable.money_button_80, 10, 286);
 
         _isGameOver = false;

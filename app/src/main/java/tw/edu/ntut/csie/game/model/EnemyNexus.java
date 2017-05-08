@@ -11,7 +11,7 @@ public class EnemyNexus extends Units
 
     public EnemyNexus(int x, int y, int shiftedX)
     {
-        _health = 500;
+        _health = 1000;
         _currentHealth = _health;
         _x = x;
         _y = y;
@@ -51,7 +51,7 @@ public class EnemyNexus extends Units
         }
         if (_currentHealth <= 0)
         {
-            _invincible = true;
+            _invincible = true; //血量歸零時獲得無敵狀態
         }
         SetIsAttacked(true);
     }

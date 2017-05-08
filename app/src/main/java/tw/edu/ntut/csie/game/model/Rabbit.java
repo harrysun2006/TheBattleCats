@@ -7,7 +7,7 @@ import tw.edu.ntut.csie.game.extend.Animation;
 
 public class Rabbit extends Units
 {
-    public static int COOLDOWN = 6; //cooldown time
+    public static int COOLDOWN = 2; //cooldown time
     public static int COST = 200; //產兵花費
 
     public Rabbit(int x, int y, int shiftedX)
