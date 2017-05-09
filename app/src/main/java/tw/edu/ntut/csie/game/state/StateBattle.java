@@ -47,6 +47,7 @@ public class StateBattle extends GameState
         _moneyAddButton = new MovingBitmap(R.drawable.money_button_80, 10, 286);
         _losingBanner = new MovingBitmap(R.drawable.losing_banner, 240, -83);
         _losingBannerTransition = new VerticalTransition(_losingBanner, 140);
+        
         _isGameOver = false;
         _shiftingModule = new ShiftingModule();
         _shiftingModule.SetShifting(360);
