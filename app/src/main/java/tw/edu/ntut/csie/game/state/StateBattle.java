@@ -16,7 +16,7 @@ import tw.edu.ntut.csie.game.model.BattleModel;
 import tw.edu.ntut.csie.game.model.Capoo;
 import tw.edu.ntut.csie.game.model.Pusheen;
 import tw.edu.ntut.csie.game.model.Rabbit;
-import tw.edu.ntut.csie.game.model.GameButton;
+import tw.edu.ntut.csie.game.model.CDButton;
 import tw.edu.ntut.csie.game.model.CooldownBar;
 import tw.edu.ntut.csie.game.model.HealthBar;
 import tw.edu.ntut.csie.game.model.ShiftingModule;
@@ -35,11 +35,11 @@ public class StateBattle extends GameState
         InitializeMusic();
         _background = new TransitionalBitmap(R.drawable.test_background);
         _battleModel = new BattleModel();
-        _capooButton = new GameButton(R.drawable.capoo_button, R.drawable.capoo_button_disabled, 10, 10, Capoo.COOLDOWN); //x from 10 ~ 10 + 78 = 10 ~ 88
+        _capooButton = new CDButton(R.drawable.capoo_button, R.drawable.capoo_button_disabled, 10, 10, Capoo.COOLDOWN); //x from 10 ~ 10 + 78 = 10 ~ 88
         _capooCooldown = new CooldownBar(14, 60, 70); //x from 14 ~ 14 + 70 = 14 ~ 84, so that 14 - 10 = 88 - 84 = 4
-        _pusheenButton = new GameButton(R.drawable.pusheen_button, R.drawable.pusheen_button_disabled, 100, 10, Pusheen.COOLDOWN);
+        _pusheenButton = new CDButton(R.drawable.pusheen_button, R.drawable.pusheen_button_disabled, 100, 10, Pusheen.COOLDOWN);
         _pusheenCooldown = new CooldownBar(104, 60, 70);
-        _rabbitButton = new GameButton(R.drawable.rabbit_button, R.drawable.rabbit_button_disabled, 190, 10, Rabbit.COOLDOWN);
+        _rabbitButton = new CDButton(R.drawable.rabbit_button, R.drawable.rabbit_button_disabled, 190, 10, Rabbit.COOLDOWN);
         _rabbitCooldown = new CooldownBar(194, 60, 70);
         _allyNexusHealth = new HealthBar(810, 120, 120);
         _enemyNexusHealth = new HealthBar(85, 150, 120);
@@ -288,9 +288,9 @@ public class StateBattle extends GameState
     private Audio _buyingSound;
     private TransitionalBitmap _background;
     private BattleModel _battleModel;
-    private GameButton _capooButton;
-    private GameButton _pusheenButton;
-    private GameButton _rabbitButton;
+    private CDButton _capooButton;
+    private CDButton _pusheenButton;
+    private CDButton _rabbitButton;
     private CooldownBar _capooCooldown;
     private CooldownBar _pusheenCooldown;
     private CooldownBar _rabbitCooldown;
