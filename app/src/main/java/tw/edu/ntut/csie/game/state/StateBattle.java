@@ -11,8 +11,6 @@ import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 
-import tw.edu.ntut.csie.game.model.HorizontalTransition;
-import tw.edu.ntut.csie.game.model.VerticalTransition;
 import tw.edu.ntut.csie.game.model.TranslationBitmap;
 import tw.edu.ntut.csie.game.model.BattleModel;
 import tw.edu.ntut.csie.game.model.Capoo;
@@ -21,6 +19,8 @@ import tw.edu.ntut.csie.game.model.Rabbit;
 import tw.edu.ntut.csie.game.model.CDButton;
 import tw.edu.ntut.csie.game.model.CooldownBar;
 import tw.edu.ntut.csie.game.model.HealthBar;
+import tw.edu.ntut.csie.game.model.HorizontalTransition;
+import tw.edu.ntut.csie.game.model.VerticalTransition;
 import tw.edu.ntut.csie.game.model.ShiftingModule;
 
 public class StateBattle extends GameState
@@ -35,17 +35,13 @@ public class StateBattle extends GameState
     public void initialize(Map<String, Object> data)
     {
         InitializeMusic();
+        InitializeButtonComponent();
         _background = new TranslationBitmap(R.drawable.test_background);
         _battleModel = new BattleModel();
-        _capooButton = new CDButton(R.drawable.capoo_button, R.drawable.capoo_button_disabled, 10, 10, Capoo.COOLDOWN); //x from 10 ~ 10 + 78 = 10 ~ 88
-        _capooCooldown = new CooldownBar(14, 60, 70); //x from 14 ~ 14 + 70 = 14 ~ 84, so that 14 - 10 = 88 - 84 = 4
-        _pusheenButton = new CDButton(R.drawable.pusheen_button, R.drawable.pusheen_button_disabled, 100, 10, Pusheen.COOLDOWN);
-        _pusheenCooldown = new CooldownBar(104, 60, 70);
-        _rabbitButton = new CDButton(R.drawable.rabbit_button, R.drawable.rabbit_button_disabled, 190, 10, Rabbit.COOLDOWN);
-        _rabbitCooldown = new CooldownBar(194, 60, 70);
         _allyNexusHealth = new HealthBar(810, 120, 120);
         _enemyNexusHealth = new HealthBar(85, 150, 120);
         _moneyAddButton = new MovingBitmap(R.drawable.money_button_80, 10, 286);
+
         _winningBanner = new MovingBitmap(R.drawable.winning_banner, -299, 150);
         _winningBannerTransition = new HorizontalTransition(_winningBanner, 200);
         _losingBanner = new MovingBitmap(R.drawable.losing_banner, 240, -83);
@@ -70,6 +66,16 @@ public class StateBattle extends GameState
         _backgroundMusic.play();
     }
 
+    private void InitializeButtonComponent()
+    {
+        _capooButton = new CDButton(R.drawable.capoo_button, R.drawable.capoo_button_disabled, 10, 10, Capoo.COOLDOWN); //x from 10 ~ 10 + 78 = 10 ~ 88
+        _capooCooldown = new CooldownBar(14, 60, 70); //x from 14 ~ 14 + 70 = 14 ~ 84, so that 14 - 10 = 88 - 84 = 4
+        _pusheenButton = new CDButton(R.drawable.pusheen_button, R.drawable.pusheen_button_disabled, 100, 10, Pusheen.COOLDOWN);
+        _pusheenCooldown = new CooldownBar(104, 60, 70);
+        _rabbitButton = new CDButton(R.drawable.rabbit_button, R.drawable.rabbit_button_disabled, 190, 10, Rabbit.COOLDOWN);
+        _rabbitCooldown = new CooldownBar(194, 60, 70);
+    }
+
     @Override
     public void move()
     {
@@ -88,7 +94,21 @@ public class StateBattle extends GameState
         _winningBannerTransition.Run();
         _losingBannerTransition.Run();
         RunShiftingModule();
+        DetectBattleStatus();
+    }
 
+    private void RunShiftingModule()
+    {
+        _shiftingModule.Run(_currentPressedX);
+
+        if (_shiftingModule.IsAutoSlidingEnabled() || _shiftingModule.IsSpecifiedSlidingEnabled())
+        {
+            Translation(_shiftingModule.GetShifting(), 0);
+        }
+    }
+
+    private void DetectBattleStatus()
+    {
         if (_battleModel.GetBattleStatus() == 1)
         {
             if (!_isGameOver)
@@ -113,7 +133,7 @@ public class StateBattle extends GameState
         }
     }
 
-    public void Translation(int shiftedX, int shiftedY)
+    private void Translation(int shiftedX, int shiftedY)
     {
         _background.Translation(shiftedX, shiftedY);
         _battleModel.Translation(shiftedX, shiftedY);
@@ -286,16 +306,6 @@ public class StateBattle extends GameState
     public void resume()
     {
         _backgroundMusic.play();
-    }
-
-    private void RunShiftingModule()
-    {
-        _shiftingModule.Run(_currentPressedX);
-
-        if (_shiftingModule.IsAutoSlidingEnabled() || _shiftingModule.IsSpecifiedSlidingEnabled())
-        {
-            Translation(_shiftingModule.GetShifting(), 0);
-        }
     }
 
     private Audio _backgroundMusic;
