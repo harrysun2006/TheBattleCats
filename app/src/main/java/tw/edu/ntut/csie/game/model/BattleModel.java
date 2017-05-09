@@ -213,16 +213,16 @@ public class BattleModel implements ReleasableResource
         _enemies.add(new Deer(20, 195, _shifting));
     }
 
-    public void Transition(int shiftedX, int shiftedY)
+    public void Translation(int shiftedX, int shiftedY)
     {
         UpdateShifting(shiftedX);
         for (Units element:_allies)
         {
-            element.Transition(_shifting, 0);
+            element.Translation(_shifting, 0);
         }
         for (Units element:_enemies)
         {
-            element.Transition(_shifting, 0);
+            element.Translation(_shifting, 0);
         }
     }
 

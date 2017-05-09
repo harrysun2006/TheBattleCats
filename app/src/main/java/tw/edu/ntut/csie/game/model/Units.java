@@ -98,7 +98,7 @@ public abstract class Units
         _dyingActive.move();
     }
 
-    public void Transition(int shiftedX, int shiftedY)
+    public void Translation(int shiftedX, int shiftedY)
     {
         _displayX = _x - shiftedX;
         _displayY = _y - shiftedY;

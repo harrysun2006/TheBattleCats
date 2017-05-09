@@ -9,7 +9,7 @@ import java.io.IOException;
 import static tw.edu.ntut.csie.game.GameView.runtime;
 import static tw.edu.ntut.csie.game.engine.GameEngine.canvas;
 
-public class TransitionalBitmap
+public class TranslationBitmap
 {
     private int _x; //X座標
     private int _y; //Y座標
@@ -19,27 +19,27 @@ public class TransitionalBitmap
     private Bitmap _bitmap;
 
     //建立一個空的TransitionalBitmap物件。
-    public TransitionalBitmap()
+    public TranslationBitmap()
     {
         _visible = true;
     }
 
     //建立TransitionalBitmap物件並立即載入指定的圖片。
-    public TransitionalBitmap(int resId)
+    public TranslationBitmap(int resId)
     {
         _visible = true;
         LoadBitmap(resId);
     }
 
     //建立TransitionalBitmap物件並立即載入指定的圖片。
-    public TransitionalBitmap(String filename)
+    public TranslationBitmap(String filename)
     {
         _visible = true;
         LoadBitmap(filename);
     }
 
     //建立TransitionalBitmap物件並立即載入指定的圖片。
-    public TransitionalBitmap(int resId, int x, int y)
+    public TranslationBitmap(int resId, int x, int y)
     {
         _visible = true;
         LoadBitmap(resId);
@@ -47,7 +47,7 @@ public class TransitionalBitmap
     }
 
     //建立TransitionalBitmap物件並立即載入指定的圖片。
-    public TransitionalBitmap(String filename, int x, int y)
+    public TranslationBitmap(String filename, int x, int y)
     {
         _visible = true;
         LoadBitmap(filename);
@@ -91,7 +91,7 @@ public class TransitionalBitmap
         _bitmap = Bitmap.createScaledBitmap(_bitmap, width, height, true);
     }
 
-    public void Transition(int shiftedX, int shiftedY)
+    public void Translation(int shiftedX, int shiftedY)
     {
         _displayX = _x - shiftedX;
         _displayY = _y - shiftedY;

@@ -23,7 +23,7 @@ public class HealthBar extends Bar
         }
     }
 
-    public void Transition(int shiftedX, int shiftedY)
+    public void Translation(int shiftedX, int shiftedY)
     {
         _displayX = _x - shiftedX;
         _displayY = _y - shiftedY;

@@ -11,7 +11,7 @@ import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 
-import tw.edu.ntut.csie.game.model.TransitionalBitmap;
+import tw.edu.ntut.csie.game.model.TranslationBitmap;
 import tw.edu.ntut.csie.game.model.BattleModel;
 import tw.edu.ntut.csie.game.model.Capoo;
 import tw.edu.ntut.csie.game.model.Pusheen;
@@ -33,7 +33,7 @@ public class StateBattle extends GameState
     public void initialize(Map<String, Object> data)
     {
         InitializeMusic();
-        _background = new TransitionalBitmap(R.drawable.test_background);
+        _background = new TranslationBitmap(R.drawable.test_background);
         _battleModel = new BattleModel();
         _capooButton = new CDButton(R.drawable.capoo_button, R.drawable.capoo_button_disabled, 10, 10, Capoo.COOLDOWN); //x from 10 ~ 10 + 78 = 10 ~ 88
         _capooCooldown = new CooldownBar(14, 60, 70); //x from 14 ~ 14 + 70 = 14 ~ 84, so that 14 - 10 = 88 - 84 = 4
@@ -48,7 +48,7 @@ public class StateBattle extends GameState
         _isGameOver = false;
         _shiftingModule = new ShiftingModule();
         _shiftingModule.SetShifting(360);
-        Transition(_shiftingModule.GetShifting(), 0);
+        Translation(_shiftingModule.GetShifting(), 0);
     }
 
     private void InitializeMusic()
@@ -103,12 +103,12 @@ public class StateBattle extends GameState
         }
     }
 
-    public void Transition(int shiftedX, int shiftedY)
+    public void Translation(int shiftedX, int shiftedY)
     {
-        _background.Transition(shiftedX, shiftedY);
-        _battleModel.Transition(shiftedX, shiftedY);
-        _allyNexusHealth.Transition(shiftedX, shiftedY);
-        _enemyNexusHealth.Transition(shiftedX, shiftedY);
+        _background.Translation(shiftedX, shiftedY);
+        _battleModel.Translation(shiftedX, shiftedY);
+        _allyNexusHealth.Translation(shiftedX, shiftedY);
+        _enemyNexusHealth.Translation(shiftedX, shiftedY);
     }
 
     @Override
@@ -244,7 +244,7 @@ public class StateBattle extends GameState
         {
             _currentPressedX = pointers.get(0).getX();
             _shiftingModule.HandlePointerMoved(_currentPressedX);
-            Transition(_shiftingModule.GetTempShifting(), 0);
+            Translation(_shiftingModule.GetTempShifting(), 0);
         }
         return false;
     }
@@ -278,7 +278,7 @@ public class StateBattle extends GameState
 
         if (_shiftingModule.IsAutoSlidingEnabled() || _shiftingModule.IsSpecifiedSlidingEnabled())
         {
-            Transition(_shiftingModule.GetShifting(), 0);
+            Translation(_shiftingModule.GetShifting(), 0);
         }
     }
 
@@ -286,7 +286,7 @@ public class StateBattle extends GameState
     private Audio _winningMusic;
     private Audio _losingMusic;
     private Audio _buyingSound;
-    private TransitionalBitmap _background;
+    private TranslationBitmap _background;
     private BattleModel _battleModel;
     private CDButton _capooButton;
     private CDButton _pusheenButton;
