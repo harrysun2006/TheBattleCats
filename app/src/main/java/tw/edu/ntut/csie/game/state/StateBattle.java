@@ -97,6 +97,7 @@ public class StateBattle extends GameState
         DetectBattleStatus();
     }
 
+    //運作ShiftingModule: 當_shifting改變時會呼叫Translation()位移畫面的物件
     private void RunShiftingModule()
     {
         _shiftingModule.Run(_currentPressedX);
@@ -107,6 +108,7 @@ public class StateBattle extends GameState
         }
     }
 
+    //偵測BattleModel戰鬥是否結束(主堡血量歸零)，是的話則觸發勝利/失敗動畫
     private void DetectBattleStatus()
     {
         if (_battleModel.GetBattleStatus() == 1)

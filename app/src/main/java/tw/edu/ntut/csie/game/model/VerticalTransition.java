@@ -35,6 +35,7 @@ public class VerticalTransition
         }
     }
 
+    //啟動轉場動畫讓MovingBitmap滑動到指定位置
     public void Activate()
     {
         _movingBitmap.setVisible(true);
