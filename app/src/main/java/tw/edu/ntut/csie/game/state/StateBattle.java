@@ -11,6 +11,7 @@ import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 
+import tw.edu.ntut.csie.game.model.HorizontalTransition;
 import tw.edu.ntut.csie.game.model.VerticalTransition;
 import tw.edu.ntut.csie.game.model.TranslationBitmap;
 import tw.edu.ntut.csie.game.model.BattleModel;
@@ -45,9 +46,11 @@ public class StateBattle extends GameState
         _allyNexusHealth = new HealthBar(810, 120, 120);
         _enemyNexusHealth = new HealthBar(85, 150, 120);
         _moneyAddButton = new MovingBitmap(R.drawable.money_button_80, 10, 286);
+        _winningBanner = new MovingBitmap(R.drawable.winning_banner, -299, 150);
+        _winningBannerTransition = new HorizontalTransition(_winningBanner, 200);
         _losingBanner = new MovingBitmap(R.drawable.losing_banner, 240, -83);
         _losingBannerTransition = new VerticalTransition(_losingBanner, 140);
-        
+
         _isGameOver = false;
         _shiftingModule = new ShiftingModule();
         _shiftingModule.SetShifting(360);
@@ -82,6 +85,7 @@ public class StateBattle extends GameState
         _rabbitCooldown.SetCurrentPercentage(_rabbitButton.GetPercent());
         _allyNexusHealth.SetCurrentPercentage(_battleModel.GetAllyNexusHealthPercentage());
         _enemyNexusHealth.SetCurrentPercentage(_battleModel.GetEnemyNexusHealthPercentage());
+        _winningBannerTransition.Run();
         _losingBannerTransition.Run();
         RunShiftingModule();
 
@@ -90,6 +94,7 @@ public class StateBattle extends GameState
             if (!_isGameOver)
             {
                 _shiftingModule.AssignSpecifiedSliding(0, 30);
+                _winningBannerTransition.Activate();
                 _backgroundMusic.stop();
                 _winningMusic.play();
                 _isGameOver = true;
@@ -130,6 +135,7 @@ public class StateBattle extends GameState
         _allyNexusHealth.Show();
         _enemyNexusHealth.Show();
         _moneyAddButton.show();
+        _winningBanner.show();
         _losingBanner.show();
     }
 
@@ -150,6 +156,7 @@ public class StateBattle extends GameState
         _allyNexusHealth.release();
         _enemyNexusHealth.release();
         _moneyAddButton.release();
+        _winningBanner.release();
         _losingBanner.release();
         _backgroundMusic = null;
         _winningMusic = null;
@@ -165,6 +172,7 @@ public class StateBattle extends GameState
         _allyNexusHealth = null;
         _enemyNexusHealth = null;
         _moneyAddButton = null;
+        _winningBanner = null;
         _losingBanner = null;
     }
 
@@ -305,7 +313,9 @@ public class StateBattle extends GameState
     private HealthBar _allyNexusHealth;
     private HealthBar _enemyNexusHealth;
     private MovingBitmap _moneyAddButton;
+    private MovingBitmap _winningBanner;
     private MovingBitmap _losingBanner;
+    private HorizontalTransition _winningBannerTransition;
     private VerticalTransition _losingBannerTransition;
 
     private ShiftingModule _shiftingModule;
