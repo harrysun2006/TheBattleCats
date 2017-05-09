@@ -9,6 +9,7 @@ import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.model.CDButton;
+import tw.edu.ntut.csie.game.model.LevelButton;
 import tw.edu.ntut.csie.game.model.ShopModel;
 
 /**
@@ -30,8 +31,8 @@ public class StateShop extends GameState
         _music = new Audio(R.raw.ntut);
         _music.setRepeating(true);
         _music.play();
-        _black = new CDButton(R.drawable.android_black, R.drawable.android_green, 10, 150, 0);
-        _green = new CDButton(R.drawable.android_green, R.drawable.android_black, 100, 150, 0);
+        _black = new LevelButton(R.drawable.android_black, R.drawable.android_green, 10, 150);
+        _green = new LevelButton(R.drawable.android_green, R.drawable.android_black, 100, 150);
         _shopModel = new ShopModel();
     }
 
@@ -124,7 +125,7 @@ public class StateShop extends GameState
 
     private MovingBitmap _background;
     private Audio _music;
-    private CDButton _black;
-    private CDButton _green;
+    private LevelButton _black;
+    private LevelButton _green;
     private ShopModel _shopModel;
 }

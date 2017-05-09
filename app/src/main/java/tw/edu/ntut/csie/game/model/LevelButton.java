@@ -1,5 +1,6 @@
 package tw.edu.ntut.csie.game.model;
 
+import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.core.MovingBitmap;
 
 /**
@@ -19,6 +20,11 @@ public class LevelButton extends Button
     {
         super(enableFilename, disableFilename, x, y);
         _level = 1;
+        _levelOneLabel = new MovingBitmap(R.drawable.level1_label, x, y);
+        _levelTwoLabel = new MovingBitmap(R.drawable.level2_label, x, y);
+        _levelThreeLabel = new MovingBitmap(R.drawable.level3_label, x, y);
+        _levelFourLabel = new MovingBitmap(R.drawable.level4_label, x, y);
+        _levelFiveLabel = new MovingBitmap(R.drawable.level5_label, x, y);
     }
 
     public void Run()
