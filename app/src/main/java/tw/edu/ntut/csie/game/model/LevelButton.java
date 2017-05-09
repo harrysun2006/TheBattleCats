@@ -1,6 +1,5 @@
 package tw.edu.ntut.csie.game.model;
 
-import tw.edu.ntut.csie.game.Game;
 import tw.edu.ntut.csie.game.core.MovingBitmap;
 
 /**
@@ -37,5 +36,4 @@ public class LevelButton extends Button
     {
 
     }
-
 }
