@@ -268,6 +268,7 @@ public class StateBattle extends GameState
             {
                 if(_moneyAddButton.GetIsEnabled() == true)
                 {
+                    _buyingSound.play();
                     _moneyAddButton.Push();
                     _battleModel.AddMoneyMax();
                 }
