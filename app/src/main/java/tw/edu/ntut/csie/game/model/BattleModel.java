@@ -24,6 +24,7 @@ public class BattleModel implements ReleasableResource
     private int _alliesMax = 1000; //走在最前面的友軍的X值
     private int _enemiesMax = 0; //走在最前面的敵軍的X值
     private int _shifting = 0;
+    private int _battleStatus; //0: 戰鬥中，1: 遊戲勝利，2: 遊戲失敗
 
     public BattleModel()
     {
@@ -32,6 +33,7 @@ public class BattleModel implements ReleasableResource
         _allies.add(new AllyNexus(800, 150, _shifting));
         _enemies.add(new EnemyNexus(80, 100, _shifting));
         _money = new Money();
+        _battleStatus = 0;
     }
 
     public void Run()
@@ -40,6 +42,7 @@ public class BattleModel implements ReleasableResource
         EnemiesRun();
         ProduceNexusKnockedBack();
         GenerateEnemies();
+        UpdateBattleStatus();
         _money.AddMoney();
     }
 
@@ -166,22 +169,41 @@ public class BattleModel implements ReleasableResource
     //根據_generateEnemiesDelayCounter產生敵軍
     private void GenerateEnemies()
     {
-        _generateEnemiesDelayCounter--;
-
-        if (_generateEnemiesDelayCounter == 0)
+        if (_battleStatus == 0)
         {
-            Random random = new Random();
-            int result = random.nextInt(2);
-            switch (result)
+            _generateEnemiesDelayCounter--;
+            if (_generateEnemiesDelayCounter == 0)
             {
-                case 0:
-                    GenerateOtter();
-                    break;
-                case 1:
-                    GenerateDeer();
-                    break;
+                Random random = new Random();
+                int result = random.nextInt(2);
+                switch (result)
+                {
+                    case 0:
+                        GenerateOtter();
+                        break;
+                    case 1:
+                        GenerateDeer();
+                        break;
+                }
+                _generateEnemiesDelayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
             }
-            _generateEnemiesDelayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
+        }
+    }
+
+    //更新戰鬥模式狀態
+    private void UpdateBattleStatus()
+    {
+        if (_allies.get(0).GetCurrentHealthPercentage() <= 0)
+        {
+            _battleStatus = 2;
+        }
+        else if (_enemies.get(0).GetCurrentHealthPercentage() <= 0)
+        {
+            _battleStatus = 1;
+        }
+        else
+        {
+            _battleStatus = 0;
         }
     }
 
@@ -275,17 +297,6 @@ public class BattleModel implements ReleasableResource
     //取得戰鬥模式狀態，0 = 戰鬥中，1 = 遊戲勝利，2 = 遊戲失敗
     public int GetBattleStatus()
     {
-        if (_allies.get(0).GetCurrentHealthPercentage() <= 0)
-        {
-            return 2;
-        }
-        else if (_enemies.get(0).GetCurrentHealthPercentage() <= 0)
-        {
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
+        return _battleStatus;
     }
 }
