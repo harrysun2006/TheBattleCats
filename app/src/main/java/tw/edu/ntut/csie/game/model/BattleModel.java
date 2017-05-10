@@ -30,7 +30,7 @@ public class BattleModel implements ReleasableResource
         _allies = new ArrayList<>();
         _enemies = new ArrayList<>();
         _allies.add(new AllyNexus(800, 150, _shifting));
-        _enemies.add(new EnemyNexus(120, 200, _shifting));
+        _enemies.add(new EnemyNexus(80, 100, _shifting));
         _money = new Money();
     }
 

@@ -22,14 +22,14 @@ public class EnemyNexus extends Units
 
         _movingActive = new Animation();
         _movingActive.setLocation(_displayX, _displayY);
-        _movingActive.addFrame(R.drawable.door);
+        _movingActive.addFrame(R.drawable.enemy_nexus);
         _movingActive.setDelay(0);
         _movingActive.setRepeating(false);
 
         _knockedBackActive = new Animation();
         _knockedBackActive.setLocation(_displayX, _displayY);
-        _knockedBackActive.addFrame(R.drawable.door);
-        _knockedBackActive.addFrame(R.drawable.door_attacked);
+        _knockedBackActive.addFrame(R.drawable.enemy_nexus);
+        _knockedBackActive.addFrame(R.drawable.enemy_nexus_attacked);
         _knockedBackActive.setDelay(1);
     }
 

@@ -41,7 +41,7 @@ public class StateBattle extends GameState
         _background = new TranslationBitmap(R.drawable.test_background);
         _battleModel = new BattleModel();
         _allyNexusHealth = new HealthBar(810, 120, 120);
-        _enemyNexusHealth = new HealthBar(85, 150, 120);
+        _enemyNexusHealth = new HealthBar(70, 100, 120);
         _moneyAddButton = new LevelButton(R.drawable.money_button_80, R.drawable.money_button_80_disabled, 10, 286);
 
         _winningBanner = new MovingBitmap(R.drawable.winning_banner, -299, 150);
