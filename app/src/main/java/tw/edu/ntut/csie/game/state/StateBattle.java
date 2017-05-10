@@ -10,6 +10,7 @@ import tw.edu.ntut.csie.game.core.MovingBitmap;
 import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
+import tw.edu.ntut.csie.game.Game;
 
 import tw.edu.ntut.csie.game.model.TranslationBitmap;
 import tw.edu.ntut.csie.game.model.BattleModel;
@@ -44,10 +45,12 @@ public class StateBattle extends GameState
         _enemyNexusHealth = new HealthBar(70, 100, 120);
         _moneyAddButton = new LevelButton(R.drawable.money_button_80, R.drawable.money_button_80_disabled, 10, 286);
 
-        _winningBanner = new MovingBitmap(R.drawable.winning_banner, -299, 150);
+        _winningBanner = new MovingBitmap(R.drawable.winning_banner, -299, 125);
         _winningBannerTransition = new HorizontalTransition(_winningBanner, 200);
         _losingBanner = new MovingBitmap(R.drawable.losing_banner, 240, -83);
-        _losingBannerTransition = new VerticalTransition(_losingBanner, 140);
+        _losingBannerTransition = new VerticalTransition(_losingBanner, 120);
+        _exitBattleButton = new MovingBitmap(R.drawable.exit_battle_button, 255, 200);
+        _exitBattleButton.setVisible(false);
 
         _isGameOver = false;
         _shiftingModule = new ShiftingModule();
@@ -120,6 +123,7 @@ public class StateBattle extends GameState
             {
                 _shiftingModule.AssignSpecifiedSliding(0, 30);
                 _winningBannerTransition.Activate();
+                _exitBattleButton.setVisible(true);
                 _backgroundMusic.stop();
                 _winningMusic.play();
                 _isGameOver = true;
@@ -131,6 +135,7 @@ public class StateBattle extends GameState
             {
                 _shiftingModule.AssignSpecifiedSliding(360, -30);
                 _losingBannerTransition.Activate();
+                _exitBattleButton.setVisible(true);
                 _backgroundMusic.stop();
                 _losingMusic.play();
                 _isGameOver = true;
@@ -162,6 +167,7 @@ public class StateBattle extends GameState
         _moneyAddButton.Show();
         _winningBanner.show();
         _losingBanner.show();
+        _exitBattleButton.show();
     }
 
     @Override
@@ -183,6 +189,7 @@ public class StateBattle extends GameState
         _moneyAddButton.release();
         _winningBanner.release();
         _losingBanner.release();
+        _exitBattleButton.release();
         _backgroundMusic = null;
         _winningMusic = null;
         _buyingSound = null;
@@ -199,6 +206,7 @@ public class StateBattle extends GameState
         _moneyAddButton = null;
         _winningBanner = null;
         _losingBanner = null;
+        _exitBattleButton = null;
     }
 
     @Override
@@ -280,6 +288,16 @@ public class StateBattle extends GameState
             _currentPressedX = pointers.get(0).getX();
             _shiftingModule.HandlePointerPressed(_currentPressedX);
         }
+        if (_isGameOver)
+        {
+            if (pressedX > _exitBattleButton.getX() && pressedX < _exitBattleButton.getX() + _exitBattleButton.getWidth())
+            {
+                if (pressedY > _exitBattleButton.getY() && pressedY < _exitBattleButton.getY() + _exitBattleButton.getHeight())
+                {
+                    changeState(Game.OVER_STATE);
+                }
+            }
+        }
         return true;
     }
 
@@ -337,6 +355,7 @@ public class StateBattle extends GameState
     private MovingBitmap _losingBanner;
     private HorizontalTransition _winningBannerTransition;
     private VerticalTransition _losingBannerTransition;
+    private MovingBitmap _exitBattleButton;
 
     private ShiftingModule _shiftingModule;
     private int _currentPressedX;
