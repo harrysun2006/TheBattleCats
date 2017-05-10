@@ -11,7 +11,6 @@ import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 
-import tw.edu.ntut.csie.game.model.LevelButton;
 import tw.edu.ntut.csie.game.model.TranslationBitmap;
 import tw.edu.ntut.csie.game.model.BattleModel;
 import tw.edu.ntut.csie.game.model.Capoo;
@@ -20,6 +19,7 @@ import tw.edu.ntut.csie.game.model.Rabbit;
 import tw.edu.ntut.csie.game.model.CDButton;
 import tw.edu.ntut.csie.game.model.CooldownBar;
 import tw.edu.ntut.csie.game.model.HealthBar;
+import tw.edu.ntut.csie.game.model.LevelButton;
 import tw.edu.ntut.csie.game.model.HorizontalTransition;
 import tw.edu.ntut.csie.game.model.VerticalTransition;
 import tw.edu.ntut.csie.game.model.ShiftingModule;
@@ -41,7 +41,7 @@ public class StateBattle extends GameState
         _battleModel = new BattleModel();
         _allyNexusHealth = new HealthBar(810, 120, 120);
         _enemyNexusHealth = new HealthBar(85, 150, 120);
-        _moneyAddButton = new LevelButton(R.drawable.money_button_80,R.drawable.levelup,10, 286);
+        _moneyAddButton = new LevelButton(R.drawable.money_button_80, R.drawable.levelup, 10, 286);
 
         _winningBanner = new MovingBitmap(R.drawable.winning_banner, -299, 150);
         _winningBannerTransition = new HorizontalTransition(_winningBanner, 200);

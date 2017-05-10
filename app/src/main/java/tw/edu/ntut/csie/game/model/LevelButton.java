@@ -61,7 +61,6 @@ public class LevelButton extends Button
                     _levelFourLabel.setVisible(false);
                     _levelFiveLabel.setVisible(true);
                     break;
-
             }
         }
     }

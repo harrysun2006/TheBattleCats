@@ -8,7 +8,6 @@ import tw.edu.ntut.csie.game.core.MovingBitmap;
 import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
-import tw.edu.ntut.csie.game.model.CDButton;
 import tw.edu.ntut.csie.game.model.LevelButton;
 import tw.edu.ntut.csie.game.model.ShopModel;
 
