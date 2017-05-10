@@ -87,7 +87,7 @@ public class StateBattle extends GameState
         _capooButton.SetEnable(_battleModel.GetCurrentMoney(), Capoo.COST);
         _pusheenButton.SetEnable(_battleModel.GetCurrentMoney(), Pusheen.COST);
         _rabbitButton.SetEnable(_battleModel.GetCurrentMoney(), Rabbit.COST);
-        _moneyAddButton.SetEnable(_battleModel.GetCurrentMoney(), 100);
+        _moneyAddButton.SetEnable(_battleModel.GetCurrentMoney(), 200);
         _capooCooldown.SetCurrentPercentage(_capooButton.GetPercent());
         _pusheenCooldown.SetCurrentPercentage(_pusheenButton.GetPercent());
         _rabbitCooldown.SetCurrentPercentage(_rabbitButton.GetPercent());

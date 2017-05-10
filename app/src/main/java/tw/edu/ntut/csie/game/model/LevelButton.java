@@ -68,7 +68,7 @@ public class LevelButton extends Button
 
     public void SetEnable(int current, int cost)
     {
-        if (current < cost)
+        if (current < cost || _level >= 5)
         {
             _isEnabled = false;
             _enableButton.setVisible(false);
