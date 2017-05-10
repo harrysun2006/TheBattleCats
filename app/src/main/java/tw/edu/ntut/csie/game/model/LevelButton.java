@@ -19,7 +19,7 @@ public class LevelButton extends Button
     public LevelButton(int enableFilename, int disableFilename, int x, int y)
     {
         super(enableFilename, disableFilename, x, y);
-        _level = 1;
+
         _levelOneLabel = new MovingBitmap(R.drawable.level1_label, x, y);
         _levelTwoLabel = new MovingBitmap(R.drawable.level2_label, x, y);
         _levelThreeLabel = new MovingBitmap(R.drawable.level3_label, x, y);
@@ -30,11 +30,11 @@ public class LevelButton extends Button
         _levelThreeLabel.setVisible(false);
         _levelFourLabel.setVisible(false);
         _levelFiveLabel.setVisible(false);
+        _level = 1;
     }
 
     public void Run()
     {
-
     }
 
     //按下按鈕
@@ -80,7 +80,6 @@ public class LevelButton extends Button
 
     }
 
-    @Override
     public void Show()
     {
         _enableButton.show();

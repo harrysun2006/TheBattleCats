@@ -23,6 +23,7 @@ import tw.edu.ntut.csie.game.model.LevelButton;
 import tw.edu.ntut.csie.game.model.HorizontalTransition;
 import tw.edu.ntut.csie.game.model.VerticalTransition;
 import tw.edu.ntut.csie.game.model.ShiftingModule;
+import tw.edu.ntut.csie.game.model.Money;
 
 public class StateBattle extends GameState
 {
@@ -41,7 +42,7 @@ public class StateBattle extends GameState
         _battleModel = new BattleModel();
         _allyNexusHealth = new HealthBar(810, 120, 120);
         _enemyNexusHealth = new HealthBar(85, 150, 120);
-        _moneyAddButton = new LevelButton(R.drawable.money_button_80, R.drawable.levelup, 10, 286);
+        _moneyAddButton = new LevelButton(R.drawable.money_button_80, R.drawable.money_button_80_disabled, 10, 286);
 
         _winningBanner = new MovingBitmap(R.drawable.winning_banner, -299, 150);
         _winningBannerTransition = new HorizontalTransition(_winningBanner, 200);
@@ -87,7 +88,7 @@ public class StateBattle extends GameState
         _capooButton.SetEnable(_battleModel.GetCurrentMoney(), Capoo.COST);
         _pusheenButton.SetEnable(_battleModel.GetCurrentMoney(), Pusheen.COST);
         _rabbitButton.SetEnable(_battleModel.GetCurrentMoney(), Rabbit.COST);
-        _moneyAddButton.SetEnable(_battleModel.GetCurrentMoney(), 200);
+        _moneyAddButton.SetEnable(_battleModel.GetCurrentMoney(), Money.ADD_MONEY_COST);
         _capooCooldown.SetCurrentPercentage(_capooButton.GetPercent());
         _pusheenCooldown.SetCurrentPercentage(_pusheenButton.GetPercent());
         _rabbitCooldown.SetCurrentPercentage(_rabbitButton.GetPercent());

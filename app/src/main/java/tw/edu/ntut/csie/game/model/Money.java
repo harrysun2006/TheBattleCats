@@ -11,8 +11,9 @@ import tw.edu.ntut.csie.game.R;
 public class Money
 {
     public static int INITIAL_MAX_MONEY = 1000;
-    public static int SPEED = 10;
     public static int MONEY_MAX_ADD_SCALE = 100;
+    public static int ADD_MONEY_COST = 200;
+    public static int SPEED = 10;
     private MovingBitmap _coin;
     private MovingBitmap _slash;
     private Integer _currentInteger;
@@ -22,7 +23,7 @@ public class Money
 
     public Money()
     {
-        _coin = new MovingBitmap(R.drawable.coin, 420, 8);
+        _coin = new MovingBitmap(R.drawable.coin, 425, 8);
         _slash = new MovingBitmap(R.drawable.slash, 534, 10);
         _currentInteger = new Integer(4, _currentMoney, 450, 10);
         _maxInteger = new Integer(4, _maxMoney, 550, 10);
@@ -39,10 +40,10 @@ public class Money
     //增加錢的最大值
     public void AddMoneyMax()
     {
-        if (_currentMoney > 200)
+        if (_currentMoney > ADD_MONEY_COST)
         {
             _maxMoney += MONEY_MAX_ADD_SCALE;
-            _currentMoney -= 200;
+            _currentMoney -= ADD_MONEY_COST;
         }
     }
 
