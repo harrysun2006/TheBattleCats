@@ -1,7 +1,7 @@
 package tw.edu.ntut.csie.game.model;
 
-import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.core.MovingBitmap;
+import tw.edu.ntut.csie.game.R;
 
 /**
  * Created by User on 2017/5/8.
