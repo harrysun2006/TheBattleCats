@@ -21,6 +21,7 @@ public abstract class Button implements ReleasableResource
         _y = y;
         _enableButton = new MovingBitmap(enableFilename, _x, _y);
         _disableButton = new MovingBitmap(disableFilename, _x, _y);
+        _enableButton.setVisible(false);
         _isEnabled = false;
     }
 

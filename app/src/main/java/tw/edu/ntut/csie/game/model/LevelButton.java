@@ -25,6 +25,11 @@ public class LevelButton extends Button
         _levelThreeLabel = new MovingBitmap(R.drawable.level3_label, x, y);
         _levelFourLabel = new MovingBitmap(R.drawable.level4_label, x, y);
         _levelFiveLabel = new MovingBitmap(R.drawable.level5_label, x, y);
+
+        _levelTwoLabel.setVisible(false);
+        _levelThreeLabel.setVisible(false);
+        _levelFourLabel.setVisible(false);
+        _levelFiveLabel.setVisible(false);
     }
 
     public void Run()
@@ -35,11 +40,56 @@ public class LevelButton extends Button
     //按下按鈕
     public void Push()
     {
+        if(_level < 5)
+        {
+            _level++;
+            switch (_level)
+            {
+                case 2:
+                    _levelOneLabel.setVisible(false);
+                    _levelTwoLabel.setVisible(true);
+                    break;
+                case 3:
+                    _levelTwoLabel.setVisible(false);
+                    _levelThreeLabel.setVisible(true);
+                    break;
+                case 4:
+                    _levelThreeLabel.setVisible(false);
+                    _levelFourLabel.setVisible(true);
+                    break;
+                case 5:
+                    _levelFourLabel.setVisible(false);
+                    _levelFiveLabel.setVisible(true);
+                    break;
 
+            }
+        }
     }
 
     public void SetEnable(int current, int cost)
     {
+        if (current < cost)
+        {
+            _isEnabled = false;
+            _enableButton.setVisible(false);
+            _disableButton.setVisible(true);
+            return;
+        }
+        _isEnabled = true;
+        _enableButton.setVisible(true);
+        _disableButton.setVisible(false);
 
+    }
+
+    @Override
+    public void Show()
+    {
+        _enableButton.show();
+        _disableButton.show();
+        _levelOneLabel.show();
+        _levelTwoLabel.show();
+        _levelThreeLabel.show();
+        _levelFourLabel.show();
+        _levelFiveLabel.show();
     }
 }

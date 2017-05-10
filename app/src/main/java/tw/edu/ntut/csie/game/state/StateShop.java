@@ -89,6 +89,7 @@ public class StateShop extends GameState
         int pressedY = pointers.get(0).getY();
         if (pressedX > _black.GetX() && pressedX < _black.GetX() + _black.GetWidth() && pressedY > _black.GetY() && pressedY < _black.GetY() + _black.GetHeight())
         {
+            _black.Push();
             _shopModel.AddMoneyPocket();
             /*if (_black.GetIsEnabled() == true)
             {//錢包大小升級測試

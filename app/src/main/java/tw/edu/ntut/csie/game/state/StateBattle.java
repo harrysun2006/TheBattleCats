@@ -11,6 +11,7 @@ import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 
+import tw.edu.ntut.csie.game.model.LevelButton;
 import tw.edu.ntut.csie.game.model.TranslationBitmap;
 import tw.edu.ntut.csie.game.model.BattleModel;
 import tw.edu.ntut.csie.game.model.Capoo;
@@ -40,7 +41,7 @@ public class StateBattle extends GameState
         _battleModel = new BattleModel();
         _allyNexusHealth = new HealthBar(810, 120, 120);
         _enemyNexusHealth = new HealthBar(85, 150, 120);
-        _moneyAddButton = new MovingBitmap(R.drawable.money_button_80, 10, 286);
+        _moneyAddButton = new LevelButton(R.drawable.money_button_80,R.drawable.levelup,10, 286);
 
         _winningBanner = new MovingBitmap(R.drawable.winning_banner, -299, 150);
         _winningBannerTransition = new HorizontalTransition(_winningBanner, 200);
@@ -86,6 +87,7 @@ public class StateBattle extends GameState
         _capooButton.SetEnable(_battleModel.GetCurrentMoney(), Capoo.COST);
         _pusheenButton.SetEnable(_battleModel.GetCurrentMoney(), Pusheen.COST);
         _rabbitButton.SetEnable(_battleModel.GetCurrentMoney(), Rabbit.COST);
+        _moneyAddButton.SetEnable(_battleModel.GetCurrentMoney(), 100);
         _capooCooldown.SetCurrentPercentage(_capooButton.GetPercent());
         _pusheenCooldown.SetCurrentPercentage(_pusheenButton.GetPercent());
         _rabbitCooldown.SetCurrentPercentage(_rabbitButton.GetPercent());
@@ -156,7 +158,7 @@ public class StateBattle extends GameState
         _rabbitCooldown.Show();
         _allyNexusHealth.Show();
         _enemyNexusHealth.Show();
-        _moneyAddButton.show();
+        _moneyAddButton.Show();
         _winningBanner.show();
         _losingBanner.show();
     }
@@ -259,11 +261,15 @@ public class StateBattle extends GameState
                 }
             }
         }
-        if (pressedX > _moneyAddButton.getX() && pressedX < _moneyAddButton.getX() + _moneyAddButton.getWidth())
+        if (pressedX > _moneyAddButton.GetX() && pressedX < _moneyAddButton.GetX() + _moneyAddButton.GetWidth())
         {
-            if (pressedY > _moneyAddButton.getY() && pressedY < _moneyAddButton.getY() + _moneyAddButton.getHeight())
+            if (pressedY > _moneyAddButton.GetY() && pressedY < _moneyAddButton.GetY() + _moneyAddButton.GetHeight())
             {
-                _battleModel.AddMoneyMax();
+                if(_moneyAddButton.GetIsEnabled() == true)
+                {
+                    _moneyAddButton.Push();
+                    _battleModel.AddMoneyMax();
+                }
             }
         }
         else
@@ -324,7 +330,7 @@ public class StateBattle extends GameState
     private CooldownBar _rabbitCooldown;
     private HealthBar _allyNexusHealth;
     private HealthBar _enemyNexusHealth;
-    private MovingBitmap _moneyAddButton;
+    private LevelButton _moneyAddButton;
     private MovingBitmap _winningBanner;
     private MovingBitmap _losingBanner;
     private HorizontalTransition _winningBannerTransition;
