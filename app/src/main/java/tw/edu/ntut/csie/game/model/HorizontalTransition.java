@@ -10,7 +10,8 @@ public class HorizontalTransition
     private int _destinationX;
     private int _x;
     private int _y;
-    private boolean _active;
+    private boolean _isActive;
+    private boolean _isFinished;
 
     public HorizontalTransition(MovingBitmap movingBitmap, int destinationX)
     {
@@ -19,17 +20,19 @@ public class HorizontalTransition
         _destinationX = destinationX;
         _x = _movingBitmap.getX();
         _y = _movingBitmap.getY();
-        _active = false;
+        _isActive = false;
+        _isFinished = false;
     }
 
     public void Run()
     {
-        if (_active && _x != _destinationX)
+        if (_isActive && !_isFinished)
         {
             _x += 30;
             if (_x > _destinationX)
             {
                 _x = _destinationX;
+                _isFinished = true; //轉場動畫結束的時候讓_isFinished = true
             }
             _movingBitmap.setLocation(_x, _y);
         }
@@ -39,6 +42,11 @@ public class HorizontalTransition
     public void Activate()
     {
         _movingBitmap.setVisible(true);
-        _active = true;
+        _isActive = true;
+    }
+
+    public boolean IsTransitionFinished()
+    {
+        return _isFinished;
     }
 }

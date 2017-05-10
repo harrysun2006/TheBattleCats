@@ -10,7 +10,8 @@ public class VerticalTransition
     private int _destinationY;
     private int _x;
     private int _y;
-    private boolean _active;
+    private boolean _isActive;
+    private boolean _isFinished;
 
     public VerticalTransition(MovingBitmap movingBitmap, int destinationY)
     {
@@ -19,17 +20,19 @@ public class VerticalTransition
         _destinationY = destinationY;
         _x = _movingBitmap.getX();
         _y = _movingBitmap.getY();
-        _active = false;
+        _isActive = false;
+        _isFinished = false;
     }
 
     public void Run()
     {
-        if (_active && _y != _destinationY)
+        if (_isActive && !_isFinished)
         {
             _y += 25;
             if (_y > _destinationY)
             {
                 _y = _destinationY;
+                _isFinished = true; //轉場動畫結束的時候讓_isFinished = true
             }
             _movingBitmap.setLocation(_x, _y);
         }
@@ -39,6 +42,11 @@ public class VerticalTransition
     public void Activate()
     {
         _movingBitmap.setVisible(true);
-        _active = true;
+        _isActive = true;
+    }
+
+    public boolean IsTransitionFinished()
+    {
+        return _isFinished;
     }
 }

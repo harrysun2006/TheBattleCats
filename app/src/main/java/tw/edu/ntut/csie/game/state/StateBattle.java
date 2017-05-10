@@ -123,10 +123,13 @@ public class StateBattle extends GameState
             {
                 _shiftingModule.AssignSpecifiedSliding(0, 30);
                 _winningBannerTransition.Activate();
-                _exitBattleButton.setVisible(true);
                 _backgroundMusic.stop();
                 _winningMusic.play();
                 _isGameOver = true;
+            }
+            if (_winningBannerTransition.IsTransitionFinished())
+            {
+                _exitBattleButton.setVisible(true);
             }
         }
         if (_battleModel.GetBattleStatus() == 2)
@@ -135,10 +138,13 @@ public class StateBattle extends GameState
             {
                 _shiftingModule.AssignSpecifiedSliding(360, -30);
                 _losingBannerTransition.Activate();
-                _exitBattleButton.setVisible(true);
                 _backgroundMusic.stop();
                 _losingMusic.play();
                 _isGameOver = true;
+            }
+            if (_losingBannerTransition.IsTransitionFinished())
+            {
+                _exitBattleButton.setVisible(true);
             }
         }
     }
@@ -288,7 +294,7 @@ public class StateBattle extends GameState
             _currentPressedX = pointers.get(0).getX();
             _shiftingModule.HandlePointerPressed(_currentPressedX);
         }
-        if (_isGameOver)
+        if (_winningBannerTransition.IsTransitionFinished() || _losingBannerTransition.IsTransitionFinished())
         {
             if (pressedX > _exitBattleButton.getX() && pressedX < _exitBattleButton.getX() + _exitBattleButton.getWidth())
             {
