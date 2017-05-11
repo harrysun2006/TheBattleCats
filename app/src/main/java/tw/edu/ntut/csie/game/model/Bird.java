@@ -24,7 +24,7 @@ public class Bird extends Units
         _displayY = _y;
 
         _attackDamage = 50;
-        _moveSpeed = 10;
+        _moveSpeed = 8;
         _attackSpeed = 1;
 
         InitializeMovingActive();

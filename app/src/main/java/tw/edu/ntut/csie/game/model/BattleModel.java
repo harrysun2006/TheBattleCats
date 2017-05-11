@@ -66,7 +66,7 @@ public class BattleModel implements ReleasableResource
             }
             else
             {
-                if (element.GetX() <= _enemiesMax + 10 && element.GetX() >= _enemiesMax)
+                if (element.GetX() <= _enemiesMax + 15 && element.GetX() >= _enemiesMax)
                 {
                     element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
                     element.Attack();
@@ -111,7 +111,7 @@ public class BattleModel implements ReleasableResource
             }
             else
             {
-                if (element.GetRightSideX() >= _alliesMax - 10 && element.GetRightSideX() <= _alliesMax)
+                if (element.GetRightSideX() >= _alliesMax - 15 && element.GetRightSideX() <= _alliesMax)
                 {
                     element.SetAttackDelayCounter(element.GetAttackDelayCounter() + 1);
                     element.Attack();

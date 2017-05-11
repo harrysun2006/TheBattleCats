@@ -12,12 +12,12 @@ import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.Game;
 
-import tw.edu.ntut.csie.game.model.Bird;
 import tw.edu.ntut.csie.game.model.TranslationBitmap;
 import tw.edu.ntut.csie.game.model.BattleModel;
 import tw.edu.ntut.csie.game.model.Capoo;
 import tw.edu.ntut.csie.game.model.Pusheen;
 import tw.edu.ntut.csie.game.model.Rabbit;
+import tw.edu.ntut.csie.game.model.Bird;
 import tw.edu.ntut.csie.game.model.CDButton;
 import tw.edu.ntut.csie.game.model.CooldownBar;
 import tw.edu.ntut.csie.game.model.HealthBar;
@@ -395,10 +395,10 @@ public class StateBattle extends GameState
     private CDButton _pusheenButton;
     private CDButton _rabbitButton;
     private CDButton _birdButton;
-    private CooldownBar _birdCooldown;
     private CooldownBar _capooCooldown;
     private CooldownBar _pusheenCooldown;
     private CooldownBar _rabbitCooldown;
+    private CooldownBar _birdCooldown;
     private HealthBar _allyNexusHealth;
     private HealthBar _enemyNexusHealth;
     private LevelButton _moneyAddButton;
