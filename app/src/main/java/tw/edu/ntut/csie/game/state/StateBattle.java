@@ -12,6 +12,7 @@ import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.Game;
 
+import tw.edu.ntut.csie.game.model.Bird;
 import tw.edu.ntut.csie.game.model.TranslationBitmap;
 import tw.edu.ntut.csie.game.model.BattleModel;
 import tw.edu.ntut.csie.game.model.Capoo;
@@ -80,6 +81,8 @@ public class StateBattle extends GameState
         _pusheenCooldown = new CooldownBar(104, 60, 70);
         _rabbitButton = new CDButton(R.drawable.rabbit_button, R.drawable.rabbit_button_disabled, 190, 10, Rabbit.COOLDOWN);
         _rabbitCooldown = new CooldownBar(194, 60, 70);
+        _birdButton = new CDButton(R.drawable.bird_button, R.drawable.bird_button_disabled, 280, 10, Bird.COOLDOWN);
+        _birdCooldown = new CooldownBar(284, 60, 70);
     }
 
     @Override
@@ -89,13 +92,16 @@ public class StateBattle extends GameState
         _capooButton.Run();
         _pusheenButton.Run();
         _rabbitButton.Run();
+        _birdButton.Run();
         _capooButton.SetEnable(_battleModel.GetCurrentMoney(), Capoo.COST);
         _pusheenButton.SetEnable(_battleModel.GetCurrentMoney(), Pusheen.COST);
         _rabbitButton.SetEnable(_battleModel.GetCurrentMoney(), Rabbit.COST);
+        _birdButton.SetEnable(_battleModel.GetCurrentMoney(), Bird.COST);
         _moneyAddButton.SetEnable(_battleModel.GetCurrentMoney(), Money.ADD_MONEY_COST);
         _capooCooldown.SetCurrentPercentage(_capooButton.GetPercent());
         _pusheenCooldown.SetCurrentPercentage(_pusheenButton.GetPercent());
         _rabbitCooldown.SetCurrentPercentage(_rabbitButton.GetPercent());
+        _birdCooldown.SetCurrentPercentage(_birdButton.GetPercent());
         _allyNexusHealth.SetCurrentPercentage(_battleModel.GetAllyNexusHealthPercentage());
         _enemyNexusHealth.SetCurrentPercentage(_battleModel.GetEnemyNexusHealthPercentage());
         _winningBannerTransition.Run();
@@ -184,9 +190,11 @@ public class StateBattle extends GameState
         _capooButton.Show();
         _pusheenButton.Show();
         _rabbitButton.Show();
+        _birdButton.Show();
         _capooCooldown.Show();
         _pusheenCooldown.Show();
         _rabbitCooldown.Show();
+        _birdCooldown.Show();
         _allyNexusHealth.Show();
         _enemyNexusHealth.Show();
         _moneyAddButton.Show();
@@ -206,9 +214,11 @@ public class StateBattle extends GameState
         _capooButton.release();
         _pusheenButton.release();
         _rabbitButton.release();
+        _birdButton.release();
         _capooCooldown.release();
         _pusheenCooldown.release();
         _rabbitCooldown.release();
+        _birdCooldown.release();
         _allyNexusHealth.release();
         _enemyNexusHealth.release();
         _moneyAddButton.release();
@@ -223,9 +233,11 @@ public class StateBattle extends GameState
         _capooButton = null;
         _pusheenButton = null;
         _rabbitButton = null;
+        _birdButton = null;
         _capooCooldown = null;
         _pusheenCooldown = null;
         _rabbitCooldown = null;
+        _birdCooldown = null;
         _allyNexusHealth = null;
         _enemyNexusHealth = null;
         _moneyAddButton = null;
@@ -292,6 +304,18 @@ public class StateBattle extends GameState
                     _buyingSound.play();
                     _rabbitButton.Push();
                     _battleModel.GenerateRabbit();
+                }
+            }
+        }
+        if (pressedX > _birdButton.GetX() && pressedX < _birdButton.GetX() + _birdButton.GetWidth())
+        {
+            if (pressedY > _birdButton.GetY() && pressedY < _birdButton.GetY() + _birdButton.GetHeight())
+            {
+                if (_birdButton.GetIsEnabled() == true)
+                {
+                    _buyingSound.play();
+                    _birdButton.Push();
+                    _battleModel.GenerateBird();
                 }
             }
         }
@@ -370,6 +394,8 @@ public class StateBattle extends GameState
     private CDButton _capooButton;
     private CDButton _pusheenButton;
     private CDButton _rabbitButton;
+    private CDButton _birdButton;
+    private CooldownBar _birdCooldown;
     private CooldownBar _capooCooldown;
     private CooldownBar _pusheenCooldown;
     private CooldownBar _rabbitCooldown;
