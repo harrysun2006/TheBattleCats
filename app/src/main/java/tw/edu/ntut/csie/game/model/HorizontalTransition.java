@@ -28,7 +28,7 @@ public class HorizontalTransition
     {
         if (_isActive && !_isFinished)
         {
-            _x += 30;
+            _x += 50;
             if (_x > _destinationX)
             {
                 _x = _destinationX;

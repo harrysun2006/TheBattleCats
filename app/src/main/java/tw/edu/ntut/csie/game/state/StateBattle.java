@@ -53,6 +53,7 @@ public class StateBattle extends GameState
         _exitBattleButton.setVisible(false);
 
         _isGameOver = false;
+        _exitBattleButtonDelay = 0;
         _shiftingModule = new ShiftingModule();
         _shiftingModule.SetShifting(360);
         Translation(_shiftingModule.GetShifting(), 0);
@@ -119,30 +120,48 @@ public class StateBattle extends GameState
     {
         if (_battleModel.GetBattleStatus() == 1)
         {
-            if (!_isGameOver)
-            {
-                _shiftingModule.AssignSpecifiedSliding(0, 30);
-                _winningBannerTransition.Activate();
-                _backgroundMusic.stop();
-                _winningMusic.play();
-                _isGameOver = true;
-            }
-            if (_winningBannerTransition.IsTransitionFinished())
+            HandleWinningEvent();
+        }
+        if (_battleModel.GetBattleStatus() == 2)
+        {
+            HandleLosingEvent();
+        }
+    }
+
+    private void HandleWinningEvent()
+    {
+        if (!_isGameOver)
+        {
+            _shiftingModule.AssignSpecifiedSliding(0, 30);
+            _winningBannerTransition.Activate();
+            _backgroundMusic.stop();
+            _winningMusic.play();
+            _isGameOver = true;
+        }
+        if (_winningBannerTransition.IsTransitionFinished()) //勝利轉場結束後延遲2秒跳出離開按鈕
+        {
+            _exitBattleButtonDelay++;
+            if (_exitBattleButtonDelay == Game.FRAME_RATE * 4 / 3)
             {
                 _exitBattleButton.setVisible(true);
             }
         }
-        if (_battleModel.GetBattleStatus() == 2)
+    }
+
+    private void HandleLosingEvent()
+    {
+        if (!_isGameOver)
         {
-            if (!_isGameOver)
-            {
-                _shiftingModule.AssignSpecifiedSliding(360, -30);
-                _losingBannerTransition.Activate();
-                _backgroundMusic.stop();
-                _losingMusic.play();
-                _isGameOver = true;
-            }
-            if (_losingBannerTransition.IsTransitionFinished())
+            _shiftingModule.AssignSpecifiedSliding(360, -30);
+            _losingBannerTransition.Activate();
+            _backgroundMusic.stop();
+            _losingMusic.play();
+            _isGameOver = true;
+        }
+        if (_losingBannerTransition.IsTransitionFinished()) //失敗轉場結束後延遲2秒跳出離開按鈕
+        {
+            _exitBattleButtonDelay++;
+            if (_exitBattleButtonDelay == Game.FRAME_RATE * 4 / 3)
             {
                 _exitBattleButton.setVisible(true);
             }
@@ -367,4 +386,5 @@ public class StateBattle extends GameState
     private int _currentPressedX;
     private boolean _isPressed;
     private boolean _isGameOver;
+    private int _exitBattleButtonDelay;
 }
