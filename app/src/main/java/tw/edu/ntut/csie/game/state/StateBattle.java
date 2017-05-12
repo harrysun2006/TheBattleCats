@@ -50,7 +50,7 @@ public class StateBattle extends GameState
         _winningBannerTransition = new HorizontalTransition(_winningBanner, 200);
         _losingBanner = new MovingBitmap(R.drawable.losing_banner, 240, -83);
         _losingBannerTransition = new VerticalTransition(_losingBanner, 120);
-        _exitBattleButton = new MovingBitmap(R.drawable.exit_battle_button, 255, 200);
+        _exitBattleButton = new MovingBitmap(R.drawable.exit_battle_button, 255, 220);
         _exitBattleButton.setVisible(false);
 
         _isGameOver = false;
@@ -62,7 +62,7 @@ public class StateBattle extends GameState
 
     private void InitializeMusic()
     {
-        _backgroundMusic = new Audio(R.raw.ntut);
+        _backgroundMusic = new Audio(R.raw.background);
         _backgroundMusic.setRepeating(true);
         _winningMusic = new Audio(R.raw.winning);
         _winningMusic.setRepeating(false);
