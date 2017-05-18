@@ -30,8 +30,8 @@ public class StateShop extends GameState
         _music = new Audio(R.raw.ntut);
         _music.setRepeating(true);
         _music.play();
-        _black = new LevelButton(R.drawable.android_black, R.drawable.android_green, 10, 150);
-        _green = new LevelButton(R.drawable.android_green, R.drawable.android_black, 100, 150);
+        _moneyPocketButton = new LevelButton(R.drawable.money_pocket, R.drawable.money_pocket, 10, 120);
+        _workEfficiencyButton = new LevelButton(R.drawable.work_efficitive, R.drawable.work_efficiency, 200, 120);
         _shopModel = new ShopModel();
     }
 
@@ -44,8 +44,8 @@ public class StateShop extends GameState
     public void show()
     {
         _background.show();
-        _black.Show();
-        _green.Show();
+        _moneyPocketButton.Show();
+        _workEfficiencyButton.Show();
     }
 
     @Override
@@ -53,12 +53,12 @@ public class StateShop extends GameState
     {
         _background.release();
         _music.release();
-        _black.release();
-        _green.release();
+        _moneyPocketButton.release();
+        _workEfficiencyButton.release();
         _background = null;
         _music = null;
-        _black = null;
-        _green = null;
+        _moneyPocketButton = null;
+        _workEfficiencyButton = null;
     }
 
     @Override
@@ -86,13 +86,14 @@ public class StateShop extends GameState
     {
         int pressedX = pointers.get(0).getX();
         int pressedY = pointers.get(0).getY();
-        if (pressedX > _black.GetX() && pressedX < _black.GetX() + _black.GetWidth() && pressedY > _black.GetY() && pressedY < _black.GetY() + _black.GetHeight())
+        if (pressedX > _moneyPocketButton.GetX() && pressedX < _moneyPocketButton.GetX() + _moneyPocketButton.GetWidth() &&
+                pressedY > _moneyPocketButton.GetY() && pressedY < _moneyPocketButton.GetY() + _moneyPocketButton.GetHeight())
         {
-            _black.Push();
+            _moneyPocketButton.Push();
             _shopModel.AddMoneyPocket();
-            /*if (_black.GetIsEnabled() == true)
+            /*if (_moneyPocketButton.GetIsEnabled() == true)
             {//錢包大小升級測試
-                _black.Push();
+                _moneyPocketButton.Push();
                 _shopModel.AddMoneyPocket();
             }*/
         }
@@ -125,7 +126,7 @@ public class StateShop extends GameState
 
     private MovingBitmap _background;
     private Audio _music;
-    private LevelButton _black;
-    private LevelButton _green;
+    private LevelButton _moneyPocketButton;
+    private LevelButton _workEfficiencyButton;
     private ShopModel _shopModel;
 }

@@ -20,11 +20,11 @@ public class LevelButton extends Button
     {
         super(enableFilename, disableFilename, x, y);
 
-        _levelOneLabel = new MovingBitmap(R.drawable.level1_label, x + 5, y);
-        _levelTwoLabel = new MovingBitmap(R.drawable.level2_label, x + 5, y);
-        _levelThreeLabel = new MovingBitmap(R.drawable.level3_label, x + 5, y);
-        _levelFourLabel = new MovingBitmap(R.drawable.level4_label, x + 5, y);
-        _levelFiveLabel = new MovingBitmap(R.drawable.level5_label, x + 5, y);
+        _levelOneLabel = new MovingBitmap(R.drawable.real1, x + 145, y + 60);
+        _levelTwoLabel = new MovingBitmap(R.drawable.real2, x + 145, y + 60);
+        _levelThreeLabel = new MovingBitmap(R.drawable.real3, x + 145, y + 60);
+        _levelFourLabel = new MovingBitmap(R.drawable.real4, x + 145, y + 60);
+        _levelFiveLabel = new MovingBitmap(R.drawable.real5, x + 145, y + 60);
 
         _levelTwoLabel.setVisible(false);
         _levelThreeLabel.setVisible(false);
