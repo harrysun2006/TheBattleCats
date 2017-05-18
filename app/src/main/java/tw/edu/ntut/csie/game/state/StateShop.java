@@ -8,8 +8,8 @@ import tw.edu.ntut.csie.game.core.MovingBitmap;
 import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
-import tw.edu.ntut.csie.game.model.LevelButton;
 import tw.edu.ntut.csie.game.model.ShopModel;
+import tw.edu.ntut.csie.game.model.ShopLevelButton;
 
 /**
  * Created by User on 2017/4/26.
@@ -30,9 +30,9 @@ public class StateShop extends GameState
         _music = new Audio(R.raw.ntut);
         _music.setRepeating(true);
         _music.play();
-        _moneyPocketButton = new LevelButton(R.drawable.money_pocket, R.drawable.money_pocket, 10, 120);
-        _workEfficiencyButton = new LevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency, 200, 120);
         _shopModel = new ShopModel();
+        _moneyPocketButton = new ShopLevelButton(R.drawable.money_pocket, R.drawable.money_pocket, 10, 120);
+        _workEfficiencyButton = new ShopLevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency, 200, 120);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class StateShop extends GameState
 
     private MovingBitmap _background;
     private Audio _music;
-    private LevelButton _moneyPocketButton;
-    private LevelButton _workEfficiencyButton;
     private ShopModel _shopModel;
+    private ShopLevelButton _moneyPocketButton;
+    private ShopLevelButton _workEfficiencyButton;
 }

@@ -21,7 +21,7 @@ import tw.edu.ntut.csie.game.model.Bird;
 import tw.edu.ntut.csie.game.model.CDButton;
 import tw.edu.ntut.csie.game.model.CooldownBar;
 import tw.edu.ntut.csie.game.model.HealthBar;
-import tw.edu.ntut.csie.game.model.LevelButton;
+import tw.edu.ntut.csie.game.model.BattleLevelButton;
 import tw.edu.ntut.csie.game.model.HorizontalTransition;
 import tw.edu.ntut.csie.game.model.VerticalTransition;
 import tw.edu.ntut.csie.game.model.ShiftingModule;
@@ -44,7 +44,7 @@ public class StateBattle extends GameState
         _battleModel = new BattleModel();
         _allyNexusHealth = new HealthBar(810, 120, 120);
         _enemyNexusHealth = new HealthBar(70, 100, 120);
-        _moneyAddButton = new LevelButton(R.drawable.money_button_80, R.drawable.money_button_80_disabled, 10, 286);
+        _moneyAddButton = new BattleLevelButton(R.drawable.money_button_80, R.drawable.money_button_80_disabled, 10, 286);
 
         _winningBanner = new MovingBitmap(R.drawable.winning_banner, -299, 125);
         _winningBannerTransition = new HorizontalTransition(_winningBanner, 200);
@@ -401,7 +401,7 @@ public class StateBattle extends GameState
     private CooldownBar _birdCooldown;
     private HealthBar _allyNexusHealth;
     private HealthBar _enemyNexusHealth;
-    private LevelButton _moneyAddButton;
+    private BattleLevelButton _moneyAddButton;
     private MovingBitmap _winningBanner;
     private MovingBitmap _losingBanner;
     private HorizontalTransition _winningBannerTransition;
