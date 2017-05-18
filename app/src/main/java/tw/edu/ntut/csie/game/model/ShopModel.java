@@ -8,6 +8,7 @@ public class ShopModel
 {
     public ShopModel()
     {
+
     }
 
     //增加錢包初始最大值
@@ -21,5 +22,16 @@ public class ShopModel
     public void AddMoneySpeed()
     {
         Money.SPEED = Money.SPEED + 2;
+    }
+
+    //增加友軍主堡體力
+    public void AddCastleEnergy()
+    {
+        AllyNexus.HEALTH += 1000;
+    }
+
+    public void AddExperienceLearing()
+    {
+
     }
 }

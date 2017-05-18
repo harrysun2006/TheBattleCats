@@ -33,6 +33,8 @@ public class StateShop extends GameState
         _shopModel = new ShopModel();
         _moneyPocketButton = new ShopLevelButton(R.drawable.money_pocket, R.drawable.money_pocket, 10, 120);
         _workEfficiencyButton = new ShopLevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency, 200, 120);
+        _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy, 390, 120);
+        _experienceLearingButton = new ShopLevelButton(R.drawable.experience_learing, R.drawable.experience_learing, 580, 120);
     }
 
     @Override
@@ -46,6 +48,8 @@ public class StateShop extends GameState
         _background.show();
         _moneyPocketButton.Show();
         _workEfficiencyButton.Show();
+        _castleEnergyButton.Show();
+        _experienceLearingButton.Show();
     }
 
     @Override
@@ -55,10 +59,14 @@ public class StateShop extends GameState
         _music.release();
         _moneyPocketButton.release();
         _workEfficiencyButton.release();
+        _castleEnergyButton.release();
+        _experienceLearingButton.release();
         _background = null;
         _music = null;
         _moneyPocketButton = null;
         _workEfficiencyButton = null;
+        _castleEnergyButton = null;
+        _experienceLearingButton = null;
     }
 
     @Override
@@ -106,6 +114,24 @@ public class StateShop extends GameState
                 _shopModel.AddMoneySpeed();
 //            }
         }
+        else if (pressedX > _castleEnergyButton.GetX() && pressedX < _castleEnergyButton.GetX() + _castleEnergyButton.GetWidth() &&
+                pressedY > _castleEnergyButton.GetY() && pressedY < _castleEnergyButton.GetY() + _castleEnergyButton.GetHeight())
+        {
+//            if (_castleEnergyButton.GetIsEnabled())
+//            {
+            _castleEnergyButton.Push();
+            _shopModel.AddCastleEnergy();
+//            }
+        }
+        else if (pressedX > _experienceLearingButton.GetX() && pressedX < _experienceLearingButton.GetX() + _experienceLearingButton.GetWidth() &&
+                pressedY > _experienceLearingButton.GetY() && pressedY < _experienceLearingButton.GetY() + _experienceLearingButton.GetHeight())
+        {
+//            if (_experienceLearingButton.GetIsEnabled())
+//            {
+            _experienceLearingButton.Push();
+            _shopModel.AddExperienceLearing();
+//            }
+        }
         return true;
     }
 
@@ -138,4 +164,6 @@ public class StateShop extends GameState
     private ShopModel _shopModel;
     private ShopLevelButton _moneyPocketButton;
     private ShopLevelButton _workEfficiencyButton;
+    private ShopLevelButton _castleEnergyButton;
+    private ShopLevelButton _experienceLearingButton;
 }
