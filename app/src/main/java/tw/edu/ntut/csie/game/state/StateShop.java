@@ -31,7 +31,7 @@ public class StateShop extends GameState
         _music.setRepeating(true);
         _music.play();
         _moneyPocketButton = new LevelButton(R.drawable.money_pocket, R.drawable.money_pocket, 10, 120);
-        _workEfficiencyButton = new LevelButton(R.drawable.work_efficitive, R.drawable.work_efficiency, 200, 120);
+        _workEfficiencyButton = new LevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency, 200, 120);
         _shopModel = new ShopModel();
     }
 
@@ -96,6 +96,15 @@ public class StateShop extends GameState
                 _moneyPocketButton.Push();
                 _shopModel.AddMoneyPocket();
             }*/
+        }
+        else if (pressedX > _workEfficiencyButton.GetX() && pressedX < _workEfficiencyButton.GetX() + _workEfficiencyButton.GetWidth() &&
+                pressedY > _workEfficiencyButton.GetY() && pressedY < _workEfficiencyButton.GetY() + _workEfficiencyButton.GetHeight())
+        {
+//            if (_workEfficiencyButton.GetIsEnabled())
+//            {
+                _workEfficiencyButton.Push();
+                _shopModel.AddMoneySpeed();
+//            }
         }
         return true;
     }
