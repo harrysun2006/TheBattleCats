@@ -7,8 +7,8 @@ import tw.edu.ntut.csie.game.extend.Animation;
 
 public class AllyNexus extends Units
 {
-    private boolean _invincible;
     public static int HEALTH = 1000;
+    private boolean _invincible;
 
     public AllyNexus(int x, int y, int shiftedX)
     {

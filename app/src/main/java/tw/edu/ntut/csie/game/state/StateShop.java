@@ -34,7 +34,7 @@ public class StateShop extends GameState
         _moneyPocketButton = new ShopLevelButton(R.drawable.money_pocket, R.drawable.money_pocket, 10, 120);
         _workEfficiencyButton = new ShopLevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency, 200, 120);
         _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy, 390, 120);
-        _experienceLearingButton = new ShopLevelButton(R.drawable.experience_learing, R.drawable.experience_learing, 580, 120);
+        _experienceLearningButton = new ShopLevelButton(R.drawable.experience_learning, R.drawable.experience_learning, 580, 120);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class StateShop extends GameState
         _moneyPocketButton.Show();
         _workEfficiencyButton.Show();
         _castleEnergyButton.Show();
-        _experienceLearingButton.Show();
+        _experienceLearningButton.Show();
     }
 
     @Override
@@ -60,13 +60,13 @@ public class StateShop extends GameState
         _moneyPocketButton.release();
         _workEfficiencyButton.release();
         _castleEnergyButton.release();
-        _experienceLearingButton.release();
+        _experienceLearningButton.release();
         _background = null;
         _music = null;
         _moneyPocketButton = null;
         _workEfficiencyButton = null;
         _castleEnergyButton = null;
-        _experienceLearingButton = null;
+        _experienceLearningButton = null;
     }
 
     @Override
@@ -97,13 +97,11 @@ public class StateShop extends GameState
         if (pressedX > _moneyPocketButton.GetX() && pressedX < _moneyPocketButton.GetX() + _moneyPocketButton.GetWidth() &&
                 pressedY > _moneyPocketButton.GetY() && pressedY < _moneyPocketButton.GetY() + _moneyPocketButton.GetHeight())
         {
-            _moneyPocketButton.Push();
-            _shopModel.AddMoneyPocket();
-            /*if (_moneyPocketButton.GetIsEnabled() == true)
-            {//錢包大小升級測試
+//            if (_moneyPocketButton.GetIsEnabled() == true)
+//            {
                 _moneyPocketButton.Push();
                 _shopModel.AddMoneyPocket();
-            }*/
+//            }
         }
         else if (pressedX > _workEfficiencyButton.GetX() && pressedX < _workEfficiencyButton.GetX() + _workEfficiencyButton.GetWidth() &&
                 pressedY > _workEfficiencyButton.GetY() && pressedY < _workEfficiencyButton.GetY() + _workEfficiencyButton.GetHeight())
@@ -119,17 +117,17 @@ public class StateShop extends GameState
         {
 //            if (_castleEnergyButton.GetIsEnabled())
 //            {
-            _castleEnergyButton.Push();
-            _shopModel.AddCastleEnergy();
+                _castleEnergyButton.Push();
+                _shopModel.AddCastleEnergy();
 //            }
         }
-        else if (pressedX > _experienceLearingButton.GetX() && pressedX < _experienceLearingButton.GetX() + _experienceLearingButton.GetWidth() &&
-                pressedY > _experienceLearingButton.GetY() && pressedY < _experienceLearingButton.GetY() + _experienceLearingButton.GetHeight())
+        else if (pressedX > _experienceLearningButton.GetX() && pressedX < _experienceLearningButton.GetX() + _experienceLearningButton.GetWidth() &&
+                pressedY > _experienceLearningButton.GetY() && pressedY < _experienceLearningButton.GetY() + _experienceLearningButton.GetHeight())
         {
-//            if (_experienceLearingButton.GetIsEnabled())
+//            if (_experienceLearningButton.GetIsEnabled())
 //            {
-            _experienceLearingButton.Push();
-            _shopModel.AddExperienceLearing();
+                _experienceLearningButton.Push();
+                _shopModel.AddExperienceLearning();
 //            }
         }
         return true;
@@ -165,5 +163,5 @@ public class StateShop extends GameState
     private ShopLevelButton _moneyPocketButton;
     private ShopLevelButton _workEfficiencyButton;
     private ShopLevelButton _castleEnergyButton;
-    private ShopLevelButton _experienceLearingButton;
+    private ShopLevelButton _experienceLearningButton;
 }

@@ -30,7 +30,7 @@ public class ShopModel
         AllyNexus.HEALTH += 1000;
     }
 
-    public void AddExperienceLearing()
+    public void AddExperienceLearning()
     {
 
     }
