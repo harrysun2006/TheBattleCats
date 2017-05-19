@@ -10,6 +10,7 @@ import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.model.ShopModel;
 import tw.edu.ntut.csie.game.model.ShopLevelButton;
+import tw.edu.ntut.csie.game.model.ShiftingModule;
 
 /**
  * Created by User on 2017/4/26.
@@ -35,11 +36,31 @@ public class StateShop extends GameState
         _workEfficiencyButton = new ShopLevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency, 200, 120);
         _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy, 390, 120);
         _experienceLearningButton = new ShopLevelButton(R.drawable.experience_learning, R.drawable.experience_learning, 580, 120);
+        _shiftingModule = new ShiftingModule();
     }
 
     @Override
     public void move()
     {
+        RunShiftingModule();
+    }
+
+    private void RunShiftingModule()
+    {
+        _shiftingModule.Run(_currentPressedX);
+
+        if (_shiftingModule.IsAutoSlidingEnabled() || _shiftingModule.IsSpecifiedSlidingEnabled())
+        {
+            Translation(_shiftingModule.GetShifting(), 0);
+        }
+    }
+
+    private void Translation(int shiftedX, int shiftedY)
+    {
+        _moneyPocketButton.Translation(shiftedX, shiftedY);
+        _workEfficiencyButton.Translation(shiftedX, shiftedY);
+        _castleEnergyButton.Translation(shiftedX, shiftedY);
+        _experienceLearningButton.Translation(shiftedX, shiftedY);
     }
 
     @Override
@@ -130,18 +151,35 @@ public class StateShop extends GameState
                 _shopModel.AddExperienceLearning();
 //            }
         }
+        else
+        {
+            _isPressed = true;
+            _currentPressedX = pointers.get(0).getX();
+            _shiftingModule.HandlePointerPressed(_currentPressedX);
+        }
         return true;
     }
 
     @Override
     public boolean pointerMoved(List<Pointer> pointers)
     {
+        if (_isPressed)
+        {
+            _currentPressedX = pointers.get(0).getX();
+            _shiftingModule.HandlePointerMoved(_currentPressedX);
+            Translation(_shiftingModule.GetTempShifting(), 0);
+        }
         return false;
     }
 
     @Override
     public boolean pointerReleased(List<Pointer> pointers)
     {
+        if (_isPressed)
+        {
+            _isPressed = false;
+            _shiftingModule.HandlePointerReleased();
+        }
         return false;
     }
 
@@ -164,4 +202,7 @@ public class StateShop extends GameState
     private ShopLevelButton _workEfficiencyButton;
     private ShopLevelButton _castleEnergyButton;
     private ShopLevelButton _experienceLearningButton;
+    private ShiftingModule _shiftingModule;
+    private int _currentPressedX;
+    private boolean _isPressed;
 }

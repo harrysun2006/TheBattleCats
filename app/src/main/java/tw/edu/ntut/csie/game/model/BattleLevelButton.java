@@ -16,7 +16,6 @@ public class BattleLevelButton extends LevelButton
         _levelThreeLabel = new MovingBitmap(R.drawable.level3_label, x + 5, y);
         _levelFourLabel = new MovingBitmap(R.drawable.level4_label, x + 5, y);
         _levelFiveLabel = new MovingBitmap(R.drawable.level5_label, x + 5, y);
-
         _costOneLabel = new MovingBitmap(R.drawable.exp1000, x + 105, y + 95);
         _costTwoLabel = new MovingBitmap(R.drawable.exp2000, x + 105, y + 95);
         _costThreeLabel = new MovingBitmap(R.drawable.exp3000, x + 105, y + 95);
@@ -27,7 +26,6 @@ public class BattleLevelButton extends LevelButton
         _levelThreeLabel.setVisible(false);
         _levelFourLabel.setVisible(false);
         _levelFiveLabel.setVisible(false);
-
         _costTwoLabel.setVisible(false);
         _costThreeLabel.setVisible(false);
         _costFourLabel.setVisible(false);
