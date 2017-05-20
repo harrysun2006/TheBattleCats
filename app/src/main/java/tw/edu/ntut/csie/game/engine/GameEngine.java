@@ -15,6 +15,7 @@ import java.util.Map;
 
 import tw.edu.ntut.csie.game.Game;
 import tw.edu.ntut.csie.game.state.GameState;
+import tw.edu.ntut.csie.game.model.IOModel;
 
 import static tw.edu.ntut.csie.game.Game.FRAME_RATE;
 import static tw.edu.ntut.csie.game.Game.GAME_FRAME_HEIGHT;
@@ -505,5 +506,17 @@ public class GameEngine implements Runnable {
             canvas.drawText(_eventDispatcher.getOrientationInfo(), 0, baseLine + ORIENTATION_INFO_OFFSET, paint);
             canvas.drawText(_eventDispatcher.getAccelerationIfno(), 0, baseLine + ACCELERATION_INFO_OFFSET, paint);
         }
+    }
+
+    public void WriteFile(String inputData)
+    {
+        IOModel model = new IOModel(_game, _game.getApplicationContext());
+        model.Write(inputData);
+    }
+
+    public String ReadFile()
+    {
+        IOModel model = new IOModel(_game, _game.getApplicationContext());
+        return model.Read();
     }
 }
