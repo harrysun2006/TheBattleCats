@@ -36,7 +36,7 @@ public class StateShop extends GameState
         _workEfficiencyButton = new ShopLevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency, 200, 120);
         _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy, 390, 120);
         _experienceLearningButton = new ShopLevelButton(R.drawable.experience_learning, R.drawable.experience_learning, 580, 120);
-        _shiftingModule = new ShiftingModule();
+        _shiftingModule = new ShiftingModule(135);
     }
 
     @Override

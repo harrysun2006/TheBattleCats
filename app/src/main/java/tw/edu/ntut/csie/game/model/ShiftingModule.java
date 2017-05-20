@@ -23,8 +23,11 @@ public class ShiftingModule
     private boolean _isAutoSlidingEnabled; //處理手指離開螢幕時如果有速度則畫面依據速度自動滑動到底
     private boolean _isSpecifiedSlidingEnabled; //處理畫面依據指定的速度滑動到指定的位置
 
-    public ShiftingModule()
+    private int _maximumShifting; //滑動位移的上限
+
+    public ShiftingModule(int maximumShifting)
     {
+        _maximumShifting = maximumShifting;
     }
 
     public void Run(int nextTimingX)
@@ -59,9 +62,9 @@ public class ShiftingModule
     {
         _tempShifting = -1 * (pointerX - _previousPressedX) + _shifting;
 
-        if (_tempShifting > 360)
+        if (_tempShifting > _maximumShifting)
         {
-            _tempShifting = 360;
+            _tempShifting = _maximumShifting;
         }
         if (_tempShifting < 0)
         {
@@ -97,9 +100,9 @@ public class ShiftingModule
     {
         _shifting -= _velocity;
 
-        if (_shifting > 360)
+        if (_shifting > _maximumShifting)
         {
-            _shifting = 360;
+            _shifting = _maximumShifting;
             _isAutoSlidingEnabled = false;
         }
         if (_shifting < 0)

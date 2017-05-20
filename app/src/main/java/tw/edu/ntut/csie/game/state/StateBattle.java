@@ -55,7 +55,7 @@ public class StateBattle extends GameState
 
         _isGameOver = false;
         _exitBattleButtonDelay = 0;
-        _shiftingModule = new ShiftingModule();
+        _shiftingModule = new ShiftingModule(360);
         _shiftingModule.SetShifting(360);
         Translation(_shiftingModule.GetShifting(), 0);
     }
