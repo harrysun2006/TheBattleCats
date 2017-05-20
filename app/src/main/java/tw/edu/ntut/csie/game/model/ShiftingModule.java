@@ -98,17 +98,23 @@ public class ShiftingModule
     //在手指離開螢幕時如果有速度則畫面依據速度自動滑動到底
     private void AutoSliding()
     {
+        //判斷是否超出範圍，如果沒有就增加/減少位移，然後讓GameState做Translation()
+        //如果一開始檢查超出範圍就return並且不會做Translation()
+        if (_shifting > _maximumShifting || _shifting < 0)
+        {
+            _isAutoSlidingEnabled = false;
+            return;
+        }
+
         _shifting -= _velocity;
 
         if (_shifting > _maximumShifting)
         {
             _shifting = _maximumShifting;
-            _isAutoSlidingEnabled = false;
         }
         if (_shifting < 0)
         {
             _shifting = 0;
-            _isAutoSlidingEnabled = false;
         }
     }
 
