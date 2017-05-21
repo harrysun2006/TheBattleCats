@@ -2,6 +2,8 @@ package tw.edu.ntut.csie.game.model;
 
 //Created by leon on 2017/5/18.
 
+import android.text.style.UpdateAppearance;
+
 import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.core.MovingBitmap;
 
@@ -10,7 +12,7 @@ public class ShopLevelButton extends LevelButton
     private int _displayX;
     private int _displayY;
 
-    public ShopLevelButton(int enableFilename, int disableFilename, int x, int y)
+    public ShopLevelButton(int enableFilename, int disableFilename, int x, int y, int level)
     {
         super(enableFilename, disableFilename, x, y);
 
@@ -25,17 +27,10 @@ public class ShopLevelButton extends LevelButton
         _costFourLabel = new MovingBitmap(R.drawable.exp4000, x + 105, y + 95);
         _costFiveLabel = new MovingBitmap(R.drawable.exp5000, x + 105, y + 95);
 
-        _levelTwoLabel.setVisible(false);
-        _levelThreeLabel.setVisible(false);
-        _levelFourLabel.setVisible(false);
-        _levelFiveLabel.setVisible(false);
-        _costTwoLabel.setVisible(false);
-        _costThreeLabel.setVisible(false);
-        _costFourLabel.setVisible(false);
-        _costFiveLabel.setVisible(false);
-
         _displayX = _x;
         _displayY = _y;
+        _level = level;
+        UpdateAppearance();
     }
 
     public void Translation(int shiftedX, int shiftedY)

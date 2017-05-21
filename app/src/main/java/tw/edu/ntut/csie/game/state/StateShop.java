@@ -9,6 +9,7 @@ import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.model.ShopModel;
+import tw.edu.ntut.csie.game.model.RecordModel;
 import tw.edu.ntut.csie.game.model.ShopLevelButton;
 import tw.edu.ntut.csie.game.model.ShiftingModule;
 
@@ -32,10 +33,11 @@ public class StateShop extends GameState
         _music.setRepeating(true);
         _music.play();
         _shopModel = new ShopModel();
-        _moneyPocketButton = new ShopLevelButton(R.drawable.money_pocket, R.drawable.money_pocket, 10, 120);
-        _workEfficiencyButton = new ShopLevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency, 200, 120);
-        _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy, 390, 120);
-        _experienceLearningButton = new ShopLevelButton(R.drawable.experience_learning, R.drawable.experience_learning, 580, 120);
+        _recordModel = new RecordModel(_engine);
+        _moneyPocketButton = new ShopLevelButton(R.drawable.money_pocket, R.drawable.money_pocket, 10, 120, _recordModel.GetMoneyPocketLevel());
+        _workEfficiencyButton = new ShopLevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency, 200, 120, _recordModel.GetWorkEfficiencyLevel());
+        _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy, 390, 120, _recordModel.GetCastleEnergyLevel());
+        _experienceLearningButton = new ShopLevelButton(R.drawable.experience_learning, R.drawable.experience_learning, 580, 120, _recordModel.GetExperienceLearningLevel());
         _shiftingModule = new ShiftingModule(135);
     }
 
@@ -84,6 +86,8 @@ public class StateShop extends GameState
         _experienceLearningButton.release();
         _background = null;
         _music = null;
+        _shopModel = null;
+        _recordModel = null;
         _moneyPocketButton = null;
         _workEfficiencyButton = null;
         _castleEnergyButton = null;
@@ -122,6 +126,7 @@ public class StateShop extends GameState
 //            {
                 _moneyPocketButton.Push();
                 _shopModel.AddMoneyPocket();
+                _recordModel.IncreaseMoneyPocketLevel();
 //            }
         }
         else if (pressedX > _workEfficiencyButton.GetX() && pressedX < _workEfficiencyButton.GetX() + _workEfficiencyButton.GetWidth() &&
@@ -131,6 +136,7 @@ public class StateShop extends GameState
 //            {
                 _workEfficiencyButton.Push();
                 _shopModel.AddMoneySpeed();
+                _recordModel.IncreaseWorkEfficiencyLevel();
 //            }
         }
         else if (pressedX > _castleEnergyButton.GetX() && pressedX < _castleEnergyButton.GetX() + _castleEnergyButton.GetWidth() &&
@@ -140,6 +146,7 @@ public class StateShop extends GameState
 //            {
                 _castleEnergyButton.Push();
                 _shopModel.AddCastleEnergy();
+                _recordModel.IncreaseCastleEnergyLevel();
 //            }
         }
         else if (pressedX > _experienceLearningButton.GetX() && pressedX < _experienceLearningButton.GetX() + _experienceLearningButton.GetWidth() &&
@@ -149,6 +156,7 @@ public class StateShop extends GameState
 //            {
                 _experienceLearningButton.Push();
                 _shopModel.AddExperienceLearning();
+                _recordModel.IncreaseExperienceLearningLevel();
 //            }
         }
         else
@@ -198,6 +206,7 @@ public class StateShop extends GameState
     private MovingBitmap _background;
     private Audio _music;
     private ShopModel _shopModel;
+    private RecordModel _recordModel;
     private ShopLevelButton _moneyPocketButton;
     private ShopLevelButton _workEfficiencyButton;
     private ShopLevelButton _castleEnergyButton;

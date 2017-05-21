@@ -36,33 +36,39 @@ public class LevelButton extends Button
         if (_level < 5)
         {
             _level++;
-            switch (_level)
-            {
-                case 2:
-                    _levelOneLabel.setVisible(false);
-                    _costOneLabel.setVisible(false);
-                    _levelTwoLabel.setVisible(true);
-                    _costTwoLabel.setVisible(true);
-                    break;
-                case 3:
-                    _levelTwoLabel.setVisible(false);
-                    _costTwoLabel.setVisible(false);
-                    _levelThreeLabel.setVisible(true);
-                    _costThreeLabel.setVisible(true);
-                    break;
-                case 4:
-                    _levelThreeLabel.setVisible(false);
-                    _costThreeLabel.setVisible(false);
-                    _levelFourLabel.setVisible(true);
-                    _costFourLabel.setVisible(true);
-                    break;
-                case 5:
-                    _levelFourLabel.setVisible(false);
-                    _costFourLabel.setVisible(false);
-                    _levelFiveLabel.setVisible(true);
-                    _costFiveLabel.setVisible(true);
-                    break;
-            }
+            UpdateAppearance();
+        }
+    }
+
+    protected void UpdateAppearance()
+    {
+        _levelTwoLabel.setVisible(false);
+        _levelThreeLabel.setVisible(false);
+        _levelFourLabel.setVisible(false);
+        _levelFiveLabel.setVisible(false);
+        _costTwoLabel.setVisible(false);
+        _costThreeLabel.setVisible(false);
+        _costFourLabel.setVisible(false);
+        _costFiveLabel.setVisible(false);
+
+        switch (_level)
+        {
+            case 2:
+                _levelTwoLabel.setVisible(true);
+                _costTwoLabel.setVisible(true);
+                break;
+            case 3:
+                _levelThreeLabel.setVisible(true);
+                _costThreeLabel.setVisible(true);
+                break;
+            case 4:
+                _levelFourLabel.setVisible(true);
+                _costFourLabel.setVisible(true);
+                break;
+            case 5:
+                _levelFiveLabel.setVisible(true);
+                _costFiveLabel.setVisible(true);
+                break;
         }
     }
 
