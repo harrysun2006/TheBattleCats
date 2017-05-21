@@ -2,8 +2,6 @@ package tw.edu.ntut.csie.game.model;
 
 //Created by leon on 2017/5/18.
 
-import android.text.style.UpdateAppearance;
-
 import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.core.MovingBitmap;
 
