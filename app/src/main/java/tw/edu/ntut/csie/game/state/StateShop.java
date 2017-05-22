@@ -32,12 +32,11 @@ public class StateShop extends GameState
         _music = new Audio(R.raw.ntut);
         _music.setRepeating(true);
         _music.play();
-        _shopModel = new ShopModel();
-        _recordModel = new RecordModel(_engine);
-        _moneyPocketButton = new ShopLevelButton(R.drawable.money_pocket, R.drawable.money_pocket, 10, 120, _recordModel.GetMoneyPocketLevel());
-        _workEfficiencyButton = new ShopLevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency, 200, 120, _recordModel.GetWorkEfficiencyLevel());
-        _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy, 390, 120, _recordModel.GetCastleEnergyLevel());
-        _experienceLearningButton = new ShopLevelButton(R.drawable.experience_learning, R.drawable.experience_learning, 580, 120, _recordModel.GetExperienceLearningLevel());
+        _shopModel = new ShopModel(new RecordModel(_engine));
+        _moneyPocketButton = new ShopLevelButton(R.drawable.money_pocket, R.drawable.money_pocket, 10, 120, _shopModel.GetMoneyPocketLevel());
+        _workEfficiencyButton = new ShopLevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency, 200, 120, _shopModel.GetWorkEfficiencyLevel());
+        _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy, 390, 120, _shopModel.GetCastleEnergyLevel());
+        _experienceLearningButton = new ShopLevelButton(R.drawable.experience_learning, R.drawable.experience_learning, 580, 120, _shopModel.GetExperienceLearningLevel());
         _shiftingModule = new ShiftingModule(135);
     }
 
@@ -87,7 +86,6 @@ public class StateShop extends GameState
         _background = null;
         _music = null;
         _shopModel = null;
-        _recordModel = null;
         _moneyPocketButton = null;
         _workEfficiencyButton = null;
         _castleEnergyButton = null;
@@ -125,8 +123,7 @@ public class StateShop extends GameState
 //            if (_moneyPocketButton.GetIsEnabled() == true)
 //            {
                 _moneyPocketButton.Push();
-                _shopModel.AddMoneyPocket();
-                _recordModel.UpgradeMoneyPocket();
+                _shopModel.UpgradeMoneyPocket();
 //            }
         }
         else if (pressedX > _workEfficiencyButton.GetX() && pressedX < _workEfficiencyButton.GetX() + _workEfficiencyButton.GetWidth() &&
@@ -135,8 +132,7 @@ public class StateShop extends GameState
 //            if (_workEfficiencyButton.GetIsEnabled())
 //            {
                 _workEfficiencyButton.Push();
-                _shopModel.AddMoneySpeed();
-                _recordModel.UpgradeWorkEfficiency();
+                _shopModel.UpgradeWorkEfficiency();
 //            }
         }
         else if (pressedX > _castleEnergyButton.GetX() && pressedX < _castleEnergyButton.GetX() + _castleEnergyButton.GetWidth() &&
@@ -145,8 +141,7 @@ public class StateShop extends GameState
 //            if (_castleEnergyButton.GetIsEnabled())
 //            {
                 _castleEnergyButton.Push();
-                _shopModel.AddCastleEnergy();
-                _recordModel.UpgradeCastleEnergy();
+                _shopModel.UpgradeCastleEnergy();
 //            }
         }
         else if (pressedX > _experienceLearningButton.GetX() && pressedX < _experienceLearningButton.GetX() + _experienceLearningButton.GetWidth() &&
@@ -155,8 +150,7 @@ public class StateShop extends GameState
 //            if (_experienceLearningButton.GetIsEnabled())
 //            {
                 _experienceLearningButton.Push();
-                _shopModel.AddExperienceLearning();
-                _recordModel.UpgradeExperienceLearning();
+                _shopModel.UpgradeExperienceLearning();
 //            }
         }
         else
@@ -171,9 +165,9 @@ public class StateShop extends GameState
     @Override
     public boolean pointerMoved(List<Pointer> pointers)
     {
-        if (pointers.size() == 3)
+        if (pointers.size() == 3) //在螢幕上用三根手指點擊來刪除紀錄檔
         {
-            _recordModel.DeleteRecord();
+            _shopModel.DeleteRecord();
         }
         if (_isPressed)
         {
@@ -210,7 +204,6 @@ public class StateShop extends GameState
     private MovingBitmap _background;
     private Audio _music;
     private ShopModel _shopModel;
-    private RecordModel _recordModel;
     private ShopLevelButton _moneyPocketButton;
     private ShopLevelButton _workEfficiencyButton;
     private ShopLevelButton _castleEnergyButton;
