@@ -38,6 +38,16 @@ public class StateShop extends GameState
         _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy, 390, 120, _shopModel.GetCastleEnergyLevel());
         _experienceLearningButton = new ShopLevelButton(R.drawable.experience_learning, R.drawable.experience_learning, 580, 120, _shopModel.GetExperienceLearningLevel());
         _shiftingModule = new ShiftingModule(135);
+        UpdateButtonState();
+    }
+
+    //在initialize時跟按下按鈕後更新按鈕狀態，經驗值實作前current跟cost都設成0
+    private void UpdateButtonState()
+    {
+        _moneyPocketButton.SetEnable(0, 0);
+        _workEfficiencyButton.SetEnable(0, 0);
+        _castleEnergyButton.SetEnable(0, 0);
+        _experienceLearningButton.SetEnable(0, 0);
     }
 
     @Override
@@ -120,38 +130,42 @@ public class StateShop extends GameState
         if (pressedX > _moneyPocketButton.GetX() && pressedX < _moneyPocketButton.GetX() + _moneyPocketButton.GetWidth() &&
                 pressedY > _moneyPocketButton.GetY() && pressedY < _moneyPocketButton.GetY() + _moneyPocketButton.GetHeight())
         {
-//            if (_moneyPocketButton.GetIsEnabled() == true)
-//            {
+            if (_moneyPocketButton.GetIsEnabled())
+            {
                 _moneyPocketButton.Push();
                 _shopModel.UpgradeMoneyPocket();
-//            }
+                UpdateButtonState();
+            }
         }
         else if (pressedX > _workEfficiencyButton.GetX() && pressedX < _workEfficiencyButton.GetX() + _workEfficiencyButton.GetWidth() &&
                 pressedY > _workEfficiencyButton.GetY() && pressedY < _workEfficiencyButton.GetY() + _workEfficiencyButton.GetHeight())
         {
-//            if (_workEfficiencyButton.GetIsEnabled())
-//            {
+            if (_workEfficiencyButton.GetIsEnabled())
+            {
                 _workEfficiencyButton.Push();
                 _shopModel.UpgradeWorkEfficiency();
-//            }
+                UpdateButtonState();
+            }
         }
         else if (pressedX > _castleEnergyButton.GetX() && pressedX < _castleEnergyButton.GetX() + _castleEnergyButton.GetWidth() &&
                 pressedY > _castleEnergyButton.GetY() && pressedY < _castleEnergyButton.GetY() + _castleEnergyButton.GetHeight())
         {
-//            if (_castleEnergyButton.GetIsEnabled())
-//            {
+            if (_castleEnergyButton.GetIsEnabled())
+            {
                 _castleEnergyButton.Push();
                 _shopModel.UpgradeCastleEnergy();
-//            }
+                UpdateButtonState();
+            }
         }
         else if (pressedX > _experienceLearningButton.GetX() && pressedX < _experienceLearningButton.GetX() + _experienceLearningButton.GetWidth() &&
                 pressedY > _experienceLearningButton.GetY() && pressedY < _experienceLearningButton.GetY() + _experienceLearningButton.GetHeight())
         {
-//            if (_experienceLearningButton.GetIsEnabled())
-//            {
+            if (_experienceLearningButton.GetIsEnabled())
+            {
                 _experienceLearningButton.Push();
                 _shopModel.UpgradeExperienceLearning();
-//            }
+                UpdateButtonState();
+            }
         }
         else
         {
