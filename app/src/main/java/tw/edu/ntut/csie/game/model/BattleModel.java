@@ -26,13 +26,13 @@ public class BattleModel implements ReleasableResource
     private int _shifting = 0;
     private int _battleStatus; //0: 戰鬥中，1: 遊戲勝利，2: 遊戲失敗
 
-    public BattleModel()
+    public BattleModel(RecordModel recordModel)
     {
         _allies = new ArrayList<>();
         _enemies = new ArrayList<>();
-        _allies.add(new AllyNexus(800, 150, _shifting));
+        _allies.add(new AllyNexus(800, 150, recordModel.GetAllyNexusHealth(), _shifting));
         _enemies.add(new EnemyNexus(80, 100, _shifting));
-        _money = new Money();
+        _money = new Money(recordModel);
         _battleStatus = 0;
     }
 

@@ -14,20 +14,20 @@ public class ShopModel
     //增加錢包初始最大值
     public void AddMoneyPocket()
     {
-        Money.INITIAL_MAX_MONEY = Money.INITIAL_MAX_MONEY + 100;
-        Money.MONEY_MAX_ADD_SCALE = Money.MONEY_MAX_ADD_SCALE + 100;
+//        Money.INITIAL_MAX_MONEY = Money.INITIAL_MAX_MONEY + 100;
+//        Money.MONEY_MAX_ADD_SCALE = Money.MONEY_MAX_ADD_SCALE + 100;
     }
 
     //增加錢的生產效率
     public void AddMoneySpeed()
     {
-        Money.SPEED = Money.SPEED + 2;
+//        Money.SPEED = Money.SPEED + 2;
     }
 
     //增加友軍主堡體力
     public void AddCastleEnergy()
     {
-        AllyNexus.HEALTH += 1000;
+//        AllyNexus.HEALTH += 1000;
     }
 
     public void AddExperienceLearning()

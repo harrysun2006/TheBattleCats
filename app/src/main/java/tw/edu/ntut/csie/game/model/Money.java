@@ -10,10 +10,10 @@ import tw.edu.ntut.csie.game.R;
 
 public class Money
 {
-    public static int INITIAL_MAX_MONEY = 1000;
-    public static int MONEY_MAX_ADD_SCALE = 100;
-    public static int ADD_MONEY_COST = 200;
-    public static int SPEED = 10;
+    public static final int ADD_MONEY_COST = 200;
+    private final int MONEY_MAX_ADD_SCALE;
+    private final int SPEED;
+
     private MovingBitmap _coin;
     private MovingBitmap _slash;
     private Integer _currentInteger;
@@ -21,14 +21,17 @@ public class Money
     private int _currentMoney;
     private int _maxMoney;
 
-    public Money()
+    public Money(RecordModel recordModel)
     {
+        MONEY_MAX_ADD_SCALE = recordModel.GetMoneyMaxAddScale();
+        SPEED = recordModel.GetMoneyAddSpeed();
+
         _coin = new MovingBitmap(R.drawable.coin, 425, 8);
         _slash = new MovingBitmap(R.drawable.slash, 534, 10);
         _currentInteger = new Integer(4, _currentMoney, 450, 10);
         _maxInteger = new Integer(4, _maxMoney, 550, 10);
         _currentMoney = 0;
-        _maxMoney = INITIAL_MAX_MONEY;
+        _maxMoney = recordModel.GetInitialMaxMoney();
     }
 
     //產兵扣錢
@@ -40,7 +43,7 @@ public class Money
     //增加錢的最大值
     public void AddMoneyMax()
     {
-        if (_currentMoney > ADD_MONEY_COST)
+        if (_currentMoney >= ADD_MONEY_COST)
         {
             _maxMoney += MONEY_MAX_ADD_SCALE;
             _currentMoney -= ADD_MONEY_COST;

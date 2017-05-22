@@ -13,6 +13,7 @@ import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.Game;
 
 import tw.edu.ntut.csie.game.model.TranslationBitmap;
+import tw.edu.ntut.csie.game.model.RecordModel;
 import tw.edu.ntut.csie.game.model.BattleModel;
 import tw.edu.ntut.csie.game.model.Capoo;
 import tw.edu.ntut.csie.game.model.Pusheen;
@@ -41,7 +42,7 @@ public class StateBattle extends GameState
         InitializeMusic();
         InitializeButtonComponent();
         _background = new TranslationBitmap(R.drawable.test_background);
-        _battleModel = new BattleModel();
+        _battleModel = new BattleModel(new RecordModel(_engine)); //存取RecordModel來初始化BattleModel裡面的金錢以及主堡血量
         _allyNexusHealth = new HealthBar(810, 120, 120);
         _enemyNexusHealth = new HealthBar(70, 100, 120);
         _moneyAddButton = new BattleLevelButton(R.drawable.money_button_80, R.drawable.money_button_80_disabled, 10, 286);

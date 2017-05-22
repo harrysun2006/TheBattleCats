@@ -126,7 +126,7 @@ public class StateShop extends GameState
 //            {
                 _moneyPocketButton.Push();
                 _shopModel.AddMoneyPocket();
-                _recordModel.IncreaseMoneyPocketLevel();
+                _recordModel.UpgradeMoneyPocket();
 //            }
         }
         else if (pressedX > _workEfficiencyButton.GetX() && pressedX < _workEfficiencyButton.GetX() + _workEfficiencyButton.GetWidth() &&
@@ -136,7 +136,7 @@ public class StateShop extends GameState
 //            {
                 _workEfficiencyButton.Push();
                 _shopModel.AddMoneySpeed();
-                _recordModel.IncreaseWorkEfficiencyLevel();
+                _recordModel.UpgradeWorkEfficiency();
 //            }
         }
         else if (pressedX > _castleEnergyButton.GetX() && pressedX < _castleEnergyButton.GetX() + _castleEnergyButton.GetWidth() &&
@@ -146,7 +146,7 @@ public class StateShop extends GameState
 //            {
                 _castleEnergyButton.Push();
                 _shopModel.AddCastleEnergy();
-                _recordModel.IncreaseCastleEnergyLevel();
+                _recordModel.UpgradeCastleEnergy();
 //            }
         }
         else if (pressedX > _experienceLearningButton.GetX() && pressedX < _experienceLearningButton.GetX() + _experienceLearningButton.GetWidth() &&
@@ -156,7 +156,7 @@ public class StateShop extends GameState
 //            {
                 _experienceLearningButton.Push();
                 _shopModel.AddExperienceLearning();
-                _recordModel.IncreaseExperienceLearningLevel();
+                _recordModel.UpgradeExperienceLearning();
 //            }
         }
         else
