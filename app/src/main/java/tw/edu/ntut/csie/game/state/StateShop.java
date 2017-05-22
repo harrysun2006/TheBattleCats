@@ -33,10 +33,10 @@ public class StateShop extends GameState
         _music.setRepeating(true);
         _music.play();
         _shopModel = new ShopModel(new RecordModel(_engine));
-        _moneyPocketButton = new ShopLevelButton(R.drawable.money_pocket, R.drawable.money_pocket, 10, 120, _shopModel.GetMoneyPocketLevel());
-        _workEfficiencyButton = new ShopLevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency, 200, 120, _shopModel.GetWorkEfficiencyLevel());
-        _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy, 390, 120, _shopModel.GetCastleEnergyLevel());
-        _experienceLearningButton = new ShopLevelButton(R.drawable.experience_learning, R.drawable.experience_learning, 580, 120, _shopModel.GetExperienceLearningLevel());
+        _moneyPocketButton = new ShopLevelButton(R.drawable.money_pocket, R.drawable.money_pocket_disabled, 10, 120, _shopModel.GetMoneyPocketLevel());
+        _workEfficiencyButton = new ShopLevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency_disabled, 200, 120, _shopModel.GetWorkEfficiencyLevel());
+        _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy_disabled, 390, 120, _shopModel.GetCastleEnergyLevel());
+        _experienceLearningButton = new ShopLevelButton(R.drawable.experience_learning, R.drawable.experience_learning_disabled, 580, 120, _shopModel.GetExperienceLearningLevel());
         _shiftingModule = new ShiftingModule(135);
         UpdateButtonState();
     }
