@@ -508,15 +508,21 @@ public class GameEngine implements Runnable {
         }
     }
 
-    public void WriteFile(String inputData)
+    public void WriteRecord(String inputData)
     {
         IOModel model = new IOModel(_game, _game.getApplicationContext());
         model.Write(inputData);
     }
 
-    public String ReadFile()
+    public String ReadRecord()
     {
         IOModel model = new IOModel(_game, _game.getApplicationContext());
         return model.Read();
+    }
+
+    public boolean DeleteRecord()
+    {
+        IOModel model = new IOModel(_game, _game.getApplicationContext());
+        return model.Delete();
     }
 }

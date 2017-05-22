@@ -12,36 +12,36 @@ public class RecordModel
     public RecordModel(GameEngine gameEngine)
     {
         _gameEngine = gameEngine;
-        _builder = new StringBuilder(_gameEngine.ReadFile());
+        _builder = new StringBuilder(_gameEngine.ReadRecord());
         if (_builder.length() == 0)
         {
-            _gameEngine.WriteFile("1111");
-            _builder = new StringBuilder(_gameEngine.ReadFile());
+            _gameEngine.WriteRecord("1111");
+            _builder = new StringBuilder(_gameEngine.ReadRecord());
         }
     }
 
     public void UpgradeMoneyPocket()
     {
         _builder.setCharAt(0, (char) ((int) _builder.charAt(0) + 1));
-        _gameEngine.WriteFile(_builder.toString());
+        _gameEngine.WriteRecord(_builder.toString());
     }
 
     public void UpgradeWorkEfficiency()
     {
         _builder.setCharAt(1, (char) ((int) _builder.charAt(1) + 1));
-        _gameEngine.WriteFile(_builder.toString());
+        _gameEngine.WriteRecord(_builder.toString());
     }
 
     public void UpgradeCastleEnergy()
     {
         _builder.setCharAt(2, (char) ((int) _builder.charAt(2) + 1));
-        _gameEngine.WriteFile(_builder.toString());
+        _gameEngine.WriteRecord(_builder.toString());
     }
 
     public void UpgradeExperienceLearning()
     {
         _builder.setCharAt(3, (char) ((int) _builder.charAt(3) + 1));
-        _gameEngine.WriteFile(_builder.toString());
+        _gameEngine.WriteRecord(_builder.toString());
     }
 
     public int GetMoneyPocketLevel()
@@ -102,5 +102,10 @@ public class RecordModel
             result += 1000;
         }
         return result;
+    }
+
+    public boolean DeleteRecord()
+    {
+        return _gameEngine.DeleteRecord();
     }
 }

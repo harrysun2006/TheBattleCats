@@ -171,6 +171,10 @@ public class StateShop extends GameState
     @Override
     public boolean pointerMoved(List<Pointer> pointers)
     {
+        if (pointers.size() == 3)
+        {
+            _recordModel.DeleteRecord();
+        }
         if (_isPressed)
         {
             _currentPressedX = pointers.get(0).getX();

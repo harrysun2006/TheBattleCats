@@ -71,4 +71,14 @@ public class IOModel
         }
         return stringBuilder.toString();
     }
+
+    public boolean Delete()
+    {
+        if (_context.deleteFile("record.txt"))
+        {
+            Toast.makeText(_game, "record.txt deleted", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
+    }
 }
