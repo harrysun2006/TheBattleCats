@@ -42,10 +42,12 @@ public class LevelButton extends Button
 
     protected void UpdateAppearance()
     {
+        _levelOneLabel.setVisible(false);
         _levelTwoLabel.setVisible(false);
         _levelThreeLabel.setVisible(false);
         _levelFourLabel.setVisible(false);
         _levelFiveLabel.setVisible(false);
+        _costOneLabel.setVisible(false);
         _costTwoLabel.setVisible(false);
         _costThreeLabel.setVisible(false);
         _costFourLabel.setVisible(false);
@@ -53,6 +55,10 @@ public class LevelButton extends Button
 
         switch (_level)
         {
+            case 1:
+                _levelOneLabel.setVisible(true);
+                _costOneLabel.setVisible(true);
+                break;
             case 2:
                 _levelTwoLabel.setVisible(true);
                 _costTwoLabel.setVisible(true);
