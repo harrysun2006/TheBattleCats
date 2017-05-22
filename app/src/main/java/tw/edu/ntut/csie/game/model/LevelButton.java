@@ -23,7 +23,6 @@ public class LevelButton extends Button
     public LevelButton(int enableFilename, int disableFilename, int x, int y)
     {
         super(enableFilename, disableFilename, x, y);
-        _level = 1;
     }
 
     public void Run()
