@@ -125,47 +125,21 @@ public class StateShop extends GameState
     @Override
     public boolean pointerPressed(List<Pointer> pointers)
     {
-        int pressedX = pointers.get(0).getX();
-        int pressedY = pointers.get(0).getY();
-        if (pressedX > _moneyPocketButton.GetX() && pressedX < _moneyPocketButton.GetX() + _moneyPocketButton.GetWidth() &&
-                pressedY > _moneyPocketButton.GetY() && pressedY < _moneyPocketButton.GetY() + _moneyPocketButton.GetHeight())
+        if (IsPointerOnButton(pointers.get(0), _moneyPocketButton))
         {
-            if (_moneyPocketButton.GetIsEnabled())
-            {
-                _moneyPocketButton.Push();
-                _shopModel.UpgradeMoneyPocket();
-                UpdateButtonState();
-            }
+            _pressedButton = 1;
         }
-        else if (pressedX > _workEfficiencyButton.GetX() && pressedX < _workEfficiencyButton.GetX() + _workEfficiencyButton.GetWidth() &&
-                pressedY > _workEfficiencyButton.GetY() && pressedY < _workEfficiencyButton.GetY() + _workEfficiencyButton.GetHeight())
+        else if (IsPointerOnButton(pointers.get(0), _workEfficiencyButton))
         {
-            if (_workEfficiencyButton.GetIsEnabled())
-            {
-                _workEfficiencyButton.Push();
-                _shopModel.UpgradeWorkEfficiency();
-                UpdateButtonState();
-            }
+            _pressedButton = 2;
         }
-        else if (pressedX > _castleEnergyButton.GetX() && pressedX < _castleEnergyButton.GetX() + _castleEnergyButton.GetWidth() &&
-                pressedY > _castleEnergyButton.GetY() && pressedY < _castleEnergyButton.GetY() + _castleEnergyButton.GetHeight())
+        else if (IsPointerOnButton(pointers.get(0), _castleEnergyButton))
         {
-            if (_castleEnergyButton.GetIsEnabled())
-            {
-                _castleEnergyButton.Push();
-                _shopModel.UpgradeCastleEnergy();
-                UpdateButtonState();
-            }
+            _pressedButton = 3;
         }
-        else if (pressedX > _experienceLearningButton.GetX() && pressedX < _experienceLearningButton.GetX() + _experienceLearningButton.GetWidth() &&
-                pressedY > _experienceLearningButton.GetY() && pressedY < _experienceLearningButton.GetY() + _experienceLearningButton.GetHeight())
+        else if (IsPointerOnButton(pointers.get(0), _experienceLearningButton))
         {
-            if (_experienceLearningButton.GetIsEnabled())
-            {
-                _experienceLearningButton.Push();
-                _shopModel.UpgradeExperienceLearning();
-                UpdateButtonState();
-            }
+            _pressedButton = 4;
         }
         else
         {
@@ -200,7 +174,52 @@ public class StateShop extends GameState
             _isPressed = false;
             _shiftingModule.HandlePointerReleased();
         }
+        else if (IsPointerOnButton(pointers.get(0), _moneyPocketButton) && _pressedButton == 1)
+        {
+            if (_moneyPocketButton.GetIsEnabled())
+            {
+                _moneyPocketButton.Push();
+                _shopModel.UpgradeMoneyPocket();
+                UpdateButtonState();
+            }
+        }
+        else if (IsPointerOnButton(pointers.get(0), _workEfficiencyButton) && _pressedButton == 2)
+        {
+            if (_workEfficiencyButton.GetIsEnabled())
+            {
+                _workEfficiencyButton.Push();
+                _shopModel.UpgradeWorkEfficiency();
+                UpdateButtonState();
+            }
+        }
+        else if (IsPointerOnButton(pointers.get(0), _castleEnergyButton) && _pressedButton == 3)
+        {
+            if (_castleEnergyButton.GetIsEnabled())
+            {
+                _castleEnergyButton.Push();
+                _shopModel.UpgradeCastleEnergy();
+                UpdateButtonState();
+            }
+        }
+        else if (IsPointerOnButton(pointers.get(0), _experienceLearningButton) && _pressedButton == 4)
+        {
+            if (_experienceLearningButton.GetIsEnabled())
+            {
+                _experienceLearningButton.Push();
+                _shopModel.UpgradeExperienceLearning();
+                UpdateButtonState();
+            }
+        }
         return false;
+    }
+
+    //判斷該指標是否在按鈕上方
+    private boolean IsPointerOnButton(Pointer pointer, ShopLevelButton button)
+    {
+        int pressedX = pointer.getX();
+        int pressedY = pointer.getY();
+        return (pressedX > button.GetX() && pressedX < button.GetX() + button.GetWidth() &&
+                pressedY > button.GetY() && pressedY < button.GetY() + button.GetHeight());
     }
 
     @Override
@@ -225,4 +244,5 @@ public class StateShop extends GameState
     private ShiftingModule _shiftingModule;
     private int _currentPressedX;
     private boolean _isPressed;
+    private int _pressedButton;
 }
