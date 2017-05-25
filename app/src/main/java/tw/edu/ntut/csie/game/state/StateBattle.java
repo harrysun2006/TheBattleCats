@@ -19,6 +19,7 @@ import tw.edu.ntut.csie.game.model.Capoo;
 import tw.edu.ntut.csie.game.model.Pusheen;
 import tw.edu.ntut.csie.game.model.Rabbit;
 import tw.edu.ntut.csie.game.model.Bird;
+import tw.edu.ntut.csie.game.model.Button;
 import tw.edu.ntut.csie.game.model.CDButton;
 import tw.edu.ntut.csie.game.model.CooldownBar;
 import tw.edu.ntut.csie.game.model.HealthBar;
@@ -270,57 +271,25 @@ public class StateBattle extends GameState
     @Override
     public boolean pointerPressed(List<Pointer> pointers)
     {
-        int pressedX = pointers.get(0).getX();
-        int pressedY = pointers.get(0).getY();
-        if (pressedX > _capooButton.GetX() && pressedX < _capooButton.GetX() + _capooButton.GetWidth() &&
-                pressedY > _capooButton.GetY() && pressedY < _capooButton.GetY() + _capooButton.GetHeight())
+        if (IsPointerOnButton(pointers.get(0), _capooButton))
         {
-            if (_capooButton.GetIsEnabled() == true)
-            {
-                _buyingSound.play();
-                _capooButton.Push();
-                _battleModel.GenerateCapoo();
-            }
+            _pressedButton = 1;
         }
-        else if (pressedX > _pusheenButton.GetX() && pressedX < _pusheenButton.GetX() + _pusheenButton.GetWidth() &&
-                pressedY > _pusheenButton.GetY() && pressedY < _pusheenButton.GetY() + _pusheenButton.GetHeight())
+        else if (IsPointerOnButton(pointers.get(0), _pusheenButton))
         {
-            if (_pusheenButton.GetIsEnabled() == true)
-            {
-                _buyingSound.play();
-                _pusheenButton.Push();
-                _battleModel.GeneratePusheen();
-            }
+            _pressedButton = 2;
         }
-        else if (pressedX > _rabbitButton.GetX() && pressedX < _rabbitButton.GetX() + _rabbitButton.GetWidth() &&
-                pressedY > _rabbitButton.GetY() && pressedY < _rabbitButton.GetY() + _rabbitButton.GetHeight())
+        else if (IsPointerOnButton(pointers.get(0), _rabbitButton))
         {
-            if (_rabbitButton.GetIsEnabled() == true)
-            {
-                _buyingSound.play();
-                _rabbitButton.Push();
-                _battleModel.GenerateRabbit();
-            }
+            _pressedButton = 3;
         }
-        else if (pressedX > _birdButton.GetX() && pressedX < _birdButton.GetX() + _birdButton.GetWidth() &&
-                pressedY > _birdButton.GetY() && pressedY < _birdButton.GetY() + _birdButton.GetHeight())
+        else if (IsPointerOnButton(pointers.get(0), _birdButton))
         {
-            if (_birdButton.GetIsEnabled() == true)
-            {
-                _buyingSound.play();
-                _birdButton.Push();
-                _battleModel.GenerateBird();
-            }
+            _pressedButton = 4;
         }
-        else if (pressedX > _moneyAddButton.GetX() && pressedX < _moneyAddButton.GetX() + _moneyAddButton.GetWidth() &&
-                pressedY > _moneyAddButton.GetY() && pressedY < _moneyAddButton.GetY() + _moneyAddButton.GetHeight())
+        else if (IsPointerOnButton(pointers.get(0), _moneyAddButton))
         {
-            if(_moneyAddButton.GetIsEnabled() == true)
-            {
-                _buyingSound.play();
-                _moneyAddButton.Push();
-                _battleModel.AddMoneyMax();
-            }
+            _pressedButton = 5;
         }
         else
         {
@@ -330,10 +299,9 @@ public class StateBattle extends GameState
         }
         if (_winningBannerTransition.IsTransitionFinished() || _losingBannerTransition.IsTransitionFinished())
         {
-            if (pressedX > _exitBattleButton.getX() && pressedX < _exitBattleButton.getX() + _exitBattleButton.getWidth() &&
-                    pressedY > _exitBattleButton.getY() && pressedY < _exitBattleButton.getY() + _exitBattleButton.getHeight())
+            if (IsPointerOnButton(pointers.get(0), _exitBattleButton))
             {
-                changeState(Game.OVER_STATE);
+                _pressedButton = 6;
             }
         }
         return true;
@@ -359,7 +327,77 @@ public class StateBattle extends GameState
             _isPressed = false;
             _shiftingModule.HandlePointerReleased();
         }
+        else if (IsPointerOnButton(pointers.get(0), _capooButton) && _pressedButton == 1)
+        {
+            if (_capooButton.GetIsEnabled())
+            {
+                _buyingSound.play();
+                _capooButton.Push();
+                _battleModel.GenerateCapoo();
+            }
+        }
+        else if (IsPointerOnButton(pointers.get(0), _pusheenButton) && _pressedButton == 2)
+        {
+            if (_pusheenButton.GetIsEnabled())
+            {
+                _buyingSound.play();
+                _pusheenButton.Push();
+                _battleModel.GeneratePusheen();
+            }
+        }
+        else if (IsPointerOnButton(pointers.get(0), _rabbitButton) && _pressedButton == 3)
+        {
+            if (_rabbitButton.GetIsEnabled())
+            {
+                _buyingSound.play();
+                _rabbitButton.Push();
+                _battleModel.GenerateRabbit();
+            }
+        }
+        else if (IsPointerOnButton(pointers.get(0), _birdButton) && _pressedButton == 4)
+        {
+            if (_birdButton.GetIsEnabled())
+            {
+                _buyingSound.play();
+                _birdButton.Push();
+                _battleModel.GenerateBird();
+            }
+        }
+        else if (IsPointerOnButton(pointers.get(0), _moneyAddButton) && _pressedButton == 5)
+        {
+            if(_moneyAddButton.GetIsEnabled())
+            {
+                _buyingSound.play();
+                _moneyAddButton.Push();
+                _battleModel.AddMoneyMax();
+            }
+        }
+        if (_winningBannerTransition.IsTransitionFinished() || _losingBannerTransition.IsTransitionFinished())
+        {
+            if (IsPointerOnButton(pointers.get(0), _exitBattleButton) && _pressedButton == 6)
+            {
+                changeState(Game.OVER_STATE);
+            }
+        }
         return false;
+    }
+
+    //判斷該指標是否在按鈕上方
+    private boolean IsPointerOnButton(Pointer pointer, Button button)
+    {
+        int pressedX = pointer.getX();
+        int pressedY = pointer.getY();
+        return (pressedX > button.GetX() && pressedX < button.GetX() + button.GetWidth() &&
+                pressedY > button.GetY() && pressedY < button.GetY() + button.GetHeight());
+    }
+
+    //判斷該指標是否在按鈕上方
+    private boolean IsPointerOnButton(Pointer pointer, MovingBitmap button)
+    {
+        int pressedX = pointer.getX();
+        int pressedY = pointer.getY();
+        return (pressedX > button.getX() && pressedX < button.getX() + button.getWidth() &&
+                pressedY > button.getY() && pressedY < button.getY() + button.getHeight());
     }
 
     @Override
@@ -400,6 +438,7 @@ public class StateBattle extends GameState
     private ShiftingModule _shiftingModule;
     private int _currentPressedX;
     private boolean _isPressed;
+    private int _pressedButton;
     private boolean _isGameOver;
     private int _exitBattleButtonDelay;
 }
