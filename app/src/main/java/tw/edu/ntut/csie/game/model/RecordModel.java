@@ -7,67 +7,66 @@ import tw.edu.ntut.csie.game.engine.GameEngine;
 public class RecordModel
 {
     private GameEngine _gameEngine;
-    private StringBuilder _builder;
+    private String[] _records;
 
     public RecordModel(GameEngine gameEngine)
     {
         _gameEngine = gameEngine;
-        _builder = new StringBuilder(_gameEngine.ReadRecord());
-        if (_builder.length() == 0)
+        if (_gameEngine.ReadRecord().length() == 0)
         {
-            _gameEngine.WriteRecord("1111");
-            _builder = new StringBuilder(_gameEngine.ReadRecord());
+            _gameEngine.WriteRecord("1 1 1 1 0");
         }
+        _records = _gameEngine.ReadRecord().split(" ");
     }
 
     public void UpgradeMoneyPocket()
     {
-        _builder.setCharAt(0, (char) ((int) _builder.charAt(0) + 1));
-        _gameEngine.WriteRecord(_builder.toString());
+        _records[0] = String.valueOf(Integer.parseInt(_records[0]) + 1);
+        WriteRecord();
     }
 
     public void UpgradeWorkEfficiency()
     {
-        _builder.setCharAt(1, (char) ((int) _builder.charAt(1) + 1));
-        _gameEngine.WriteRecord(_builder.toString());
+        _records[1] = String.valueOf(Integer.parseInt(_records[1]) + 1);
+        WriteRecord();
     }
 
     public void UpgradeCastleEnergy()
     {
-        _builder.setCharAt(2, (char) ((int) _builder.charAt(2) + 1));
-        _gameEngine.WriteRecord(_builder.toString());
+        _records[2] = String.valueOf(Integer.parseInt(_records[2]) + 1);
+        WriteRecord();
     }
 
     public void UpgradeExperienceLearning()
     {
-        _builder.setCharAt(3, (char) ((int) _builder.charAt(3) + 1));
-        _gameEngine.WriteRecord(_builder.toString());
+        _records[3] = String.valueOf(Integer.parseInt(_records[3]) + 1);
+        WriteRecord();
     }
 
     public int GetMoneyPocketLevel()
     {
-        return Character.getNumericValue(_builder.charAt(0));
+        return Integer.parseInt(_records[0]);
     }
 
     public int GetWorkEfficiencyLevel()
     {
-        return Character.getNumericValue(_builder.charAt(1));
+        return Integer.parseInt(_records[1]);
     }
 
     public int GetCastleEnergyLevel()
     {
-        return Character.getNumericValue(_builder.charAt(2));
+        return Integer.parseInt(_records[2]);
     }
 
     public int GetExperienceLearningLevel()
     {
-        return Character.getNumericValue(_builder.charAt(3));
+        return Integer.parseInt(_records[3]);
     }
 
     public int GetInitialMaxMoney()
     {
         int result = 1000;
-        for (int i = 1; i < Character.getNumericValue(_builder.charAt(0)); i++)
+        for (int i = 1; i < Integer.parseInt(_records[0]); i++)
         {
             result += 100;
         }
@@ -77,7 +76,7 @@ public class RecordModel
     public int GetMoneyMaxAddScale()
     {
         int result = 100;
-        for (int i = 1; i < Character.getNumericValue(_builder.charAt(0)); i++)
+        for (int i = 1; i < Integer.parseInt(_records[0]); i++)
         {
             result += 100;
         }
@@ -87,7 +86,7 @@ public class RecordModel
     public int GetMoneyAddSpeed()
     {
         int result = 10;
-        for (int i = 1; i < Character.getNumericValue(_builder.charAt(1)); i++)
+        for (int i = 1; i < Integer.parseInt(_records[1]); i++)
         {
             result += 2;
         }
@@ -97,7 +96,7 @@ public class RecordModel
     public int GetAllyNexusHealth()
     {
         int result = 1000;
-        for (int i = 1; i < Character.getNumericValue(_builder.charAt(2)); i++)
+        for (int i = 1; i < Integer.parseInt(_records[2]); i++)
         {
             result += 1000;
         }
@@ -107,5 +106,17 @@ public class RecordModel
     public boolean DeleteRecord()
     {
         return _gameEngine.DeleteRecord();
+    }
+
+    private void WriteRecord()
+    {
+        StringBuilder builder = new StringBuilder();
+
+        for (String record:_records)
+        {
+            builder.append(record).append(" ");
+        }
+        builder.deleteCharAt(builder.length() - 1);
+        _gameEngine.WriteRecord(builder.toString());
     }
 }
