@@ -15,6 +15,7 @@ public class BattleModel implements ReleasableResource
     private List<Units> _allies;
     private List<Units> _enemies;
     private Money _money;
+    private Score _score;
 
     private static final int GENERATE_ENEMIES_DELAY_COUNTER = 3 * Game.FRAME_RATE; //讓敵兵每N秒產生一個，計數器每15可以讓兵延遲1秒產生 (畫面更新頻率 = 15次/1秒)
     private int _generateEnemiesDelayCounter = GENERATE_ENEMIES_DELAY_COUNTER; //真正用來計算產兵延遲的
@@ -33,6 +34,7 @@ public class BattleModel implements ReleasableResource
         _allies.add(new AllyNexus(800, 150, recordModel.GetAllyNexusHealth(), _shifting));
         _enemies.add(new EnemyNexus(80, 100, _shifting));
         _money = new Money(recordModel);
+        _score = new Score();
         _battleStatus = 0;
     }
 
@@ -106,6 +108,7 @@ public class BattleModel implements ReleasableResource
                 if (element.GetY() < 0)
                 {
                     _enemies.remove(index);
+                    _score.IncreaseEnemyKilled();
                     return;
                 }
             }
@@ -304,5 +307,10 @@ public class BattleModel implements ReleasableResource
     public int GetBattleStatus()
     {
         return _battleStatus;
+    }
+
+    public int GetScore()
+    {
+        return _score.GetScore();
     }
 }
