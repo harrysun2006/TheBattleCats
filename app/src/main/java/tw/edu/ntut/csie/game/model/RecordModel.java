@@ -49,6 +49,12 @@ public class RecordModel
         WriteRecord();
     }
 
+    public void SubtractExperience(int experience)
+    {
+        _records[4] = String.valueOf(Integer.parseInt(_records[4]) - experience);
+        WriteRecord();
+    }
+
     public int GetMoneyPocketLevel()
     {
         return Integer.parseInt(_records[0]);

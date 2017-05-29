@@ -46,11 +46,11 @@ public class StateShop extends GameState
     //在initialize時跟按下按鈕後更新按鈕狀態，經驗值實作前current跟cost都設成0
     private void UpdateButtonState()
     {
-        _moneyPocketButton.SetEnable(0, 0);
-        _workEfficiencyButton.SetEnable(0, 0);
-        _castleEnergyButton.SetEnable(0, 0);
-        _experienceLearningButton.SetEnable(0, 0);
         _experience.setValue(_shopModel.GetExperience());
+        _moneyPocketButton.SetEnable(_shopModel.GetExperience(), _shopModel.GetMoneyPocketLevel() * 1000);
+        _workEfficiencyButton.SetEnable(_shopModel.GetExperience(), _shopModel.GetWorkEfficiencyLevel() * 1000);
+        _castleEnergyButton.SetEnable(_shopModel.GetExperience(), _shopModel.GetCastleEnergyLevel() * 1000);
+        _experienceLearningButton.SetEnable(_shopModel.GetExperience(), _shopModel.GetExperienceLearningLevel() * 1000);
     }
 
     @Override
