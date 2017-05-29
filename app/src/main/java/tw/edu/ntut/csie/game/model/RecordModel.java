@@ -43,6 +43,12 @@ public class RecordModel
         WriteRecord();
     }
 
+    public void SetExperience(int experience)
+    {
+        _records[4] = String.valueOf(experience);
+        WriteRecord();
+    }
+
     public int GetMoneyPocketLevel()
     {
         return Integer.parseInt(_records[0]);
@@ -61,6 +67,11 @@ public class RecordModel
     public int GetExperienceLearningLevel()
     {
         return Integer.parseInt(_records[3]);
+    }
+
+    public int GetExperience()
+    {
+        return Integer.parseInt(_records[4]);
     }
 
     public int GetInitialMaxMoney()

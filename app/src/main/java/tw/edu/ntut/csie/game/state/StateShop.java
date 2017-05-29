@@ -9,6 +9,7 @@ import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.Pointer;
 import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.model.ShopModel;
+import tw.edu.ntut.csie.game.extend.Integer;
 import tw.edu.ntut.csie.game.model.RecordModel;
 import tw.edu.ntut.csie.game.model.ShopLevelButton;
 import tw.edu.ntut.csie.game.model.ShiftingModule;
@@ -33,6 +34,7 @@ public class StateShop extends GameState
         _music.setRepeating(true);
         _music.play();
         _shopModel = new ShopModel(new RecordModel(_engine));
+        _experience = new Integer(5, _shopModel.GetExperience(), 500, 20);
         _moneyPocketButton = new ShopLevelButton(R.drawable.money_pocket, R.drawable.money_pocket_disabled, 10, 120, _shopModel.GetMoneyPocketLevel());
         _workEfficiencyButton = new ShopLevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency_disabled, 200, 120, _shopModel.GetWorkEfficiencyLevel());
         _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy_disabled, 390, 120, _shopModel.GetCastleEnergyLevel());
@@ -48,6 +50,7 @@ public class StateShop extends GameState
         _workEfficiencyButton.SetEnable(0, 0);
         _castleEnergyButton.SetEnable(0, 0);
         _experienceLearningButton.SetEnable(0, 0);
+        _experience.setValue(_shopModel.GetExperience());
     }
 
     @Override
@@ -78,6 +81,7 @@ public class StateShop extends GameState
     public void show()
     {
         _background.show();
+        _experience.show();
         _moneyPocketButton.Show();
         _workEfficiencyButton.Show();
         _castleEnergyButton.Show();
@@ -89,6 +93,7 @@ public class StateShop extends GameState
     {
         _background.release();
         _music.release();
+        _experience.release();
         _moneyPocketButton.release();
         _workEfficiencyButton.release();
         _castleEnergyButton.release();
@@ -96,6 +101,7 @@ public class StateShop extends GameState
         _background = null;
         _music = null;
         _shopModel = null;
+        _experience = null;
         _moneyPocketButton = null;
         _workEfficiencyButton = null;
         _castleEnergyButton = null;
@@ -237,6 +243,7 @@ public class StateShop extends GameState
     private MovingBitmap _background;
     private Audio _music;
     private ShopModel _shopModel;
+    private Integer _experience;
     private ShopLevelButton _moneyPocketButton;
     private ShopLevelButton _workEfficiencyButton;
     private ShopLevelButton _castleEnergyButton;

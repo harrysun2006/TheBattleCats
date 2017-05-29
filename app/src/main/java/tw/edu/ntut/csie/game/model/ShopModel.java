@@ -57,6 +57,11 @@ public class ShopModel
         return _recordModel.GetExperienceLearningLevel();
     }
 
+    public int GetExperience()
+    {
+        return _recordModel.GetExperience();
+    }
+
     public boolean DeleteRecord()
     {
         return _recordModel.DeleteRecord();
