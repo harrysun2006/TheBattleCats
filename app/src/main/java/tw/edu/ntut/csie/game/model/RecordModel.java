@@ -43,9 +43,9 @@ public class RecordModel
         WriteRecord();
     }
 
-    public void SetExperience(int experience)
+    public void AddExperience(int experience)
     {
-        _records[4] = String.valueOf(experience);
+        _records[4] = String.valueOf(Integer.parseInt(_records[4]) + experience);
         WriteRecord();
     }
 
