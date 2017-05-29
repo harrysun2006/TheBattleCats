@@ -57,6 +57,10 @@ public class Money
         {
             _currentMoney += SPEED;
         }
+        if (_currentMoney > _maxMoney)
+        {
+            _currentMoney = _maxMoney;
+        }
     }
 
     public int GetCurrentMoney()
