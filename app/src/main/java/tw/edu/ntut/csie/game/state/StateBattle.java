@@ -26,6 +26,7 @@ import tw.edu.ntut.csie.game.model.HealthBar;
 import tw.edu.ntut.csie.game.model.BattleLevelButton;
 import tw.edu.ntut.csie.game.model.HorizontalTransition;
 import tw.edu.ntut.csie.game.model.VerticalTransition;
+import tw.edu.ntut.csie.game.extend.Integer;
 import tw.edu.ntut.csie.game.model.ShiftingModule;
 import tw.edu.ntut.csie.game.model.Money;
 
@@ -49,11 +50,15 @@ public class StateBattle extends GameState
         _moneyAddButton = new BattleLevelButton(R.drawable.money_button_80, R.drawable.money_button_80_disabled, 10, 286);
 
         _winningBanner = new MovingBitmap(R.drawable.winning_banner, -299, 125);
-        _winningBannerTransition = new HorizontalTransition(_winningBanner, 200);
-        _losingBanner = new MovingBitmap(R.drawable.losing_banner, 240, -83);
+        _winningBannerTransition = new HorizontalTransition(_winningBanner, 170);
+        _losingBanner = new MovingBitmap(R.drawable.losing_banner, 220, -83);
         _losingBannerTransition = new VerticalTransition(_losingBanner, 120);
-        _exitBattleButton = new MovingBitmap(R.drawable.exit_battle_button, 255, 220);
+
+        _experienceBanner = new MovingBitmap(R.drawable.exp_banner, 0, 205);
+        _experienceBanner.setVisible(false);
+        _exitBattleButton = new MovingBitmap(R.drawable.exit_battle_button, 240, 250);
         _exitBattleButton.setVisible(false);
+        _experienceValue = new Integer(4, 0, 640, 376); //讓遊戲勝利會獲得的經驗值先暫時放在遊戲畫面外
 
         _isGameOver = false;
         _exitBattleButtonDelay = 0;
@@ -148,12 +153,15 @@ public class StateBattle extends GameState
             _winningMusic.play();
             _isGameOver = true;
         }
-        if (_winningBannerTransition.IsTransitionFinished()) //勝利轉場結束後延遲2秒跳出離開按鈕
+        if (_winningBannerTransition.IsTransitionFinished()) //勝利轉場結束後延遲2秒跳出離開按鈕以及獲得的經驗值
         {
             _exitBattleButtonDelay++;
             if (_exitBattleButtonDelay == Game.FRAME_RATE * 4 / 3)
             {
+                _experienceBanner.setVisible(true);
                 _exitBattleButton.setVisible(true);
+                _experienceValue.setValue(_battleModel.GetScore());
+                _experienceValue.setLocation(265, 214);
             }
         }
     }
@@ -204,7 +212,9 @@ public class StateBattle extends GameState
         _moneyAddButton.Show();
         _winningBanner.show();
         _losingBanner.show();
+        _experienceBanner.show();
         _exitBattleButton.show();
+        _experienceValue.show();
     }
 
     @Override
@@ -228,7 +238,9 @@ public class StateBattle extends GameState
         _moneyAddButton.release();
         _winningBanner.release();
         _losingBanner.release();
+        _experienceBanner.release();
         _exitBattleButton.release();
+        _experienceValue.release();
         _backgroundMusic = null;
         _winningMusic = null;
         _buyingSound = null;
@@ -247,7 +259,9 @@ public class StateBattle extends GameState
         _moneyAddButton = null;
         _winningBanner = null;
         _losingBanner = null;
+        _experienceBanner = null;
         _exitBattleButton = null;
+        _experienceValue = null;
     }
 
     @Override
@@ -435,7 +449,9 @@ public class StateBattle extends GameState
     private MovingBitmap _losingBanner;
     private HorizontalTransition _winningBannerTransition;
     private VerticalTransition _losingBannerTransition;
+    private MovingBitmap _experienceBanner;
     private MovingBitmap _exitBattleButton;
+    private Integer _experienceValue;
 
     private ShiftingModule _shiftingModule;
     private int _currentPressedX;
