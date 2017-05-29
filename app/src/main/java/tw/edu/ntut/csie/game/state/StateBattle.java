@@ -145,8 +145,6 @@ public class StateBattle extends GameState
     {
         if (!_isGameOver)
         {
-            RecordModel recordModel = new RecordModel(_engine);
-            recordModel.AddExperience(_battleModel.GetScore());
             _shiftingModule.AssignSpecifiedSliding(0, 30);
             _winningBannerTransition.Activate();
             _backgroundMusic.stop();
@@ -158,6 +156,8 @@ public class StateBattle extends GameState
             _exitBattleButtonDelay++;
             if (_exitBattleButtonDelay == Game.FRAME_RATE * 4 / 3)
             {
+                RecordModel recordModel = new RecordModel(_engine);
+                recordModel.AddExperience(_battleModel.GetScore());
                 _experienceBanner.setVisible(true);
                 _exitBattleButton.setVisible(true);
                 _experienceValue.setValue(_battleModel.GetScore());
