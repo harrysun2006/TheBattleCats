@@ -65,7 +65,7 @@ public class StateReady extends AbstractGameState {
         _helpButton.addButtonEventHandler(new ButtonEventHandler() {
             @Override
             public void perform(BitmapButton button) {
-                setVisibility(true, false);
+                changeState(Game.MAP_STATE);
             }
         });
         addPointerEventHandler(_helpButton);
