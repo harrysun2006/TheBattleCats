@@ -44,7 +44,6 @@ public class StateMap extends GameState
     @Override
     public void move()
     {
-
     }
 
     @Override
@@ -57,13 +56,13 @@ public class StateMap extends GameState
     public boolean pointerPressed(List<Pointer> pointers)
     {
         //億光大樓 左上(563, 264) 右下(609, 293)
-        if(pointers.get(0).getX() >= 563 && pointers.get(0).getX()<= 609 && pointers.get(0).getY() >= 264 && pointers.get(0).getY() <= 293)
+        if (pointers.get(0).getX() >= 563 && pointers.get(0).getX() <= 609 && pointers.get(0).getY() >= 264 && pointers.get(0).getY() <= 293)
         {
             _gameLevel = 1;
             changeState(Game.BATTLE_STATE);
         }
         //科研 左上(106, 38) 右下(157, 83)
-        else if(pointers.get(0).getX() >= 106 && pointers.get(0).getX()<= 160 && pointers.get(0).getY() >= 38 && pointers.get(0).getY() <= 83)
+        else if (pointers.get(0).getX() >= 106 && pointers.get(0).getX() <= 160 && pointers.get(0).getY() >= 38 && pointers.get(0).getY() <= 83)
         {
             _gameLevel = 2;
             changeState(Game.BATTLE_STATE);
@@ -84,39 +83,35 @@ public class StateMap extends GameState
     }
 
     @Override
-    public void orientationChanged(float pitch, float azimuth, float roll)
-    {
-
-    }
-
-    @Override
-    public void accelerationChanged(float dX, float dY, float dZ)
-    {
-
-    }
-
-    @Override
     public void keyPressed(int keyCode)
     {
-
     }
 
     @Override
     public void keyReleased(int keyCode)
     {
+    }
 
+    @Override
+    public void orientationChanged(float pitch, float azimuth, float roll)
+    {
+    }
+
+    @Override
+    public void accelerationChanged(float dX, float dY, float dZ)
+    {
     }
 
     @Override
     public void pause()
     {
-
+        _music.pause();
     }
 
     @Override
     public void resume()
     {
-
+        _music.play();
     }
 
     private MovingBitmap _background;
