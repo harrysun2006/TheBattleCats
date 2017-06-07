@@ -96,6 +96,15 @@ public class StateBattle extends GameState
     public void move()
     {
         _battleModel.Run();
+        _winningBannerTransition.Run();
+        _losingBannerTransition.Run();
+        RunButtonComponent();
+        RunShiftingModule();
+        DetectBattleStatus();
+    }
+
+    private void RunButtonComponent()
+    {
         _capooButton.Run();
         _pusheenButton.Run();
         _rabbitButton.Run();
@@ -104,17 +113,13 @@ public class StateBattle extends GameState
         _pusheenButton.SetEnable(_battleModel.GetCurrentMoney(), Pusheen.COST);
         _rabbitButton.SetEnable(_battleModel.GetCurrentMoney(), Rabbit.COST);
         _birdButton.SetEnable(_battleModel.GetCurrentMoney(), Bird.COST);
-        _moneyAddButton.SetEnable(_battleModel.GetCurrentMoney(), Money.ADD_MONEY_COST);
         _capooCooldown.SetCurrentPercentage(_capooButton.GetPercent());
         _pusheenCooldown.SetCurrentPercentage(_pusheenButton.GetPercent());
         _rabbitCooldown.SetCurrentPercentage(_rabbitButton.GetPercent());
         _birdCooldown.SetCurrentPercentage(_birdButton.GetPercent());
         _allyNexusHealth.SetCurrentPercentage(_battleModel.GetAllyNexusHealthPercentage());
         _enemyNexusHealth.SetCurrentPercentage(_battleModel.GetEnemyNexusHealthPercentage());
-        _winningBannerTransition.Run();
-        _losingBannerTransition.Run();
-        RunShiftingModule();
-        DetectBattleStatus();
+        _moneyAddButton.SetEnable(_battleModel.GetCurrentMoney(), Money.ADD_MONEY_COST);
     }
 
     //運作ShiftingModule: 當_shifting改變時會呼叫Translation()位移畫面的物件
