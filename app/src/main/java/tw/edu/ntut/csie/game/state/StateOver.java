@@ -42,5 +42,4 @@ public class StateOver extends AbstractGameState {
     @Override
     public void resume() {
     }
-
 }
