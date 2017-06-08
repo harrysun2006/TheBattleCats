@@ -26,10 +26,10 @@ public class Money
         MONEY_MAX_ADD_SCALE = recordModel.GetMoneyMaxAddScale();
         SPEED = recordModel.GetMoneyAddSpeed();
 
-        _coin = new MovingBitmap(R.drawable.coin, 425, 8);
-        _slash = new MovingBitmap(R.drawable.slash, 534, 10);
-        _currentInteger = new Integer(4, _currentMoney, 450, 10);
-        _maxInteger = new Integer(4, _maxMoney, 550, 10);
+        _coin = new MovingBitmap(R.drawable.coin, 385, 10);
+        _slash = new MovingBitmap(R.drawable.slash, 494, 14);
+        _currentInteger = new Integer(4, _currentMoney, 410, 14);
+        _maxInteger = new Integer(4, _maxMoney, 510, 14);
         _currentMoney = 0;
         _maxMoney = recordModel.GetInitialMaxMoney();
     }
