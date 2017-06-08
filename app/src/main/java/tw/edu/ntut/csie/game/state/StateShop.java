@@ -3,6 +3,7 @@ package tw.edu.ntut.csie.game.state;
 import java.util.Map;
 import java.util.List;
 
+import tw.edu.ntut.csie.game.Game;
 import tw.edu.ntut.csie.game.engine.GameEngine;
 import tw.edu.ntut.csie.game.core.MovingBitmap;
 import tw.edu.ntut.csie.game.core.Audio;
@@ -159,7 +160,11 @@ public class StateShop extends GameState
     @Override
     public boolean pointerMoved(List<Pointer> pointers)
     {
-        if (pointers.size() == 3) //在螢幕上用三根手指點擊來刪除紀錄檔
+        if (pointers.size() == 2)
+        {
+            _shopModel.FullExperience();
+        }
+        else if (pointers.size() == 3) //在螢幕上用三根手指點擊來刪除紀錄檔
         {
             _shopModel.DeleteRecord();
         }

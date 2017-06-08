@@ -66,6 +66,11 @@ public class ShopModel
         return _recordModel.GetExperience();
     }
 
+    public void FullExperience()
+    {
+        _recordModel.FullExperience();
+    }
+
     public boolean DeleteRecord()
     {
         return _recordModel.DeleteRecord();
