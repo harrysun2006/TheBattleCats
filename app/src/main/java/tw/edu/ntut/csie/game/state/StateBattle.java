@@ -301,6 +301,10 @@ public class StateBattle extends GameState
     @Override
     public boolean pointerPressed(List<Pointer> pointers)
     {
+        if (_isPaused)
+        {
+            return true;
+        }
         if (IsPointerOnButton(pointers.get(0), _capooButton))
         {
             _pressedButton = 1;
