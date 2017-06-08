@@ -21,15 +21,15 @@ public class Money
     private int _currentMoney;
     private int _maxMoney;
 
-    public Money(RecordModel recordModel)
+    public Money(RecordModel recordModel, int x, int y)
     {
         MONEY_MAX_ADD_SCALE = recordModel.GetMoneyMaxAddScale();
         SPEED = recordModel.GetMoneyAddSpeed();
 
-        _coin = new MovingBitmap(R.drawable.coin, 385, 10);
-        _slash = new MovingBitmap(R.drawable.slash, 494, 14);
-        _currentInteger = new Integer(4, _currentMoney, 410, 14);
-        _maxInteger = new Integer(4, _maxMoney, 510, 14);
+        _coin = new MovingBitmap(R.drawable.coin, x, y);
+        _slash = new MovingBitmap(R.drawable.slash, x + 109, y + 4);
+        _currentInteger = new Integer(4, _currentMoney, x + 25, y + 4);
+        _maxInteger = new Integer(4, _maxMoney, x + 125, y + 4);
         _currentMoney = 0;
         _maxMoney = recordModel.GetInitialMaxMoney();
     }

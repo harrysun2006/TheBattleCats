@@ -33,7 +33,7 @@ public class BattleModel implements ReleasableResource
         _enemies = new ArrayList<>();
         _allies.add(new AllyNexus(800, 150, recordModel.GetAllyNexusHealth(), _shifting));
         _enemies.add(new EnemyNexus(80, 100, _shifting));
-        _money = new Money(recordModel);
+        _money = new Money(recordModel, 385, 10);
         _score = new Score();
         _battleStatus = 0;
     }
