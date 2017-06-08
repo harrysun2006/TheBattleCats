@@ -3,7 +3,6 @@ package tw.edu.ntut.csie.game.state;
 import java.util.Map;
 import java.util.List;
 
-import tw.edu.ntut.csie.game.Game;
 import tw.edu.ntut.csie.game.engine.GameEngine;
 import tw.edu.ntut.csie.game.core.MovingBitmap;
 import tw.edu.ntut.csie.game.core.Audio;
@@ -31,9 +30,6 @@ public class StateShop extends GameState
     public void initialize(Map<String, Object> data)
     {
         _background = new MovingBitmap(R.drawable.background);
-        _music = new Audio(R.raw.ntut);
-        _music.setRepeating(true);
-        _music.play();
         _shopModel = new ShopModel(new RecordModel(_engine));
         _experience = new Integer(5, _shopModel.GetExperience(), 500, 20);
         _moneyPocketButton = new ShopLevelButton(R.drawable.money_pocket, R.drawable.money_pocket_disabled, 10, 120, _shopModel.GetMoneyPocketLevel());
@@ -41,7 +37,17 @@ public class StateShop extends GameState
         _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy_disabled, 390, 120, _shopModel.GetCastleEnergyLevel());
         _experienceLearningButton = new ShopLevelButton(R.drawable.experience_learning, R.drawable.experience_learning_disabled, 580, 120, _shopModel.GetExperienceLearningLevel());
         _shiftingModule = new ShiftingModule(135);
+        InitializeMusic();
         UpdateButtonState();
+    }
+
+    private void InitializeMusic()
+    {
+        _music = new Audio(R.raw.ntut);
+        _music.setRepeating(true);
+        _buyingSound = new Audio(R.raw.buy_item);
+        _buyingSound.setRepeating(false);
+        _music.play();
     }
 
     //在initialize時跟按下按鈕後更新按鈕狀態，經驗值實作前current跟cost都設成0
@@ -94,6 +100,7 @@ public class StateShop extends GameState
     {
         _background.release();
         _music.release();
+        _buyingSound.release();
         _experience.release();
         _moneyPocketButton.release();
         _workEfficiencyButton.release();
@@ -101,6 +108,7 @@ public class StateShop extends GameState
         _experienceLearningButton.release();
         _background = null;
         _music = null;
+        _buyingSound = null;
         _shopModel = null;
         _experience = null;
         _moneyPocketButton = null;
@@ -189,6 +197,7 @@ public class StateShop extends GameState
         {
             if (_moneyPocketButton.GetIsEnabled())
             {
+                _buyingSound.play();
                 _moneyPocketButton.Push();
                 _shopModel.UpgradeMoneyPocket();
                 UpdateButtonState();
@@ -198,6 +207,7 @@ public class StateShop extends GameState
         {
             if (_workEfficiencyButton.GetIsEnabled())
             {
+                _buyingSound.play();
                 _workEfficiencyButton.Push();
                 _shopModel.UpgradeWorkEfficiency();
                 UpdateButtonState();
@@ -207,6 +217,7 @@ public class StateShop extends GameState
         {
             if (_castleEnergyButton.GetIsEnabled())
             {
+                _buyingSound.play();
                 _castleEnergyButton.Push();
                 _shopModel.UpgradeCastleEnergy();
                 UpdateButtonState();
@@ -216,6 +227,7 @@ public class StateShop extends GameState
         {
             if (_experienceLearningButton.GetIsEnabled())
             {
+                _buyingSound.play();
                 _experienceLearningButton.Push();
                 _shopModel.UpgradeExperienceLearning();
                 UpdateButtonState();
@@ -247,6 +259,7 @@ public class StateShop extends GameState
 
     private MovingBitmap _background;
     private Audio _music;
+    private Audio _buyingSound;
     private ShopModel _shopModel;
     private Integer _experience;
     private ShopLevelButton _moneyPocketButton;

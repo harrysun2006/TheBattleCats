@@ -33,7 +33,7 @@ public class StateReady extends AbstractGameState {
     public void initialize(Map<String, Object> data) {
         addGameObject(_helpInfo = new MovingBitmap(R.drawable.help_info));
         addGameObject(_background = new MovingBitmap(R.drawable.state_ready));
-        addGameObject(_aboutInfo = new MovingBitmap(R.drawable.about_info));
+        addGameObject(_aboutInfo = new MovingBitmap(R.drawable.new_about_info));
         initializeStartButton();
         initializeHelpButton();
         initializeAboutButton();
