@@ -123,6 +123,7 @@ public class RecordModel
     public void FullExperience()
     {
         _records[4] = String.valueOf(99999);
+        _gameEngine.NoticeFullExperience();
         WriteRecord();
     }
 

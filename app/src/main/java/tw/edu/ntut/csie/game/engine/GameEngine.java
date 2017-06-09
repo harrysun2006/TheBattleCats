@@ -8,6 +8,7 @@ import android.text.TextPaint;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.View.OnTouchListener;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -524,5 +525,10 @@ public class GameEngine implements Runnable {
     {
         IOModel model = new IOModel(_game, _game.getApplicationContext());
         return model.Delete();
+    }
+
+    public void NoticeFullExperience()
+    {
+        Toast.makeText(_game, "full experience", Toast.LENGTH_SHORT).show();
     }
 }
