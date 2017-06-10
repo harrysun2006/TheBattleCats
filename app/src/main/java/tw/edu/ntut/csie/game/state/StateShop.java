@@ -29,13 +29,13 @@ public class StateShop extends GameState
     @Override
     public void initialize(Map<String, Object> data)
     {
-        _background = new MovingBitmap(R.drawable.background);
+        _background = new MovingBitmap(R.drawable.shop_background);
         _shopModel = new ShopModel(new RecordModel(_engine));
-        _experience = new Integer(5, _shopModel.GetExperience(), 500, 20);
-        _moneyPocketButton = new ShopLevelButton(R.drawable.money_pocket, R.drawable.money_pocket_disabled, 10, 120, _shopModel.GetMoneyPocketLevel());
-        _workEfficiencyButton = new ShopLevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency_disabled, 200, 120, _shopModel.GetWorkEfficiencyLevel());
-        _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy_disabled, 390, 120, _shopModel.GetCastleEnergyLevel());
-        _experienceLearningButton = new ShopLevelButton(R.drawable.experience_learning, R.drawable.experience_learning_disabled, 580, 120, _shopModel.GetExperienceLearningLevel());
+        _experience = new Integer(5, _shopModel.GetExperience(), 500, 13);
+        _moneyPocketButton = new ShopLevelButton(R.drawable.money_pocket, R.drawable.money_pocket_disabled, 10, 60, _shopModel.GetMoneyPocketLevel());
+        _workEfficiencyButton = new ShopLevelButton(R.drawable.work_efficiency, R.drawable.work_efficiency_disabled, 200, 60, _shopModel.GetWorkEfficiencyLevel());
+        _castleEnergyButton = new ShopLevelButton(R.drawable.castle_enegy, R.drawable.castle_enegy_disabled, 390, 60, _shopModel.GetCastleEnergyLevel());
+        _experienceLearningButton = new ShopLevelButton(R.drawable.experience_learning, R.drawable.experience_learning_disabled, 580, 60, _shopModel.GetExperienceLearningLevel());
         _shiftingModule = new ShiftingModule(135);
         InitializeMusic();
         UpdateButtonState();
