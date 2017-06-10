@@ -178,7 +178,7 @@ public class BattleModel implements ReleasableResource
             if (_generateEnemiesDelayCounter == 0)
             {
                 Random random = new Random();
-                int result = random.nextInt(2);
+                int result = random.nextInt(3);
                 switch (result)
                 {
                     case 0:
@@ -186,6 +186,9 @@ public class BattleModel implements ReleasableResource
                         break;
                     case 1:
                         GenerateDeer();
+                        break;
+                    case 2:
+                        GenerateHoshi();
                         break;
                 }
                 _generateEnemiesDelayCounter = GENERATE_ENEMIES_DELAY_COUNTER;
@@ -242,6 +245,11 @@ public class BattleModel implements ReleasableResource
     private void GenerateDeer()
     {
         _enemies.add(new Deer(20, 195, _shifting));
+    }
+
+    private void GenerateHoshi()
+    {
+        _enemies.add(new Hoshi(80, 220, _shifting));
     }
 
     public void Translation(int shiftedX, int shiftedY)
