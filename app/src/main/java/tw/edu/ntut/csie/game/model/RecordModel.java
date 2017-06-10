@@ -80,6 +80,7 @@ public class RecordModel
         return Integer.parseInt(_records[4]);
     }
 
+    //工作狂貓錢包每提升一提，得到額外100初始金錢
     public int GetInitialMaxMoney()
     {
         int result = 1000;
@@ -90,6 +91,7 @@ public class RecordModel
         return result;
     }
 
+    //工作狂貓錢包每提升一提，升級時得到額外100金錢上限
     public int GetMoneyMaxAddScale()
     {
         int result = 100;
@@ -100,6 +102,7 @@ public class RecordModel
         return result;
     }
 
+    //工作狂貓的工作效率每提升一級，每1/15秒得到額外2金錢
     public int GetMoneyAddSpeed()
     {
         int result = 10;
@@ -110,12 +113,24 @@ public class RecordModel
         return result;
     }
 
+    //城堡體力每提升一級，得到額外1000血量
     public int GetAllyNexusHealth()
     {
         int result = 1000;
         for (int i = 1; i < Integer.parseInt(_records[2]); i++)
         {
             result += 1000;
+        }
+        return result;
+    }
+
+    //學習力每提升一級，得到額外0.25倍的經驗值
+    public double GetExperienceLearningScale()
+    {
+        double result = 1;
+        for (int i = 1; i < Integer.parseInt(_records[3]); i++)
+        {
+            result += 0.25;
         }
         return result;
     }

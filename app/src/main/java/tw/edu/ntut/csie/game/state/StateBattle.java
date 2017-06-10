@@ -168,10 +168,10 @@ public class StateBattle extends GameState
             if (_exitBattleButtonDelay == Game.FRAME_RATE * 4 / 3)
             {
                 RecordModel recordModel = new RecordModel(_engine);
-                recordModel.AddExperience(_battleModel.GetScore());
+                recordModel.AddExperience((int) (_battleModel.GetScore() * recordModel.GetExperienceLearningScale()));
                 _experienceBanner.setVisible(true);
                 _exitBattleButton.setVisible(true);
-                _experienceValue.setValue(_battleModel.GetScore());
+                _experienceValue.setValue((int) (_battleModel.GetScore() * recordModel.GetExperienceLearningScale()));
                 _experienceValue.setLocation(265, 214);
             }
         }
