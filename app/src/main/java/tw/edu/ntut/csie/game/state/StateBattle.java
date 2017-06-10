@@ -58,6 +58,8 @@ public class StateBattle extends GameState
         _experienceBanner.setVisible(false);
         _exitBattleButton = new MovingBitmap(R.drawable.exit_battle_button, 240, 250);
         _exitBattleButton.setVisible(false);
+        _pauseBanner = new MovingBitmap(R.drawable.pause_banner, 0, 170);
+        _pauseBanner.setVisible(false);
         _pauseButton = new MovingBitmap(R.drawable.pause, 592, 5);
         _experienceValue = new Integer(4, 0, 640, 376); //讓遊戲勝利會獲得的經驗值先暫時放在遊戲畫面外
 
@@ -225,6 +227,7 @@ public class StateBattle extends GameState
         _losingBanner.show();
         _experienceBanner.show();
         _exitBattleButton.show();
+        _pauseBanner.show();
         _pauseButton.show();
         _experienceValue.show();
     }
@@ -252,6 +255,7 @@ public class StateBattle extends GameState
         _losingBanner.release();
         _experienceBanner.release();
         _exitBattleButton.release();
+        _pauseBanner.release();
         _pauseButton.release();
         _experienceValue.release();
         _backgroundMusic = null;
@@ -274,6 +278,7 @@ public class StateBattle extends GameState
         _losingBanner = null;
         _experienceBanner = null;
         _exitBattleButton = null;
+        _pauseBanner = null;
         _pauseButton = null;
         _experienceValue = null;
     }
@@ -413,6 +418,7 @@ public class StateBattle extends GameState
         else if (IsPointerOnButton(pointers.get(0), _pauseButton) && _pressedButton == 6)
         {
             _isPaused = !_isPaused;
+            _pauseBanner.setVisible(_isPaused);
         }
         if (_winningBannerTransition.IsTransitionFinished() || _losingBannerTransition.IsTransitionFinished())
         {
@@ -477,6 +483,7 @@ public class StateBattle extends GameState
     private VerticalTransition _losingBannerTransition;
     private MovingBitmap _experienceBanner;
     private MovingBitmap _exitBattleButton;
+    private MovingBitmap _pauseBanner;
     private MovingBitmap _pauseButton;
     private Integer _experienceValue;
 
