@@ -24,6 +24,7 @@ import tw.edu.ntut.csie.game.model.CDButton;
 import tw.edu.ntut.csie.game.model.CooldownBar;
 import tw.edu.ntut.csie.game.model.HealthBar;
 import tw.edu.ntut.csie.game.model.BattleLevelButton;
+import tw.edu.ntut.csie.game.model.FadeInBlack;
 import tw.edu.ntut.csie.game.model.HorizontalTransition;
 import tw.edu.ntut.csie.game.model.VerticalTransition;
 import tw.edu.ntut.csie.game.extend.Integer;
@@ -49,6 +50,7 @@ public class StateBattle extends GameState
         _enemyNexusHealth = new HealthBar(70, 100, 120);
         _moneyAddButton = new BattleLevelButton(R.drawable.money_button_80, R.drawable.money_button_80_disabled, 10, 286);
 
+        _losingCover = new FadeInBlack();
         _winningBanner = new MovingBitmap(R.drawable.winning_banner, -299, 125);
         _winningBannerTransition = new HorizontalTransition(_winningBanner, 170);
         _losingBanner = new MovingBitmap(R.drawable.losing_banner, 220, -83);
@@ -104,8 +106,6 @@ public class StateBattle extends GameState
             return;
         }
         _battleModel.Run();
-        _winningBannerTransition.Run();
-        _losingBannerTransition.Run();
         RunButtonComponent();
         RunShiftingModule();
         DetectBattleStatus();
@@ -147,10 +147,12 @@ public class StateBattle extends GameState
         if (_battleModel.GetBattleStatus() == 1)
         {
             HandleWinningEvent();
+            _winningBannerTransition.Run();
         }
         if (_battleModel.GetBattleStatus() == 2)
         {
             HandleLosingEvent();
+            _losingBannerTransition.Run();
         }
     }
 
@@ -192,9 +194,13 @@ public class StateBattle extends GameState
         if (_losingBannerTransition.IsTransitionFinished()) //失敗轉場結束後延遲2秒跳出離開按鈕
         {
             _exitBattleButtonDelay++;
-            if (_exitBattleButtonDelay == Game.FRAME_RATE * 4 / 3)
+            if (_exitBattleButtonDelay >= Game.FRAME_RATE * 4 / 3)
             {
-                _exitBattleButton.setVisible(true);
+                _losingCover.Run();
+                if (_losingCover.IsFadeInFinished())
+                {
+                    _exitBattleButton.setVisible(true);
+                }
             }
         }
     }
@@ -223,6 +229,7 @@ public class StateBattle extends GameState
         _allyNexusHealth.Show();
         _enemyNexusHealth.Show();
         _moneyAddButton.Show();
+        _losingCover.Show();
         _winningBanner.show();
         _losingBanner.show();
         _experienceBanner.show();
@@ -251,6 +258,7 @@ public class StateBattle extends GameState
         _allyNexusHealth.release();
         _enemyNexusHealth.release();
         _moneyAddButton.release();
+        _losingCover.release();
         _winningBanner.release();
         _losingBanner.release();
         _experienceBanner.release();
@@ -274,6 +282,7 @@ public class StateBattle extends GameState
         _allyNexusHealth = null;
         _enemyNexusHealth = null;
         _moneyAddButton = null;
+        _losingCover = null;
         _winningBanner = null;
         _losingBanner = null;
         _experienceBanner = null;
@@ -477,6 +486,7 @@ public class StateBattle extends GameState
     private HealthBar _allyNexusHealth;
     private HealthBar _enemyNexusHealth;
     private BattleLevelButton _moneyAddButton;
+    private FadeInBlack _losingCover;
     private MovingBitmap _winningBanner;
     private MovingBitmap _losingBanner;
     private HorizontalTransition _winningBannerTransition;
