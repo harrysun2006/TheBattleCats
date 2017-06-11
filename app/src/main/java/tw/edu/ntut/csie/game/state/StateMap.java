@@ -2,6 +2,7 @@ package tw.edu.ntut.csie.game.state;
 
 import java.util.Map;
 import java.util.List;
+import java.util.HashMap;
 
 import tw.edu.ntut.csie.game.Game;
 import tw.edu.ntut.csie.game.Pointer;
@@ -29,7 +30,7 @@ public class StateMap extends GameState
         _music = new Audio(R.raw.ntut);
         _music.setRepeating(true);
         _music.play();
-        _gameLevel = 1;
+        _gameLevel = 0;
     }
 
     @Override
@@ -59,13 +60,23 @@ public class StateMap extends GameState
         if (pointers.get(0).getX() >= 563 && pointers.get(0).getX() <= 609 && pointers.get(0).getY() >= 264 && pointers.get(0).getY() <= 293)
         {
             _gameLevel = 1;
-            changeState(Game.BATTLE_STATE);
         }
         //科研 左上(106, 38) 右下(157, 83)
-        else if (pointers.get(0).getX() >= 106 && pointers.get(0).getX() <= 160 && pointers.get(0).getY() >= 38 && pointers.get(0).getY() <= 83)
+        else if (pointers.get(0).getX() >= 106 && pointers.get(0).getX() <= 157 && pointers.get(0).getY() >= 38 && pointers.get(0).getY() <= 83)
         {
             _gameLevel = 2;
-            changeState(Game.BATTLE_STATE);
+        }
+        //行政大樓 左上(262, 210) 右下(304, 239)
+        else if (pointers.get(0).getX() >= 262 && pointers.get(0).getX() <= 304 && pointers.get(0).getY() >= 210 && pointers.get(0).getY() <= 239)
+        {
+            _gameLevel = 3;
+        }
+        //如果有選擇到關卡(_gameLevel != 0)
+        if (_gameLevel != 0)
+        {
+            Map<String, Object> input = new HashMap<>();
+            input.put("game_level", _gameLevel);
+            changeState(Game.BATTLE_STATE, input);
         }
         return false;
     }

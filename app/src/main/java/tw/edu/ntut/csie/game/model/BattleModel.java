@@ -1,8 +1,11 @@
 package tw.edu.ntut.csie.game.model;
 
+import java.util.Map;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Random;
+
+import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.ReleasableResource;
 import tw.edu.ntut.csie.game.Game;
 
@@ -27,15 +30,36 @@ public class BattleModel implements ReleasableResource
     private int _shifting = 0;
     private int _battleStatus; //0: 戰鬥中，1: 遊戲勝利，2: 遊戲失敗
 
-    public BattleModel(RecordModel recordModel)
+    public BattleModel(RecordModel recordModel, Map<String, Object> data)
     {
         _allies = new ArrayList<>();
         _enemies = new ArrayList<>();
         _allies.add(new AllyNexus(800, 150, recordModel.GetAllyNexusHealth(), _shifting));
-        _enemies.add(new EnemyNexus(80, 100, _shifting));
+        _enemies.add(GenerateEnemyNexus(data));
         _money = new Money(recordModel, 385, 10);
         _score = new Score();
         _battleStatus = 0;
+    }
+
+    //根據關卡產生相對應的敵軍主堡造型
+    private EnemyNexus GenerateEnemyNexus(Map<String, Object> data)
+    {
+        if (data == null)
+        {
+            return new EnemyNexus(80, 100, _shifting, R.drawable.enemy_nexus, R.drawable.enemy_nexus_attacked);
+        }
+        else if ((int) data.get("game_level") == 1)
+        {
+            return new EnemyNexus(80, 100, _shifting, R.drawable.enemy_nexus, R.drawable.enemy_nexus_attacked);
+        }
+        else if ((int) data.get("game_level") == 2)
+        {
+            return new EnemyNexus(70, 105, _shifting, R.drawable.wang, R.drawable.wang);
+        }
+        else //if ((int) data.get("game_level") == 3)
+        {
+            return new EnemyNexus(90, 110, _shifting, R.drawable.yao, R.drawable.yao);
+        }
     }
 
     public void Run()

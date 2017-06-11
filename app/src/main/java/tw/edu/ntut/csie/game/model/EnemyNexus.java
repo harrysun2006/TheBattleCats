@@ -2,14 +2,13 @@ package tw.edu.ntut.csie.game.model;
 
 //Created by leon on 2017/3/20.
 
-import tw.edu.ntut.csie.game.R;
 import tw.edu.ntut.csie.game.extend.Animation;
 
 public class EnemyNexus extends Units
 {
     private boolean _invincible;
 
-    public EnemyNexus(int x, int y, int shiftedX)
+    public EnemyNexus(int x, int y, int shiftedX, int normalId, int attackedId)
     {
         _health = 1000;
         _currentHealth = _health;
@@ -22,14 +21,14 @@ public class EnemyNexus extends Units
 
         _movingActive = new Animation();
         _movingActive.setLocation(_displayX, _displayY);
-        _movingActive.addFrame(R.drawable.enemy_nexus);
+        _movingActive.addFrame(normalId);
         _movingActive.setDelay(0);
         _movingActive.setRepeating(false);
 
         _knockedBackActive = new Animation();
         _knockedBackActive.setLocation(_displayX, _displayY);
-        _knockedBackActive.addFrame(R.drawable.enemy_nexus);
-        _knockedBackActive.addFrame(R.drawable.enemy_nexus_attacked);
+        _knockedBackActive.addFrame(normalId);
+        _knockedBackActive.addFrame(attackedId);
         _knockedBackActive.setDelay(1);
     }
 
