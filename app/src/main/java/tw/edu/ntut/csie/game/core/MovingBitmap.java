@@ -201,4 +201,9 @@ public class MovingBitmap implements GameObject {
     public void setVisible(boolean visible) {
         _visible = visible;
     }
+
+    public boolean IsVisible()
+    {
+        return _visible;
+    }
 }

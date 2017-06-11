@@ -166,7 +166,7 @@ public class StateBattle extends GameState
             _winningMusic.play();
             _isGameOver = true;
         }
-        if (_winningBannerTransition.IsTransitionFinished()) //勝利轉場結束後延遲2秒跳出離開按鈕以及獲得的經驗值
+        if (_winningBannerTransition.IsTransitionFinished()) //勝利轉場結束後延遲4/3秒跳出離開按鈕以及獲得的經驗值
         {
             _exitBattleButtonDelay++;
             if (_exitBattleButtonDelay == Game.FRAME_RATE * 4 / 3)
@@ -191,7 +191,7 @@ public class StateBattle extends GameState
             _losingMusic.play();
             _isGameOver = true;
         }
-        if (_losingBannerTransition.IsTransitionFinished()) //失敗轉場結束後延遲2秒跳出離開按鈕
+        if (_losingBannerTransition.IsTransitionFinished()) //失敗轉場結束後延遲4/3秒畫面開始漸漸變暗，結束後跳出離開按鈕
         {
             _exitBattleButtonDelay++;
             if (_exitBattleButtonDelay >= Game.FRAME_RATE * 4 / 3)
@@ -349,7 +349,7 @@ public class StateBattle extends GameState
             _currentPressedX = pointers.get(0).getX();
             _shiftingModule.HandlePointerPressed(_currentPressedX);
         }
-        if (_winningBannerTransition.IsTransitionFinished() || _losingBannerTransition.IsTransitionFinished())
+        if (_exitBattleButton.IsVisible())
         {
             if (IsPointerOnButton(pointers.get(0), _exitBattleButton))
             {
@@ -429,7 +429,7 @@ public class StateBattle extends GameState
             _isPaused = !_isPaused;
             _pauseBanner.setVisible(_isPaused);
         }
-        if (_winningBannerTransition.IsTransitionFinished() || _losingBannerTransition.IsTransitionFinished())
+        if (_exitBattleButton.IsVisible())
         {
             if (IsPointerOnButton(pointers.get(0), _exitBattleButton) && _pressedButton == 7)
             {

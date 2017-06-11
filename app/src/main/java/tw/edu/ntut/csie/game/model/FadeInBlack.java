@@ -60,16 +60,16 @@ public class FadeInBlack implements ReleasableResource
 
     public void Run()
     {
-        if (_isFaded)
+        if (_isFaded) //如果已經淡入結束則直接return
         {
             return;
         }
-        if (!_fading.isLastFrame())
+        if (!_fading.isLastFrame()) //尚未淡入結束的時候
         {
             _fading.setVisible(true);
             _fading.move();
         }
-        else
+        else //淡入結束的時候把_fading動畫release掉，同時讓畫面只有_faded這個黑色畫面
         {
             _fading.release();
             _fading = null;
