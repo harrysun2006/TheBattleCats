@@ -26,7 +26,7 @@ public class StateMap extends GameState
     @Override
     public void initialize(Map<String, Object> data)
     {
-        _background = new MovingBitmap(R.drawable.gamemap);
+        _background = new MovingBitmap(R.drawable.game_map);
         _music = new Audio(R.raw.ntut);
         _music.setRepeating(true);
         _music.play();
