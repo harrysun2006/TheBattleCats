@@ -51,7 +51,7 @@ public class StateReady extends AbstractGameState {
         _startButton.addButtonEventHandler(new ButtonEventHandler() {
             @Override
             public void perform(BitmapButton button) {
-                changeState(Game.BATTLE_STATE);
+                changeState(Game.MAP_STATE);
             }
         });
         addPointerEventHandler(_startButton);
@@ -66,7 +66,7 @@ public class StateReady extends AbstractGameState {
         _helpButton.addButtonEventHandler(new ButtonEventHandler() {
             @Override
             public void perform(BitmapButton button) {
-                changeState(Game.MAP_STATE);
+                setVisibility(true, false);
             }
         });
         addPointerEventHandler(_helpButton);
