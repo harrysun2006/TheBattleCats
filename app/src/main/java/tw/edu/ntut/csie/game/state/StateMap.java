@@ -56,20 +56,25 @@ public class StateMap extends GameState
     @Override
     public boolean pointerPressed(List<Pointer> pointers)
     {
-        //億光大樓 左上(563, 264) 右下(609, 293)
-        if (pointers.get(0).getX() >= 563 && pointers.get(0).getX() <= 609 && pointers.get(0).getY() >= 264 && pointers.get(0).getY() <= 293)
+        //億光大樓 左上(563, 277) 右下(610, 304)
+        if (pointers.get(0).getX() >= 563 && pointers.get(0).getX() <= 610 && pointers.get(0).getY() >= 277 && pointers.get(0).getY() <= 304)
         {
             _gameLevel = 1;
         }
-        //科研 左上(106, 38) 右下(157, 83)
-        else if (pointers.get(0).getX() >= 106 && pointers.get(0).getX() <= 157 && pointers.get(0).getY() >= 38 && pointers.get(0).getY() <= 83)
+        //科研 左上(104, 76) 右下(156, 117)
+        else if (pointers.get(0).getX() >= 104 && pointers.get(0).getX() <= 156 && pointers.get(0).getY() >= 76 && pointers.get(0).getY() <= 117)
         {
             _gameLevel = 2;
         }
-        //行政大樓 左上(262, 210) 右下(304, 239)
-        else if (pointers.get(0).getX() >= 262 && pointers.get(0).getX() <= 304 && pointers.get(0).getY() >= 210 && pointers.get(0).getY() <= 239)
+        //行政大樓 左上(261, 229) 右下(303, 256)
+        else if (pointers.get(0).getX() >= 261 && pointers.get(0).getX() <= 303 && pointers.get(0).getY() >= 229 && pointers.get(0).getY() <= 256)
         {
             _gameLevel = 3;
+        }
+        //宿舍 左上(468, 89) 右下(594, 123)
+        else if (pointers.get(0).getX() >= 468 && pointers.get(0).getX() <= 594 && pointers.get(0).getY() >= 89 && pointers.get(0).getY() <= 123)
+        {
+            _gameLevel = 4;
         }
         //如果有選擇到關卡(_gameLevel != 0)
         if (_gameLevel != 0)
