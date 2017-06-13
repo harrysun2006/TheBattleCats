@@ -50,15 +50,15 @@ public class BattleModel implements ReleasableResource
         }
         else if ((int) data.get("game_level") == 1)
         {
-            return new EnemyNexus(40, 180, _shifting, R.drawable.audi, R.drawable.audi);
+            return new EnemyNexus(40, 180, _shifting, R.drawable.audi, R.drawable.audi_attacked);
         }
         else if ((int) data.get("game_level") == 2)
         {
-            return new EnemyNexus(70, 105, _shifting, R.drawable.wang, R.drawable.wang);
+            return new EnemyNexus(70, 105, _shifting, R.drawable.wang, R.drawable.wang_attacked);
         }
         else if ((int) data.get("game_level") == 3)
         {
-            return new EnemyNexus(90, 110, _shifting, R.drawable.yao, R.drawable.yao);
+            return new EnemyNexus(90, 110, _shifting, R.drawable.yao, R.drawable.yao_attacked);
         }
         else
         {
