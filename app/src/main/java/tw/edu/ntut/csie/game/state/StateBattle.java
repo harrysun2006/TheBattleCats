@@ -29,6 +29,7 @@ import tw.edu.ntut.csie.game.model.HorizontalTransition;
 import tw.edu.ntut.csie.game.model.VerticalTransition;
 import tw.edu.ntut.csie.game.extend.Integer;
 import tw.edu.ntut.csie.game.model.ShiftingModule;
+import tw.edu.ntut.csie.game.model.GodMode;
 import tw.edu.ntut.csie.game.model.Money;
 
 public class StateBattle extends GameState
@@ -70,6 +71,8 @@ public class StateBattle extends GameState
         _isPaused = false;
         _shiftingModule = new ShiftingModule(360);
         _shiftingModule.SetShifting(360);
+        _godMode = new GodMode();
+        _isGodMode = false;
         Translation(_shiftingModule.GetShifting(), 0);
     }
 
@@ -101,6 +104,11 @@ public class StateBattle extends GameState
     @Override
     public void move()
     {
+        if (_isGodMode)
+        {
+            _godMode.Run();
+            return;
+        }
         if (_isPaused)
         {
             return;
@@ -237,6 +245,7 @@ public class StateBattle extends GameState
         _pauseBanner.show();
         _pauseButton.show();
         _experienceValue.show();
+        _godMode.Show();
     }
 
     @Override
@@ -266,6 +275,7 @@ public class StateBattle extends GameState
         _pauseBanner.release();
         _pauseButton.release();
         _experienceValue.release();
+        _godMode.release();
         _backgroundMusic = null;
         _winningMusic = null;
         _buyingSound = null;
@@ -290,6 +300,7 @@ public class StateBattle extends GameState
         _pauseBanner = null;
         _pauseButton = null;
         _experienceValue = null;
+        _godMode = null;
     }
 
     @Override
@@ -315,6 +326,21 @@ public class StateBattle extends GameState
     @Override
     public boolean pointerPressed(List<Pointer> pointers)
     {
+        if (_godMode.IsTransitionFinished())
+        {
+            if (IsPointerOnButton(pointers.get(0), _godMode.GetAcceptGodButton()))
+            {
+                _pressedButton = 8;
+            }
+            if (IsPointerOnButton(pointers.get(0), _godMode.GetExitGodModeButton()))
+            {
+                _pressedButton = 9;
+            }
+        }
+        if (_isGodMode)
+        {
+            return true;
+        }
         if (_isPaused)
         {
             return true;
@@ -362,6 +388,10 @@ public class StateBattle extends GameState
     @Override
     public boolean pointerMoved(List<Pointer> pointers)
     {
+        if (pointers.size() == 3)
+        {
+            EnterGodMode();
+        }
         if (_isPressed)
         {
             _currentPressedX = pointers.get(0).getX();
@@ -371,9 +401,31 @@ public class StateBattle extends GameState
         return false;
     }
 
+    private void EnterGodMode()
+    {
+        _isGodMode = true;
+        _backgroundMusic.release();
+        _backgroundMusic = new Audio(R.raw.god);
+        _backgroundMusic.setRepeating(true);
+        _backgroundMusic.play();
+        _godMode.Activate();
+    }
+
     @Override
     public boolean pointerReleased(List<Pointer> pointers)
     {
+        if (_godMode.IsTransitionFinished())
+        {
+            if (IsPointerOnButton(pointers.get(0), _godMode.GetAcceptGodButton()) && _pressedButton == 8)
+            {
+                _battleModel.KillAllEnemies();
+                LeaveGodMode();
+            }
+            if (IsPointerOnButton(pointers.get(0), _godMode.GetExitGodModeButton()) && _pressedButton == 9)
+            {
+                LeaveGodMode();
+            }
+        }
         if (_isPressed)
         {
             _isPressed = false;
@@ -457,6 +509,16 @@ public class StateBattle extends GameState
                 pressedY > button.getY() && pressedY < button.getY() + button.getHeight());
     }
 
+    private void LeaveGodMode()
+    {
+        _isGodMode = false;
+        _backgroundMusic.release();
+        _backgroundMusic = new Audio(R.raw.background);
+        _backgroundMusic.setRepeating(true);
+        _backgroundMusic.play();
+        _godMode.Inactivate();
+    }
+
     @Override
     public void pause()
     {
@@ -504,4 +566,6 @@ public class StateBattle extends GameState
     private boolean _isGameOver;
     private int _exitBattleButtonDelay;
     private boolean _isPaused;
+    private GodMode _godMode;
+    private boolean _isGodMode;
 }

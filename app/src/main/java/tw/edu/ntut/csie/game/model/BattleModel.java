@@ -349,4 +349,12 @@ public class BattleModel implements ReleasableResource
     {
         return _score.GetScore();
     }
+
+    public void KillAllEnemies()
+    {
+        for (int index = 1; index < _enemies.size(); index++)
+        {
+            _enemies.get(index).SetIsDying(true);
+        }
+    }
 }
