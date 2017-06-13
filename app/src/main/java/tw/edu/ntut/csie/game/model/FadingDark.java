@@ -72,6 +72,6 @@ public class FadingDark implements ReleasableResource
 
     public boolean IsFadingFinished()
     {
-        return _isFading;
+        return !_isFading;
     }
 }

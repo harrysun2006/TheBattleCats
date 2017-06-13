@@ -14,6 +14,7 @@ public class GodMode implements ReleasableResource
     private MovingBitmap _introduction;
     private MovingBitmap _acceptGodButton;
     private MovingBitmap _exitGodModeButton;
+    private boolean _isActivated;
 
     public GodMode()
     {
@@ -28,21 +29,30 @@ public class GodMode implements ReleasableResource
         _acceptGodButton.setVisible(false);
         _exitGodModeButton = new MovingBitmap(R.drawable.no, 250, 325);
         _exitGodModeButton.setVisible(false);
+        _isActivated = false;
     }
 
     public void Run()
     {
-        _darkCover.Run();
+        if (_isActivated)
+        {
+            _darkCover.Run();
+            if (_darkCover.IsFadingFinished())
+            {
+                _god.setVisible(true);
+                _dialog.setVisible(true);
+                _introduction.setVisible(true);
+                _acceptGodButton.setVisible(true);
+                _exitGodModeButton.setVisible(true);
+                _isActivated = false;
+            }
+        }
     }
 
     public void Activate()
     {
         _darkCover.ActivateFadeIn();
-        _god.setVisible(true);
-        _dialog.setVisible(true);
-        _introduction.setVisible(true);
-        _acceptGodButton.setVisible(true);
-        _exitGodModeButton.setVisible(true);
+        _isActivated = true;
     }
 
     public void Inactivate()
