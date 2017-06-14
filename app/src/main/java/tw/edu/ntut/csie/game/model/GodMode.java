@@ -10,8 +10,10 @@ public class GodMode implements ReleasableResource
 {
     private FadingDark _darkCover;
     private MovingBitmap _god;
+    private VerticalTransition _godTransition;
     private MovingBitmap _dialog;
     private MovingBitmap _introduction;
+    private VerticalTransition _introductionTransition;
     private MovingBitmap _acceptGodButton;
     private MovingBitmap _exitGodModeButton;
     private boolean _isActivated;
@@ -19,12 +21,12 @@ public class GodMode implements ReleasableResource
     public GodMode()
     {
         _darkCover = new FadingDark();
-        _god = new MovingBitmap(R.drawable.wk, 40, 90);
-        _god.setVisible(false);
+        _god = new MovingBitmap(R.drawable.wk, 40, -270);
+        _godTransition = new VerticalTransition(_god, 90, 20);
         _dialog = new MovingBitmap(R.drawable.dialog, 145, 80);
         _dialog.setVisible(false);
-        _introduction = new MovingBitmap(R.drawable.introduction, 135, 240);
-        _introduction.setVisible(false);
+        _introduction = new MovingBitmap(R.drawable.introduction, 135, -120);
+        _introductionTransition = new VerticalTransition(_introduction, 240, 20);
         _acceptGodButton = new MovingBitmap(R.drawable.yes, 400, 325);
         _acceptGodButton.setVisible(false);
         _exitGodModeButton = new MovingBitmap(R.drawable.no, 250, 325);
@@ -39,12 +41,17 @@ public class GodMode implements ReleasableResource
             _darkCover.Run();
             if (_darkCover.IsFadingFinished())
             {
-                _god.setVisible(true);
-                _dialog.setVisible(true);
-                _introduction.setVisible(true);
-                _acceptGodButton.setVisible(true);
-                _exitGodModeButton.setVisible(true);
-                _isActivated = false;
+                _godTransition.Run();
+                _introductionTransition.Run();
+                _godTransition.Activate();
+                _introductionTransition.Activate();
+                if (_godTransition.IsTransitionFinished())
+                {
+                    _dialog.setVisible(true);
+                    _acceptGodButton.setVisible(true);
+                    _exitGodModeButton.setVisible(true);
+                    _isActivated = false;
+                }
             }
         }
     }
@@ -58,9 +65,9 @@ public class GodMode implements ReleasableResource
     public void Inactivate()
     {
         _darkCover.ActivateFadeOut();
-        _god.setVisible(false);
+        _godTransition.Reset();
+        _introductionTransition.Reset();
         _dialog.setVisible(false);
-        _introduction.setVisible(false);
         _acceptGodButton.setVisible(false);
         _exitGodModeButton.setVisible(false);
     }

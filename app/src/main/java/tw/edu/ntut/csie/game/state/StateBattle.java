@@ -55,7 +55,7 @@ public class StateBattle extends GameState
         _winningBanner = new MovingBitmap(R.drawable.winning_banner, -299, 125);
         _winningBannerTransition = new HorizontalTransition(_winningBanner, 170);
         _losingBanner = new MovingBitmap(R.drawable.losing_banner, 220, -83);
-        _losingBannerTransition = new VerticalTransition(_losingBanner, 120);
+        _losingBannerTransition = new VerticalTransition(_losingBanner, 120, 25);
 
         _experienceBanner = new MovingBitmap(R.drawable.exp_banner, 0, 205);
         _experienceBanner.setVisible(false);
