@@ -8,6 +8,8 @@ public class VerticalTransition
 {
     private MovingBitmap _movingBitmap;
     private int _destinationY;
+    private int _acceleration;
+    private int _initialSpeed;
     private int _speed;
     private int _initialX;
     private int _initialY;
@@ -21,7 +23,9 @@ public class VerticalTransition
         _movingBitmap = movingBitmap;
         _movingBitmap.setVisible(false);
         _destinationY = destinationY;
-        _speed = speed;
+        _acceleration = 0;
+        _initialSpeed = speed;
+        _speed = _initialSpeed;
         _initialX = _movingBitmap.getX();
         _initialY = _movingBitmap.getY();
         _x = _initialX;
@@ -34,6 +38,7 @@ public class VerticalTransition
     {
         if (_isActive && !_isFinished)
         {
+            _speed += _acceleration;
             _y += _speed;
             if (_y > _destinationY)
             {
@@ -56,8 +61,14 @@ public class VerticalTransition
         return _isFinished;
     }
 
+    public void AssignAcceleration(int acceleration)
+    {
+        _acceleration = acceleration;
+    }
+
     public void Reset()
     {
+        _speed = _initialSpeed;
         _x = _initialX;
         _y = _initialY;
         _movingBitmap.setLocation(_x, _y);

@@ -22,11 +22,13 @@ public class GodMode implements ReleasableResource
     {
         _darkCover = new FadingDark();
         _god = new MovingBitmap(R.drawable.wk, 40, -270);
-        _godTransition = new VerticalTransition(_god, 90, 20);
+        _godTransition = new VerticalTransition(_god, 90, 49);
+        _godTransition.AssignAcceleration(-3);
         _dialog = new MovingBitmap(R.drawable.dialog, 145, 80);
         _dialog.setVisible(false);
         _introduction = new MovingBitmap(R.drawable.introduction, 135, -120);
-        _introductionTransition = new VerticalTransition(_introduction, 240, 20);
+        _introductionTransition = new VerticalTransition(_introduction, 240, 49);
+        _introductionTransition.AssignAcceleration(-3);
         _acceptGodButton = new MovingBitmap(R.drawable.yes, 400, 325);
         _acceptGodButton.setVisible(false);
         _exitGodModeButton = new MovingBitmap(R.drawable.no, 250, 325);
