@@ -277,7 +277,7 @@ public class BattleModel implements ReleasableResource
 
     private void GenerateHoshi()
     {
-        _enemies.add(new Hoshi(80, 220, _shifting));
+        _enemies.add(new Hoshi(80, 185, _shifting));
     }
 
     public void Translation(int shiftedX, int shiftedY)
