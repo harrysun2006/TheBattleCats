@@ -14,6 +14,7 @@ public class StateReady extends AbstractGameState {
     private MovingBitmap _helpInfo;
     private MovingBitmap _aboutInfo;
     private MovingBitmap _background;
+    private MovingBitmap _cheatInfo;
 
     private BitmapButton _startButton;
     private BitmapButton _helpButton;
@@ -21,6 +22,7 @@ public class StateReady extends AbstractGameState {
     private BitmapButton _exitButton;
     private BitmapButton _menuButton;
     private BitmapButton _shopButton;
+    private BitmapButton _cheatButton;
 
     private boolean _showHelp;
     private boolean _showAbout;
@@ -31,16 +33,20 @@ public class StateReady extends AbstractGameState {
 
     @Override
     public void initialize(Map<String, Object> data) {
-        addGameObject(_helpInfo = new MovingBitmap(R.drawable.help_info));
+        addGameObject(_helpInfo = new MovingBitmap(R.drawable.new_help_info));
         addGameObject(_background = new MovingBitmap(R.drawable.new_state_ready));
         addGameObject(_aboutInfo = new MovingBitmap(R.drawable.new_about_info));
+        addGameObject(_cheatInfo = new MovingBitmap(R.drawable.cheat_info));
         initializeStartButton();
         initializeHelpButton();
         initializeAboutButton();
         InitializeShopButton();
         initializeExitButton();
         initializeMenuButton();
+        InitializeCheatButton();
         setVisibility(false, false);
+        _cheatInfo.setVisible(false);
+        _cheatButton.setVisible(false);
     }
 
     /**
@@ -67,6 +73,7 @@ public class StateReady extends AbstractGameState {
             @Override
             public void perform(BitmapButton button) {
                 setVisibility(true, false);
+                _cheatButton.setVisible(true);
             }
         });
         addPointerEventHandler(_helpButton);
@@ -122,9 +129,25 @@ public class StateReady extends AbstractGameState {
             @Override
             public void perform(BitmapButton button) {
                 setVisibility(false, false);
+                _cheatInfo.setVisible(false);
+                _cheatButton.setVisible(false);
             }
         });
         addPointerEventHandler(_menuButton);
+    }
+
+    private void InitializeCheatButton()
+    {
+        addGameObject(_cheatButton = new BitmapButton(R.drawable.cheat_button, R.drawable.cheat_button_pressed, 465, 270));
+        _cheatButton.addButtonEventHandler(new ButtonEventHandler() {
+            @Override
+            public void perform(BitmapButton button) {
+                _helpInfo.setVisible(false);
+                _cheatInfo.setVisible(true);
+                _cheatButton.setVisible(false);
+            }
+        });
+        addPointerEventHandler(_cheatButton);
     }
 
     @Override
