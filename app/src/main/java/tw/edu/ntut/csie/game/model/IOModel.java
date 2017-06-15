@@ -63,7 +63,7 @@ public class IOModel
         }
         catch (FileNotFoundException e)
         {
-            Toast.makeText(_game, "File not found: " + e.toString(), Toast.LENGTH_LONG).show();
+//            Toast.makeText(_game, "File not found: " + e.toString(), Toast.LENGTH_LONG).show();
         }
         catch (IOException e)
         {
