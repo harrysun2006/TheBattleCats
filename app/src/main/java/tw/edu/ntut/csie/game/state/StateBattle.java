@@ -45,7 +45,7 @@ public class StateBattle extends GameState
     {
         InitializeMusic();
         InitializeButtonComponent();
-        _background = new TranslationBitmap(R.drawable.test_background);
+        InitializeBackground(data);
         _battleModel = new BattleModel(new RecordModel(_engine), data); //存取RecordModel來初始化BattleModel裡面的金錢以及主堡血量
         _allyNexusHealth = new HealthBar(810, 120, 120);
         _enemyNexusHealth = new HealthBar(70, 100, 120);
@@ -99,6 +99,30 @@ public class StateBattle extends GameState
         _rabbitCooldown = new CooldownBar(194, 60, 70);
         _birdButton = new CDButton(R.drawable.bird_button, R.drawable.bird_button_disabled, 280, 10, Bird.COOLDOWN);
         _birdCooldown = new CooldownBar(284, 60, 70);
+    }
+
+    private void InitializeBackground(Map<String, Object> data)
+    {
+        if (data == null)
+        {
+            _background = new TranslationBitmap(R.drawable.test_background);
+        }
+        else if ((int) data.get("game_level") == 1)
+        {
+            _background = new TranslationBitmap(R.drawable.background_night);
+        }
+        else if ((int) data.get("game_level") == 2)
+        {
+            _background = new TranslationBitmap(R.drawable.test_background);
+        }
+        else if ((int) data.get("game_level") == 3)
+        {
+            _background = new TranslationBitmap(R.drawable.test_background);
+        }
+        else
+        {
+            _background = new TranslationBitmap(R.drawable.background_night);
+        }
     }
 
     @Override
