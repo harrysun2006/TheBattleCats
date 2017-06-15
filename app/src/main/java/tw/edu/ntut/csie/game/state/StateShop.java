@@ -43,7 +43,7 @@ public class StateShop extends GameState
 
     private void InitializeMusic()
     {
-        _music = new Audio(R.raw.ntut);
+        _music = new Audio(R.raw.shop);
         _music.setRepeating(true);
         _buyingSound = new Audio(R.raw.buy_item);
         _buyingSound.setRepeating(false);
