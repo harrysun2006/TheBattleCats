@@ -365,6 +365,11 @@ public class StateBattle extends GameState
         {
             return true;
         }
+        if (IsPointerOnButton(pointers.get(0), _pauseButton))
+        {
+            _pressedButton = 6;
+            return true;
+        }
         if (_isPaused)
         {
             return true;
@@ -388,10 +393,6 @@ public class StateBattle extends GameState
         else if (IsPointerOnButton(pointers.get(0), _moneyAddButton))
         {
             _pressedButton = 5;
-        }
-        else if (IsPointerOnButton(pointers.get(0), _pauseButton))
-        {
-            _pressedButton = 6;
         }
         else
         {

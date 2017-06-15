@@ -4,6 +4,7 @@ import java.util.Map;
 
 import tw.edu.ntut.csie.game.Game;
 import tw.edu.ntut.csie.game.R;
+import tw.edu.ntut.csie.game.core.Audio;
 import tw.edu.ntut.csie.game.core.MovingBitmap;
 import tw.edu.ntut.csie.game.engine.GameEngine;
 import tw.edu.ntut.csie.game.extend.BitmapButton;
@@ -23,6 +24,8 @@ public class StateReady extends AbstractGameState {
     private BitmapButton _menuButton;
     private BitmapButton _shopButton;
     private BitmapButton _cheatButton;
+
+    private Audio _music;
 
     private boolean _showHelp;
     private boolean _showAbout;
@@ -47,6 +50,9 @@ public class StateReady extends AbstractGameState {
         setVisibility(false, false);
         _cheatInfo.setVisible(false);
         _cheatButton.setVisible(false);
+        addReleasableResource(_music = new Audio(R.raw.home));
+        _music.setRepeating(true);
+        _music.play();
     }
 
     /**
@@ -152,10 +158,12 @@ public class StateReady extends AbstractGameState {
 
     @Override
     public void pause() {
+        _music.pause();
     }
 
     @Override
     public void resume() {
+        _music.resume();
     }
 
     /**
