@@ -16,7 +16,7 @@ public class Bird extends Units
     {
         super();
 
-        _health = 100;
+        _health = 50;
         _currentHealth = _health;
         _x = x;
         _y = y;

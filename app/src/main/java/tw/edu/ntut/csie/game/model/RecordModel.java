@@ -105,7 +105,7 @@ public class RecordModel
     //工作狂貓的工作效率每提升一級，每1/15秒得到額外2金錢
     public int GetMoneyAddSpeed()
     {
-        int result = 10;
+        int result = 4;
         for (int i = 1; i < Integer.parseInt(_records[1]); i++)
         {
             result += 2;
