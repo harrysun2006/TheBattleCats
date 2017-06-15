@@ -170,11 +170,11 @@ public class StateShop extends GameState
     {
         if (pointers.size() == 2)
         {
-            _shopModel.FullExperience();
+            _pressedButton = 5;
         }
-        else if (pointers.size() == 3) //在螢幕上用三根手指點擊來刪除紀錄檔
+        if (pointers.size() == 3) //在螢幕上用三根手指點擊來刪除紀錄檔
         {
-            _shopModel.DeleteRecord();
+            _pressedButton = 6;
         }
         if (_isPressed)
         {
@@ -188,6 +188,14 @@ public class StateShop extends GameState
     @Override
     public boolean pointerReleased(List<Pointer> pointers)
     {
+        if (_pressedButton == 5)
+        {
+            _shopModel.FullExperience();
+        }
+        if (_pressedButton == 6)
+        {
+            _shopModel.DeleteRecord();
+        }
         if (_isPressed)
         {
             _isPressed = false;
