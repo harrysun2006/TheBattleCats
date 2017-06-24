@@ -107,6 +107,6 @@ public class GodMode implements ReleasableResource
 
     public boolean IsTransitionFinished()
     {
-        return _god.IsVisible();
+        return _godTransition.IsTransitionFinished();
     }
 }
